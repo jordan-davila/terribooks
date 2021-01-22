@@ -1,0 +1,18 @@
+button {
+    outline: none;
+    &:focus {
+        outline: none;
+    }
+}
+
+.text-vertical {
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+}
+
+// Active Form Options
+.active-option {
+    @apply bg-indigo-600;
+    @apply text-white;
+}
