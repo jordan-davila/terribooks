@@ -16,3 +16,17 @@ button {
     @apply bg-indigo-600;
     @apply text-white;
 }
+
+// Daily Text Links
+.daily-text {
+    a {
+        @apply text-indigo-600;
+    }
+}
+
+#grid-territory-editor-phone {
+    .row {
+        grid-template-columns: 1fr 60px 40px 90px 25px 50px;
+        grid-column-gap: 5px;
+    }
+}

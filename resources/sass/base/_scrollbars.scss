@@ -1,0 +1,17 @@
+.no-scrollbar {
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.scrollbar-track {
+    background: none !important;
+    width: 3px !important;
+}
+
+.scrollbar-thumb {
+    background-color: rgba(79, 70, 229,1) !important;
+    width: 3px !important;
+}
