@@ -12,33 +12,32 @@ class Team extends JetstreamTeam
 {
     use HasFactory;
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'personal_team' => 'boolean',
     ];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
         'personal_team',
     ];
 
-    /**
-     * The event map for the model.
-     *
-     * @var array
-     */
     protected $dispatchesEvents = [
         'created' => TeamCreated::class,
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    public function cities()
+    {
+        return $this->hasMany(City::class)->orderBy('id', 'asc');
+    }
+
+    public function territories()
+    {
+        return $this->hasManyThrough(Territory::class, City::class);
+    }
+
+    public function getTerritoryCountAttribute() {
+        return $this->territories->count();
+    }
 }

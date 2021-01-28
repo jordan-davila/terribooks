@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use Laravel\Jetstream\HasTeams;
+use Laravel\Sanctum\HasApiTokens;
+use App\Traits\Territory\HasTerritory;
+use Laravel\Jetstream\HasProfilePhoto;
+use Illuminate\Notifications\Notifiable;
+use App\Traits\Jetstream\HasNoPersonalTeams;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Jetstream\HasTeams;
-use Laravel\Sanctum\HasApiTokens;
-use App\Traits\Jetstream\HasNoPersonalTeams;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,7 @@ class User extends Authenticatable
     use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasTerritory;
     use HasNoPersonalTeams {
         HasNoPersonalTeams::ownsTeam insteadof HasTeams;
         HasNoPersonalTeams::isCurrentTeam insteadof HasTeams;
