@@ -15,7 +15,7 @@
                 @keydown.enter.prevent="goToProfile(null)"
                 ref="search"
                 type="text"
-                class="bg-transparent h-full w-full px-16 text-sm focus:outline-none text-gray-400 placeholder-gray-300 focus:border-indigo-600 focus:border-solid focus:border-b-2"
+                class="bg-transparent h-full w-full px-16 text-xs focus:outline-none text-gray-400 placeholder-gray-300 focus:border-indigo-600 focus:border-solid focus:border-b-2"
                 placeholder='Search Territories  ( Type " / " To Focus )'
             />
         </div>

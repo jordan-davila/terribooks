@@ -1,41 +1,37 @@
 <template>
-    <app-layout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Profile
-            </h2>
-        </template>
+    <AppLayout>
+        <div id="profile-smooth-scroll" class="content-container flex flex-col w-full h-full overflow-y-auto">
+            <div>
+                <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+                    <div v-if="$page.props.jetstream.canUpdateProfileInformation">
+                        <update-profile-information-form :user="$page.props.user" />
 
-        <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <div v-if="$page.props.jetstream.canUpdateProfileInformation">
-                    <update-profile-information-form :user="$page.props.user" />
+                        <jet-section-border />
+                    </div>
 
-                    <jet-section-border />
+                    <div v-if="$page.props.jetstream.canUpdatePassword">
+                        <update-password-form class="mt-10 sm:mt-0" />
+
+                        <jet-section-border />
+                    </div>
+
+                    <div v-if="$page.props.jetstream.canManageTwoFactorAuthentication">
+                        <two-factor-authentication-form class="mt-10 sm:mt-0" />
+
+                        <jet-section-border />
+                    </div>
+
+                    <logout-other-browser-sessions-form :sessions="sessions" class="mt-10 sm:mt-0" />
+
+                    <template v-if="$page.props.jetstream.hasAccountDeletionFeatures">
+                        <jet-section-border />
+
+                        <delete-user-form class="mt-10 sm:mt-0" />
+                    </template>
                 </div>
-
-                <div v-if="$page.props.jetstream.canUpdatePassword">
-                    <update-password-form class="mt-10 sm:mt-0" />
-
-                    <jet-section-border />
-                </div>
-
-                <div v-if="$page.props.jetstream.canManageTwoFactorAuthentication">
-                    <two-factor-authentication-form class="mt-10 sm:mt-0" />
-
-                    <jet-section-border />
-                </div>
-
-                <logout-other-browser-sessions-form :sessions="sessions" class="mt-10 sm:mt-0" />
-
-                <template v-if="$page.props.jetstream.hasAccountDeletionFeatures">
-                    <jet-section-border />
-
-                    <delete-user-form class="mt-10 sm:mt-0" />
-                </template>
             </div>
         </div>
-    </app-layout>
+    </AppLayout>
 </template>
 
 <script>
@@ -46,6 +42,7 @@
     import TwoFactorAuthenticationForm from './TwoFactorAuthenticationForm'
     import UpdatePasswordForm from './UpdatePasswordForm'
     import UpdateProfileInformationForm from './UpdateProfileInformationForm'
+    import Scrollbar from "smooth-scrollbar";
 
     export default {
         props: ['sessions'],
@@ -59,5 +56,14 @@
             UpdatePasswordForm,
             UpdateProfileInformationForm,
         },
+
+        mounted() {
+            Scrollbar.init(document.querySelector("#profile-smooth-scroll"), {
+                damping: 0.1,
+                renderByPixels: true,
+                alwaysShowTracks: false,
+                continuousScrolling: true
+            });
+        }
     }
 </script>

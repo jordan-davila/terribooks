@@ -1,28 +1,24 @@
 <template>
-    <app-layout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Team Settings
-            </h2>
-        </template>
+    <AppLayout>
+        <div id="profile-smooth-scroll" class="content-container flex flex-col w-full h-full overflow-y-auto">
+            <div>
+                <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+                    <update-team-name-form :team="team" :permissions="permissions" />
 
-        <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <update-team-name-form :team="team" :permissions="permissions" />
+                    <team-member-manager class="mt-10 sm:mt-0"
+                                :team="team"
+                                :available-roles="availableRoles"
+                                :user-permissions="permissions" />
 
-                <team-member-manager class="mt-10 sm:mt-0"
-                            :team="team"
-                            :available-roles="availableRoles"
-                            :user-permissions="permissions" />
+                    <template v-if="permissions.canDeleteTeam && ! team.personal_team">
+                        <jet-section-border />
 
-                <template v-if="permissions.canDeleteTeam && ! team.personal_team">
-                    <jet-section-border />
-
-                    <delete-team-form class="mt-10 sm:mt-0" :team="team" />
-                </template>
+                        <delete-team-form class="mt-10 sm:mt-0" :team="team" />
+                    </template>
+                </div>
             </div>
         </div>
-    </app-layout>
+    </AppLayout>
 </template>
 
 <script>
@@ -31,6 +27,7 @@
     import DeleteTeamForm from './DeleteTeamForm'
     import JetSectionBorder from '@/Jetstream/SectionBorder'
     import UpdateTeamNameForm from './UpdateTeamNameForm'
+    import Scrollbar from "smooth-scrollbar";
 
     export default {
         props: [
@@ -46,5 +43,14 @@
             TeamMemberManager,
             UpdateTeamNameForm,
         },
+
+        mounted() {
+            Scrollbar.init(document.querySelector("#team-smooth-scroll"), {
+                damping: 0.1,
+                renderByPixels: true,
+                alwaysShowTracks: false,
+                continuousScrolling: true
+            });
+        }
     }
 </script>
