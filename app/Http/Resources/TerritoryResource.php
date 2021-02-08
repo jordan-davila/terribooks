@@ -17,6 +17,7 @@ class TerritoryResource extends JsonResource
             'city_name' => $this->city_name,
             'house_count' => $this->house_count,
             'phone_count' => $this->phone_count,
+            'business_count' => $this->business_count,
             'apartment_count' => $this->apartment_count,
             'updated_at' => $this->updated_at,
             'streets' => StreetResource::collection($this->streets),

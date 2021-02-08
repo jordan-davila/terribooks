@@ -26,7 +26,32 @@ button {
 
 #grid-territory-editor-phone {
     .row {
-        grid-template-columns: 1fr 60px 40px 90px 25px 50px;
+        grid-template-columns: 1fr 70px 40px 103px 50px 40px;
         grid-column-gap: 5px;
+    }
+}
+
+#grid-territory-editor-field {
+    .row {
+        grid-template-columns: 30px 110px 80px 50px 1fr 32px;
+        grid-column-gap: 5px;
+    }
+}
+
+#grid-territory-editor-field,
+#grid-territory-editor-phone,
+#grid-territory-editor-business {
+    .row input[type="text"],
+    .row input[type="number"],
+    .row select {
+        background-color: transparent;
+        border-radius: 0;
+        border-width: 0;
+        border-color: unset;
+        width: 100%;
+        @apply px-2;
+        @apply py-4;
+        @apply text-xxs;
+        @apply font-bold;
     }
 }
