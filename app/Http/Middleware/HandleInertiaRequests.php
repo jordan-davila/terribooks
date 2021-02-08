@@ -22,6 +22,15 @@ class HandleInertiaRequests extends Middleware
             'territories' => function () {
                 return Auth()->user() ? new TeamResource(Auth()->user()->currentTeam) : null;
             },
+
+            'flash' => function () use ($request) {
+                return $request->session()->get('flash');
+            },
+
+            'search' => function () use ($request) {
+                return $request->session()->get('search');
+            },
+
         ]);
     }
 }
