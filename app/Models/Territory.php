@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Territory\HasRecords;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Territory extends Model
 {
     use HasFactory;
+    use HasRecords;
 
     protected $dates = ['created_at', 'updated_at'];
 
@@ -40,6 +42,11 @@ class Territory extends Model
     public function phones()
     {
         return $this->hasManyThrough(Phone::class, Street::class);
+    }
+
+    public function businessess()
+    {
+        return $this->hasManyThrough(Business::class, Street::class);
     }
 
     public function url()
@@ -79,5 +86,10 @@ class Territory extends Model
                 return $house->apartment_count;
             })
             ->sum();
+    }
+
+    public function getBusinessCountAttribute()
+    {
+        return $this->businessess->count();
     }
 }

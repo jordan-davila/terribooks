@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Street extends Model
+class Street extends Model implements Searchable
 {
     use HasFactory;
 
@@ -48,5 +50,11 @@ class Street extends Model
     public function getBusinessCountAttribute()
     {
         return $this->businesses->count();
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        $route = "territories.editor.field.show";
+        return new SearchResult($this, "Street", $route);
     }
 }
