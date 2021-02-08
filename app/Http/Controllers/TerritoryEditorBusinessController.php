@@ -26,9 +26,10 @@ class TerritoryEditorBusinessController extends Controller
     {
         Gate::denies('view', $territory) ? abort(403, "You Don't Have Access to that Territory") : null;
         return Inertia::render('Territories/Editor/Business', [
+            'type' => 'Business',
             'territory' => new TerritoryResource($territory),
             'street' => $street,
-            'businesses' => $territory->businesses,
+            'businesses' => $street->businesses,
         ]);
     }
 }

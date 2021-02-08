@@ -15,21 +15,81 @@ class TerritoryEditorPhoneController extends Controller
 {
     public function index(Territory $territory)
     {
-        Gate::denies('view', $territory) ? abort(403, "You Don't Have Access to that Territory") : null;
-        $default_street = $territory->streets->first();
-        if (!is_null($default_street)) {
-            return Redirect::route('territories.editor.phone.show', ['territory' => $territory, 'street' => $default_street]);
-        }
-        return Inertia::render('Territories/Editor/Phone');
+        $default = $territory->streets->first();
+        return !is_null($default)
+            ? Redirect::route('territories.editor.phone.show', ['territory' => $territory, 'street' => $default])
+            : Inertia::render('Territories/Editor/Phone');
     }
 
     public function show(Territory $territory, Street $street)
     {
-        Gate::denies('view', $territory) ? abort(403, "You Don't Have Access to that Territory") : null;
         return Inertia::render('Territories/Editor/Phone', [
+            'type' => 'Phone',
             'territory' => new TerritoryResource($territory),
             'street' => $street,
-            'phones' => $territory->phones,
+            'phones' => $street->phones,
         ]);
+    }
+
+    public function store(Territory $territory, Street $street, Request $request)
+    {
+        $request->validate([
+            'number' => 'required|min:1',
+            'street_id' => 'required',
+        ]);
+
+        Phone::create([
+            'name' => $request->name,
+            'number' => $request->number,
+            'phone' => $request->phone,
+            'apartment' => $request->apartment,
+            'symbol' => $request->symbol,
+            'color' => $request->color,
+            'observations' => $request->observations,
+            'street_id' => $street->id,
+        ]);
+
+        return back(303);
+    }
+
+    public function update(Territory $territory, Street $street, Phone $phone, Request $request)
+    {
+        Gate::allows('handlePhone', [$territory, $phone]) ?: abort(403);
+
+        $request->validate(['number' => 'required|min:1']);
+
+        // Make sure its actually from the users territory and street
+        $phone = $territory->streets()->find($street->id)->phones()->find($request->id);
+        $phone->number = $request->number;
+        $phone->apartment = $request->apartment;
+        $phone->name = $request->name;
+        $phone->symbol = $request->symbol;
+        $phone->color = $request->color;
+        $phone->phone = $request->phone;
+        $phone->observations = $request->observations;
+        $phone->save();
+
+        return back(303);
+    }
+
+    public function updateAll(Territory $territory, Street $street, Request $request)
+    {
+        // Don't need a gate here since we're already checking it on update()
+        foreach ($request->phones as $phone) {
+            $this->update($territory, $street, new Phone($phone), new Request($phone));
+        }
+
+        return back(303);
+    }
+
+    public function deleteSelected(Territory $territory, Street $street, Request $request)
+    {
+        foreach ($request->phones as $req) {
+            $phone = Phone::find($req['id']);
+            Gate::allows('handlePhone', [$territory, $phone]) ?: abort(403);
+            $phone->delete();
+        }
+
+        return back(303);
     }
 }

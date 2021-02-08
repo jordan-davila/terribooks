@@ -16,20 +16,14 @@ class TerritoryController extends Controller
     {
         // Check for first territory
         // If not, render territory.index
-        $default_territory = Auth()->user()->currentTeam->territories->first();
-        if (!is_null($default_territory)) {
-            return Redirect::route('territories.show', ['territory' => $default_territory]);
-        }
-
-        return Inertia::render('Territories/Overview/Index');
+        $default = Auth()->user()->currentTeam->territories->first();
+        return !is_null($default)
+            ? Redirect::route('territories.show', ['territory' => $default])
+            : Inertia::render('Territories/Overview/Index');
     }
 
     public function show(Territory $territory)
     {
-        Gate::denies('view', $territory) ? abort(403, "You Don't Have Access to that Territory") : null;
-        // *NOTE* TerritoryPicker.vue uses data ('territories') from HandleInertiaRequest Middleware
-        // Since this is data that we want to access a number of pages, it will be unpractical to
-        // make a request on every page. For this reason, we use Inertia's Shared Data feature
         return Inertia::render('Territories/Overview/Show', [
             'territory' => new TerritoryResource($territory),
         ]);
