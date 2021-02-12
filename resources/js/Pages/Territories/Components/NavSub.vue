@@ -34,14 +34,12 @@
                 >
                     Assignments
                 </inertia-link>
-                <inertia-link
-                    preserve-scroll
-                    preserve-state
-                    :href="route('territories.show', [$page.props.territory.data.id])"
-                    class="section text-vertical w-full py-6 flex flex-col justify-center items-center text-indigo-600"
+                <a
+                    @click.prevent="$modal.show('export')"
+                    class="section text-vertical w-full py-6 flex flex-col justify-center items-center border-l-2 border-solid hover:border-indigo-500 border-white cursor-pointer"
                 >
-                    Print
-                </inertia-link>
+                    Export
+                </a>
             </div>
         </div>
         <div class="icons text-gray-300 text-sm h-16 w-full flex flex-col justify-center items-center">
@@ -53,7 +51,8 @@
 export default {
     methods: {
         classes(link) {
-            let classes = "section text-vertical w-full py-6 flex flex-col justify-center items-center border-l-2 border-solid hover:border-indigo-500 ";
+            let classes =
+                "section text-vertical w-full py-6 flex flex-col justify-center items-center border-l-2 border-solid hover:border-indigo-500 ";
             classes += route().current(link) ? "border-indigo-600" : "border-white";
             return classes;
         }

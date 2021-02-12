@@ -12,10 +12,16 @@ class House extends Model implements Searchable
     use HasFactory;
 
     protected $guarded = [];
+    protected $appends = ["apartment_count"];
 
     public function apartments()
     {
         return $this->hasMany(Apartment::class)->orderByRaw("CAST(`number` AS UNSIGNED) ASC");
+    }
+
+    public function getApartmentCountAttribute()
+    {
+        return $this->apartments->count();
     }
 
     public function street()

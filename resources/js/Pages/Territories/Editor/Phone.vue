@@ -12,7 +12,7 @@
                 <button
                     class="rounded-full bg-green-400 flex items-center h-6 px-4 uppercase font-bold"
                     @click="saveAll()"
-                    v-if="!phonesToDelete.length"
+                    v-if="!phonesToDelete.length && $page.props.phones.length"
                 >
                     <i class="fas fa-save mr-2"></i>
                     <span class="mt-0.5">Save All</span>
@@ -20,9 +20,9 @@
                 <button
                     class="rounded-full bg-red-400 flex items-center h-6 px-4 uppercase font-bold"
                     @click="deleteSelected()"
-                    v-else
+                    v-if="phonesToDelete.length"
                 >
-                    <i class="fas fa-trash-alt"></i>
+                    <i class="fas fa-trash-alt mr-2"></i>
                     <span class="mt-0.5">Delete Selected</span>
                 </button>
                 <button
@@ -33,7 +33,7 @@
                 </button>
             </div>
         </div>
-        <div id="grid-territory-editor-phone" class="flex flex-col overflow-hidden">
+        <div id="grid-territory-editor-phone" class="flex flex-col overflow-hidden" v-if="$page.props.phones.length">
             <div
                 class="list-header grid row border-b border-solid border-gray-200 text-gray-300 uppercase font-bold text-xxs px-6 bg-white"
             >
@@ -78,26 +78,31 @@
                             <div
                                 class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200"
                             >
-                                <input
-                                    type="checkbox"
-                                    class="opacity-0 absolute"
-                                    @click="phonesWillDelete(index)"
-                                />
-                                <svg
-                                    class="fill-current hidden w-2 h-2 text-indigo-500 pointer-events-none"
-                                    viewBox="0 0 20 20"
-                                >
+                                <input type="checkbox" class="opacity-0 absolute" @click="phonesWillDelete(index)" />
+                                <svg class="fill-current hidden w-2 h-2 text-indigo-500 pointer-events-none" viewBox="0 0 20 20">
                                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
                                 </svg>
                             </div>
-                            <button
-                                class="text-gray-300 text-xs"
-                                @click="$modal.show('edit-phone', { phone: phone })"
-                            >
+                            <button class="text-gray-300 text-xs" @click="$modal.show('edit-phone', { phone: phone })">
                                 <i class="fas fa-bars"></i>
                             </button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-full flex flex-1 justify-center items-center" v-else>
+            <div
+                class="flex text-xxs uppercase text-gray-300 font-bold justify-center items-center bg-white px-6 py-4 rounded-lg shadow-md"
+            >
+                <div
+                    class="icon mr-4 bg-indigo-100 text-indigo-500 text-base flex justify-center items-center h-8 w-8 rounded-full"
+                >
+                    <i class="far fa-bomb"></i>
+                </div>
+                <div class="info text-left">
+                    <span class="text-gray-500">No Phones on this Street.</span><br />Please conduct a census and add a new phone
+                    number.
                 </div>
             </div>
         </div>
@@ -116,7 +121,8 @@ export default {
     data() {
         return {
             phonesToUpdate: [],
-            phonesToDelete: []
+            phonesToDelete: [],
+            phoneKeyListener: null
         };
     },
     mounted() {
@@ -127,7 +133,7 @@ export default {
             continuousScrolling: true
         });
 
-        this._keyListener = function(e) {
+        this.phoneKeyListener = function(e) {
             if (e.key === "s" && (e.ctrlKey || e.metaKey)) {
                 e.preventDefault();
                 this.saveAll();
@@ -138,10 +144,10 @@ export default {
             }
         };
 
-        document.addEventListener("keydown", this._keyListener.bind(this));
+        document.addEventListener("keydown", this.phoneKeyListener.bind(this));
     },
     beforeDestroy() {
-        document.removeEventListener("keydown", this._keyListener);
+        document.removeEventListener("keydown", this.phoneKeyListener);
     },
     methods: {
         phoneWillUpdate(index) {
@@ -157,12 +163,8 @@ export default {
         },
 
         formatPhone(index) {
-            let x = this.$page.props.phones[index].phone
-                .replace(/\D/g, "")
-                .match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-            this.$page.props.phones[index].phone = !x[2]
-                ? x[1]
-                : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
+            let x = this.$page.props.phones[index].phone.replace(/\D/g, "").match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            this.$page.props.phones[index].phone = !x[2] ? x[1] : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
         },
 
         saveAll() {

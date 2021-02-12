@@ -8,6 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TerritoryController;
 use App\Http\Controllers\TerritoryEditorFieldController;
 use App\Http\Controllers\TerritoryEditorPhoneController;
+use App\Http\Controllers\TerritoryExportFieldController;
+use App\Http\Controllers\TerritoryExportPhoneController;
 use App\Http\Controllers\TerritoryEditorBusinessController;
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
@@ -38,7 +40,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/{territory}', [TerritoryController::class, 'show'])
             ->name('show');
         Route::get('/{territory}/map', [TerritoryController::class, 'map'])
-            ->name('territories.map.show');
+            ->name('map.show');
+
+        // Print Group
+        Route::group(['prefix' => '{territory}/export', 'as' => 'export.'], function () {
+            Route::get('/field/download', [TerritoryExportFieldController::class, 'download'])
+                ->name('field.download');
+            Route::get('/phone/download', [TerritoryExportPhoneController::class, 'download'])
+                ->name('phone.download');
+        });
+
 
         // Editor Group
         Route::group(['prefix' => '{territory}/editor', 'as' => 'editor.'], function () {
@@ -72,10 +83,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
                     ->name('field.store.apartment'); // territories.editor.field.store.apt
                 Route::put('/field/street/{street}/house/{house}', [TerritoryEditorFieldController::class, 'updateHouse'])
                     ->name('field.update.house'); // territories.editor.field.update.house
-                Route::put('/field/street/{street}/apt/{apt}', [TerritoryEditorFieldController::class, 'updateApartment'])
-                    ->name('field.update.apt'); // territories.editor.field.update.apt
+                Route::put('/field/street/{street}/apartment/{apartment}', [TerritoryEditorFieldController::class, 'updateApartment'])->name('field.update.apartment'); // territories.editor.field.update.apartment
                 Route::put('/field/street/{street}', [TerritoryEditorFieldController::class, 'updateAll'])
                     ->name('field.update.all'); // territories.editor.field.update.all
+                Route::delete('/field/street/{street}/house', [TerritoryEditorFieldController::class, 'deleteSelectedHouses'])
+                    ->name('field.delete.selected.houses'); // territories.editor.field.deleted.selected.houses
+                Route::delete('/field/street/{street}/apartment', [TerritoryEditorFieldController::class, 'deleteSelectedApartments'])
+                    ->name('field.delete.selected.apartments'); // territories.editor.field.deleted.selected.apartments
 
                 // Phone [Show, Store, Update, UpdateAll, Destroy]
                 Route::get('/phone/street/{street}', [TerritoryEditorPhoneController::class, 'show'])

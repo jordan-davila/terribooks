@@ -37,7 +37,7 @@ export default {
     },
     watch: {
         "$page.props.flash": function() {
-            console.log(this.$page.props.flash.type);
+            if (this.$page.props.flash == null) return;
             let flash = _.filter(types, ["type", this.$page.props.flash.type])[0];
             this.message = this.$page.props.flash.message;
             this.bg = flash.bg;

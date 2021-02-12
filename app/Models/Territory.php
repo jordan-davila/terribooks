@@ -11,16 +11,14 @@ class Territory extends Model
     use HasFactory;
     use HasRecords;
 
-    protected $dates = ['created_at', 'updated_at'];
+    protected $dates = ["created_at", "updated_at"];
 
     protected $casts = [
-        'created_at' => 'datetime:F d, Y',
-        'updated_at' => 'datetime:F d, Y',
+        "created_at" => "datetime:F d, Y",
+        "updated_at" => "datetime:F d, Y",
     ];
 
-    protected $guarded = [
-        'id', 'city_id'
-    ];
+    protected $guarded = ["id", "city_id"];
 
     public function city()
     {
@@ -30,8 +28,8 @@ class Territory extends Model
     public function streets()
     {
         return $this->hasMany(Street::class)
-            ->orderBy('order')
-            ->orderBy('id', 'desc');
+            ->orderBy("order")
+            ->orderBy("id", "desc");
     }
 
     public function houses()
@@ -51,7 +49,7 @@ class Territory extends Model
 
     public function url()
     {
-        return url('territory/' . $this->id);
+        return url("territory/" . $this->id);
     }
 
     public function getCodeAttribute()
@@ -61,7 +59,7 @@ class Territory extends Model
 
     public function getNameAttribute()
     {
-        return $this->city->name . ' ' . $this->order;
+        return $this->city->name . " " . $this->order;
     }
 
     public function getCityNameAttribute()

@@ -15,16 +15,19 @@ class SearchController extends Controller
 {
     public function search(Team $team, Request $request)
     {
-        Gate::allows('view', $team) ?: abort(403);
-        if ($request->has('query')) {
-            if ($request->input('query') != '') {
-                $query = $request->input('query');
+        Gate::allows("view", $team) ?: abort(403);
+        if ($request->has("query")) {
+            if ($request->input("query") != "") {
+                $query = $request->input("query");
                 $searchResults = (new Search())
-                    ->registerAspect(FieldSearchAspect::class)->limitAspectResults(10)
-                    ->registerAspect(PhoneSearchAspect::class)->limitAspectResults(10)
-                    ->registerAspect(StreetSearchAspect::class)->limitAspectResults(10)
+                    ->registerAspect(FieldSearchAspect::class)
+                    ->limitAspectResults(10)
+                    ->registerAspect(PhoneSearchAspect::class)
+                    ->limitAspectResults(10)
+                    ->registerAspect(StreetSearchAspect::class)
+                    ->limitAspectResults(10)
                     ->search($query);
-                return back()->with(['search' => $searchResults->groupByType()]);
+                return back()->with(["search" => $searchResults->groupByType()]);
             } else {
                 return back();
             }

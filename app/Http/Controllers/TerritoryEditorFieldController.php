@@ -129,4 +129,26 @@ class TerritoryEditorFieldController extends Controller
 
         return back(303);
     }
+
+    public function deleteSelectedHouses(Territory $territory, Street $street, Request $request)
+    {
+        foreach ($request->houses as $req) {
+            $house = House::find($req['id']);
+            Gate::allows('handleHouse', [$territory, $house]) ?: abort(403);
+            $house->delete();
+        }
+
+        return back(303);
+    }
+
+    public function deleteSelectedApartments(Territory $territory, Street $street, Request $request)
+    {
+        foreach ($request->apartments as $req) {
+            $apartment = Apartment::find($req['id']);
+            // Gate::allows('handleHouse', [$territory, $apartment->house]) ?: abort(403);
+            $apartment->delete();
+        }
+
+        return back(303);
+    }
 }

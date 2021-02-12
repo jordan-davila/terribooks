@@ -1,12 +1,7 @@
 <template lang="">
-    <nav
-        class="flex justify-between w-full h-16 bg-white border-b border-gray-200 border-solid"
-        style="z-index: 999"
-    >
+    <nav class="flex justify-between w-full h-16 bg-white border-b border-gray-200 border-solid" style="z-index: 999">
         <!-- Logo -->
-        <div
-            class="w-16 h-full border-solid border-gray-200 border-r text-gray-300 text-base flex justify-center items-center"
-        >
+        <div class="w-16 h-full border-solid border-gray-200 border-r text-gray-300 text-base flex justify-center items-center">
             <Logo class="w-4" />
         </div>
         <inertia-link
@@ -42,16 +37,16 @@
                 }"
             >
                 <div class="popper rounded-md shadow-lg w-60 bg-white overflow-hidden">
-                    <div class="rounded-md ring-1 ring-black ring-opacity-5">
+                    <div class="rounded-md ring-1 ring-black ring-opacity-5 text-xxs uppercase">
                         <!-- Account Management -->
-                        <div class="block px-4 py-2 text-xs text-gray-300 font-medium">
+                        <div class="block px-4 py-2 text-gray-300 font-bold">
                             Manage Congregations
                         </div>
 
                         <inertia-link
                             :href="route('teams.show', $page.props.user.current_team)"
                             v-if="$page.props.user.belongsToAnyTeam"
-                            class="block px-4 py-2 text-xs leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                            class="block px-6 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
                         >
                             Congregation Settings
                         </inertia-link>
@@ -59,7 +54,7 @@
                         <inertia-link
                             :href="route('teams.create')"
                             v-if="$page.props.jetstream.canCreateTeams"
-                            class="block px-4 py-2 text-xs leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                            class="block px-6 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
                         >
                             Create Congregation
                         </inertia-link>
@@ -67,24 +62,18 @@
                         <!-- Congregation Switcher -->
                         <template v-if="$page.props.user.belongsToAnyTeam">
                             <div class="border-t border-gray-100"></div>
-                            <div class="block px-4 py-2 text-xs text-gray-300 font-medium">
+                            <div class="block px-4 py-2 text-gray-300 font-bold">
                                 Switch Congregations
                             </div>
                             <template v-for="congregation in $page.props.user.all_teams">
-                                <form
-                                    @submit.prevent="switchToTeam(congregation)"
-                                    :key="congregation.id"
-                                >
+                                <form @submit.prevent="switchToTeam(congregation)" :key="congregation.id">
                                     <button
                                         type="submit"
-                                        class="block w-full px-4 py-2 text-xs leading-5 text-gray-300 text-left hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                                        class="block w-full px-6 py-2 leading-5 text-gray-300 uppercase text-left hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
                                     >
                                         <div class="flex items-center">
                                             <svg
-                                                v-if="
-                                                    congregation.id ==
-                                                        $page.props.user.current_team_id
-                                                "
+                                                v-if="congregation.id == $page.props.user.current_team_id"
                                                 class="mr-2 h-5 w-5 text-green-400"
                                                 fill="none"
                                                 stroke-linecap="round"
@@ -93,9 +82,7 @@
                                                 stroke="currentColor"
                                                 viewBox="0 0 24 24"
                                             >
-                                                <path
-                                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                ></path>
+                                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                             </svg>
                                             <div>{{ congregation.name }}</div>
                                         </div>

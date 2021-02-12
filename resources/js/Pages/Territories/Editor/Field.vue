@@ -2,6 +2,8 @@
     <div class="flex-auto flex flex-col h-full bg-gray-50 shadow-lg rounded-lg overflow-hidden">
         <AddHouse />
         <AddApartment />
+        <EditHouse />
+        <EditApartment />
         <div
             class="title-phone-editor w-full py-6 px-8 flex justify-between items-center border-b border-gray-200 border-solid bg-white"
         >
@@ -12,9 +14,22 @@
                 <button
                     class="rounded-full bg-green-400 flex items-center h-6 px-4 uppercase font-bold"
                     @click="saveAll()"
+                    v-if="
+                        !housesToDelete.length &&
+                            !apartmentsToDelete.length &&
+                            $page.props.houses.length
+                    "
                 >
                     <i class="fas fa-save mr-2"></i>
-                    <span>Save All</span>
+                    <span class="mt-0.5">Save All</span>
+                </button>
+                <button
+                    class="rounded-full bg-red-400 flex items-center h-6 px-4 uppercase font-bold"
+                    @click="deleteSelected()"
+                    v-if="housesToDelete.length || apartmentsToDelete.length"
+                >
+                    <i class="fas fa-trash-alt mr-2"></i>
+                    <span class="mt-0.5">Delete Selected</span>
                 </button>
                 <button
                     class="rounded-full bg-indigo-500 flex items-center justify-center h-6 w-6 ml-2"
@@ -37,12 +52,12 @@
             </div>
             <div id="field-editor-smooth-scroll" class="scroll w-full flex-1 overflow-auto">
                 <div class="scroll-wrapper">
-                    <template v-for="(house, index) in $page.props.houses">
+                    <template v-for="(house, house_index) in $page.props.houses">
                         <div
                             :id="house.number"
                             class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-white border-b border-gray-100 border-solid"
                             :key="house.id"
-                            @input="housesWillUpdate(index)"
+                            @input="housesWillUpdate(house_index)"
                         >
                             <div
                                 class="column w-full px-2 py-4 text-indigo-600 text-xs"
@@ -71,14 +86,36 @@
                             <div class="column w-full">
                                 <input type="text" v-model="house.observations" />
                             </div>
-                            <div class="column w-full"></div>
+                            <div class="column w-full flex justify-end items-center">
+                                <div
+                                    class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200"
+                                >
+                                    <input
+                                        type="checkbox"
+                                        class="opacity-0 absolute"
+                                        @click="housesWillDelete(house_index)"
+                                    />
+                                    <svg
+                                        class="fill-current hidden w-2 h-2 text-indigo-500 pointer-events-none"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                    </svg>
+                                </div>
+                                <button
+                                    class="text-gray-300 text-xs"
+                                    @click="$modal.show('edit-house', { house: house })"
+                                >
+                                    <i class="fas fa-bars"></i>
+                                </button>
+                            </div>
                         </div>
-                        <template v-for="apt in house.apartments">
+                        <template v-for="(apt, apt_index) in house.apartments">
                             <div
                                 :id="apt.number"
                                 class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-white border-b border-gray-100 border-solid"
                                 :key="apt.id"
-                                @input="apartmentsWillUpdate(index)"
+                                @input="housesWillUpdate(house_index)"
                             >
                                 <div class="column w-full px-2 py-4 text-indigo-600 text-xs"></div>
                                 <div class="column w-full">
@@ -99,9 +136,36 @@
                                     </select>
                                 </div>
                                 <div class="column w-full">
-                                    <input type="text" v-model="apt.onservations" />
+                                    <input type="text" v-model="apt.observations" />
                                 </div>
-                                <div class="column w-full"></div>
+                                <div class="column w-full flex justify-end items-center">
+                                    <div
+                                        class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            class="opacity-0 absolute"
+                                            @click="apartmentsWillDelete([house_index, apt_index])"
+                                        />
+                                        <svg
+                                            class="fill-current hidden w-2 h-2 text-indigo-500 pointer-events-none"
+                                            viewBox="0 0 20 20"
+                                        >
+                                            <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                        </svg>
+                                    </div>
+                                    <button
+                                        class="text-gray-300 text-xs"
+                                        @click="
+                                            $modal.show('edit-apartment', {
+                                                apartment: apt,
+                                                house: house
+                                            })
+                                        "
+                                    >
+                                        <i class="fas fa-bars"></i>
+                                    </button>
+                                </div>
                             </div>
                         </template>
                     </template>
@@ -114,15 +178,20 @@
 import EditorLayout from "@/Pages/Territories/Editor/Layout";
 import Scrollbar from "smooth-scrollbar";
 import AddHouse from "@/Pages/Territories/Modals/AddHouse";
+import EditHouse from "@/Pages/Territories/Modals/EditHouse";
 import AddApartment from "@/Pages/Territories/Modals/AddApartment";
+import EditApartment from "@/Pages/Territories/Modals/EditApartment";
 
 export default {
     props: ["territory"],
     layout: EditorLayout,
-    components: { AddHouse, AddApartment },
+    components: { AddHouse, AddApartment, EditHouse, EditApartment },
     data() {
         return {
-            housesToUpdate: []
+            housesToUpdate: [],
+            housesToDelete: [],
+            apartmentsToDelete: [],
+            fieldKeyListener: null
         };
     },
     mounted() {
@@ -133,7 +202,7 @@ export default {
             continuousScrolling: true
         });
 
-        this._keyListener = function(e) {
+        this.fieldKeyListener = function(e) {
             if (e.key === "s" && (e.ctrlKey || e.metaKey)) {
                 e.preventDefault();
                 this.saveAll();
@@ -144,11 +213,11 @@ export default {
             }
         };
 
-        document.addEventListener("keydown", this._keyListener.bind(this));
+        document.addEventListener("keydown", this.fieldKeyListener.bind(this));
     },
 
     beforeDestroy() {
-        document.removeEventListener("keydown", this._keyListener);
+        document.removeEventListener("keydown", this.fieldKeyListener);
     },
 
     methods: {
@@ -156,13 +225,89 @@ export default {
             this.housesToUpdate = _.union(this.housesToUpdate, [index]);
         },
 
-        apartmentsWillUpdate(index) {
-            this.apartmentsToUpdate = _.union(this.apartmentsToUpdate, [index]);
+        housesWillDelete(index) {
+            if (this.housesToDelete.includes(index)) {
+                this.housesToDelete.splice(this.housesToDelete.indexOf(index), 1);
+            } else {
+                this.housesToDelete = _.union(this.housesToDelete, [index]);
+            }
+        },
+
+        apartmentsWillDelete(indexes) {
+            if (this.apartmentsToDelete.some(p => indexes.every((child, i) => child === p[i]))) {
+                this.apartmentsToDelete.every((parent, index) =>
+                    indexes.every((child, i) => {
+                        child === parent[i] ? this.apartmentsToDelete.splice(index, 1) : null;
+                    })
+                );
+            } else {
+                this.apartmentsToDelete = _.union(this.apartmentsToDelete, [indexes]);
+            }
+        },
+
+        deleteSelected() {
+            if (this.apartmentsToDelete.length != 0) {
+                this.$inertia.visit(
+                    route("territories.editor.field.delete.selected.apartments", {
+                        territory: this.$page.props.territory.data.id,
+                        street: this.$page.props.street.id
+                    }),
+                    {
+                        method: "delete",
+                        data: {
+                            apartments: this.apartmentsToDelete.map(
+                                parent => this.$page.props.houses[parent[0]].apartments[parent[1]]
+                            )
+                        },
+                        preserveScroll: true,
+                        onSuccess: page => {
+                            this.apartmentsToDelete = [];
+                            this.$page.props.flash = {
+                                type: "success",
+                                message: "Field Numbers Deleted"
+                            };
+                        },
+                        onError: page => {
+                            this.$page.props.flash = {
+                                type: "error",
+                                message: "Something Went Wrong"
+                            };
+                        }
+                    }
+                );
+            }
+
+            if (this.housesToDelete.length != 0) {
+                this.$inertia.visit(
+                    route("territories.editor.field.delete.selected.houses", {
+                        territory: this.$page.props.territory.data.id,
+                        street: this.$page.props.street.id
+                    }),
+                    {
+                        method: "delete",
+                        data: {
+                            houses: this.housesToDelete.map(index => this.$page.props.houses[index])
+                        },
+                        preserveScroll: true,
+                        onSuccess: page => {
+                            this.housesToDelete = [];
+                            this.$page.props.flash = {
+                                type: "success",
+                                message: "Field Numbers Deleted"
+                            };
+                        },
+                        onError: page => {
+                            this.$page.props.flash = {
+                                type: "error",
+                                message: "Something Went Wrong"
+                            };
+                        }
+                    }
+                );
+            }
         },
 
         saveAll() {
-            // Check For Houses to Update
-            // This will update the entire selected house->apartment group.
             if (this.housesToUpdate.length === 0) return;
             this.$inertia.put(
                 route("territories.editor.field.update.all", {
@@ -173,10 +318,10 @@ export default {
                 {
                     preserveScroll: true,
                     onSuccess: page => {
-                        this.phonesToUpdate = [];
+                        this.housesToUpdate = [];
                         this.$page.props.flash = {
                             type: "success",
-                            message: "Phone Numbers Saved"
+                            message: "Field Numbers Saved"
                         };
                     },
                     onError: page => {
@@ -188,3 +333,8 @@ export default {
     }
 };
 </script>
+<style>
+input:checked + svg {
+    display: block;
+}
+</style>

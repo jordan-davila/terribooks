@@ -36,7 +36,8 @@ module.exports = {
         extend: {
             opacity: ["disabled"],
             borderColor: ["focus"],
-            borderWidth: ["focus", "hover"],
+            borderWidth: ["focus", "hover", "last"],
+            backgroundColor: ["even"],
             margin: ["last"]
         }
     },
