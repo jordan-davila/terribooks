@@ -1,14 +1,13 @@
 <template>
     <div>
         <div v-if="userPermissions.canAddTeamMembers">
-            <jet-section-border />
-
             <!-- Add Team Member -->
-            <jet-form-section @submitted="addTeamMember">
+            <JetFormSection @submitted="addTeamMember">
                 <template #form>
                     <div class="col-span-6">
-                        <div class="max-w-xl text-sm text-gray-600">
-                            Please provide the email address of the person you would like to add to this team.
+                        <jet-label for="email" value="Detail" />
+                        <div class="max-w-xl mt-1 text-xxs text-gray-300 uppercase font-medium">
+                            Please provide the email address of the person<br />you would like to add to this congregation.
                         </div>
                     </div>
 
@@ -71,33 +70,27 @@
                 </template>
 
                 <template #actions>
-                    <jet-action-message :on="addTeamMemberForm.recentlySuccessful" class="mr-3">
+                    <JetActionMessage :on="addTeamMemberForm.recentlySuccessful" class="mr-3">
                         Added.
-                    </jet-action-message>
+                    </JetActionMessage>
 
                     <jet-button :class="{ 'opacity-25': addTeamMemberForm.processing }" :disabled="addTeamMemberForm.processing">
                         Add
                     </jet-button>
                 </template>
-            </jet-form-section>
+            </JetFormSection>
         </div>
 
         <div v-if="team.team_invitations.length > 0 && userPermissions.canAddTeamMembers">
-            <jet-section-border />
-
             <!-- Team Member Invitations -->
             <jet-action-section class="mt-10 sm:mt-0">
-                <template #title>
-                    Pending Team Invitations
-                </template>
-
-                <template #description>
-                    These people have been invited to your team and have been sent an invitation email. They may join the team by
-                    accepting the email invitation.
-                </template>
-
                 <!-- Pending Team Member Invitation List -->
                 <template #content>
+                    <jet-label for="roles" value="Pending Team Invitations" />
+                    <div class="description mt-1 mb-2 text-xxs text-gray-300 uppercase font-medium">
+                        These people have been invited to your congregation and have been sent an<br />invitation email. They may
+                        join the team by accepting the email invitation.
+                    </div>
                     <div class="space-y-6">
                         <div
                             class="flex items-center justify-between"
@@ -357,6 +350,10 @@ export default {
             confirmingLeavingTeam: false,
             teamMemberBeingRemoved: null
         };
+    },
+
+    created() {
+        console.log(this.userPermissions.canAddTeamMembers);
     },
 
     methods: {

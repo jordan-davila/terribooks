@@ -5,34 +5,28 @@
         <EditHouse />
         <EditApartment />
         <div
-            class="title-phone-editor w-full py-6 px-8 flex justify-between items-center border-b border-gray-200 border-solid bg-white"
+            class="title-phone-editor w-full py-6 px-8 flex justify-between items-center border-b border-gray-200 border-solid bg-white relative"
         >
             <div class="title text-xxs uppercase font-bold text-gray-300">
                 Field Ministry List
             </div>
-            <div class="buttons flex text-xxs text-white">
+            <div class="buttons flex text-xxs text-white absolute right-0 mr-6">
                 <button
-                    class="rounded-full bg-green-400 flex items-center h-6 px-4 uppercase font-bold"
                     @click="saveAll()"
-                    v-if="
-                        !housesToDelete.length &&
-                            !apartmentsToDelete.length &&
-                            $page.props.houses.length
-                    "
+                    class="rounded-full bg-green-400 flex items-center justify-center h-8 w-8 px-4 uppercase font-bold"
+                    v-if="!housesToDelete.length && !apartmentsToDelete.length && $page.props.houses.length"
                 >
-                    <i class="fas fa-save mr-2"></i>
-                    <span class="mt-0.5">Save All</span>
+                    <i class="fas fa-save"></i>
                 </button>
                 <button
-                    class="rounded-full bg-red-400 flex items-center h-6 px-4 uppercase font-bold"
+                    class="rounded-full bg-red-400 flex items-center h-8 w-8 px-4 uppercase font-bold justify-center"
                     @click="deleteSelected()"
                     v-if="housesToDelete.length || apartmentsToDelete.length"
                 >
-                    <i class="fas fa-trash-alt mr-2"></i>
-                    <span class="mt-0.5">Delete Selected</span>
+                    <i class="fas fa-trash-alt"></i>
                 </button>
                 <button
-                    class="rounded-full bg-indigo-500 flex items-center justify-center h-6 w-6 ml-2"
+                    class="rounded-full bg-indigo-500 flex items-center justify-center h-8 w-8 px-4 uppercase font-bold ml-2"
                     @click="$modal.show('add-house')"
                 >
                     <i class="fas fa-plus"></i>

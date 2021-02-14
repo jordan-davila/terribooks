@@ -1,5 +1,5 @@
 <template>
-    <jet-action-section>
+    <JetActionSection>
         <template #content>
             <div class="w-full text-sm text-gray-600">
                 Once a team is deleted, all of its resources and data will be permanently deleted. Before deleting this team,
@@ -7,13 +7,13 @@
             </div>
 
             <div class="mt-5">
-                <jet-danger-button @click.native="confirmTeamDeletion">
+                <JetDangerButton @click.native="confirmTeamDeletion">
                     Delete Team
-                </jet-danger-button>
+                </JetDangerButton>
             </div>
 
             <!-- Delete Team Confirmation Modal -->
-            <jet-confirmation-modal :show="confirmingTeamDeletion" @close="confirmingTeamDeletion = false">
+            <JetConfirmationModal :show="confirmingTeamDeletion" @close="confirmingTeamDeletion = false">
                 <template #title>
                     Delete Team
                 </template>
@@ -28,18 +28,18 @@
                         Nevermind
                     </jet-secondary-button>
 
-                    <jet-danger-button
+                    <JetDangerButton
                         class="ml-2"
                         @click.native="deleteTeam"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                     >
                         Delete Team
-                    </jet-danger-button>
+                    </JetDangerButton>
                 </template>
-            </jet-confirmation-modal>
+            </JetConfirmationModal>
         </template>
-    </jet-action-section>
+    </JetActionSection>
 </template>
 
 <script>

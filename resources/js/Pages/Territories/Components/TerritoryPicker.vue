@@ -1,8 +1,5 @@
 <template lang="">
-    <div
-        style="flex: 0 295px;"
-        class="flex flex-col h-full border-r border-gray-200 border-solid bg-white"
-    >
+    <div style="flex: 0 295px;" class="flex flex-col h-full border-r border-gray-200 border-solid bg-white">
         <div id="territory-picker-smooth-scroll" class="territory-list w-full flex-1 px-14 pt-8">
             <div class="wrapper pb-8">
                 <template v-for="city in $page.props.territories.data.cities">

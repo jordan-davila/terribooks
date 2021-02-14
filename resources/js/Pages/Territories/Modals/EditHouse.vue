@@ -88,12 +88,10 @@
                 </div>
             </div>
         </div>
-        <div
-            class="modal-options bg-gray-100 w-full py-6 px-8 flex justify-end items-center text-gray-300"
-        >
+        <div class="modal-options bg-gray-100 w-full py-6 px-8 flex justify-end items-center text-gray-300">
             <button
                 @click="editHouse()"
-                class="py-2 px-4 rounded-full flex items-center uppercase text-xxs font-bold text-white bg-green-400"
+                class="inline-flex items-center justify-center px-4 py-2 bg-green-400 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 focus:outline-none focus:borgreen-700 focus:shadow-outline-red active:bg-green-600 transition ease-in-out duration-150"
             >
                 <i class="fas fa-save mr-2"></i>
                 <span>Edit House Number</span>
