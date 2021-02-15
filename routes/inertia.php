@@ -23,9 +23,7 @@ Route::group(["middleware" => config("jetstream.middleware", ["web"])], function
         // User & Profile...
         Route::get("/settings/profile", [UserProfileController::class, "show"])->name("profile.show");
 
-        Route::delete("/settings/other-browser-sessions", [OtherBrowserSessionsController::class, "destroy"])->name(
-            "other-browser-sessions.destroy"
-        );
+        Route::delete("/settings/other-browser-sessions", [OtherBrowserSessionsController::class, "destroy"])->name("other-browser-sessions.destroy");
 
         Route::delete("/settings/profile-photo", [ProfilePhotoController::class, "destroy"])->name("current-user-photo.destroy");
 
@@ -43,7 +41,6 @@ Route::group(["middleware" => config("jetstream.middleware", ["web"])], function
 
         // Teams...
         if (Jetstream::hasTeamFeatures()) {
-            Route::get("/settings/congregations/create", [TeamController::class, "create"])->name("teams.create");
             Route::post("/teams", [TeamController::class, "store"])->name("teams.store");
             Route::get("/settings/congregations/{team}", [TeamController::class, "show"])->name("teams.show");
             Route::put("/teams/{team}", [TeamController::class, "update"])->name("teams.update");
@@ -57,9 +54,7 @@ Route::group(["middleware" => config("jetstream.middleware", ["web"])], function
                 ->middleware(["signed"])
                 ->name("team-invitations.accept");
 
-            Route::delete("/team-invitations/{invitation}", [TeamInvitationController::class, "destroy"])->name(
-                "team-invitations.destroy"
-            );
+            Route::delete("/team-invitations/{invitation}", [TeamInvitationController::class, "destroy"])->name("team-invitations.destroy");
         }
     });
 });
