@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Redirect;
 
 class DashboardController extends Controller
 {
-    public function index() {
-        return Inertia::render('Dashboard');
+    public function index()
+    {
+        return Inertia::render("Dashboard");
     }
 }

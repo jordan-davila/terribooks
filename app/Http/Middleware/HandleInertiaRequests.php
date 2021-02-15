@@ -8,7 +8,7 @@ use App\Http\Resources\TeamResource;
 
 class HandleInertiaRequests extends Middleware
 {
-    protected $rootView = 'app';
+    protected $rootView = "app";
 
     public function version(Request $request)
     {
@@ -19,18 +19,17 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             // Synchronously
-            'territories' => function () {
+            "territories" => function () {
                 return Auth()->user() ? new TeamResource(Auth()->user()->currentTeam) : null;
             },
 
-            'flash' => function () use ($request) {
-                return $request->session()->get('flash');
-            },
+            // 'flash' => function () use ($request) {
+            //     return $request->session()->get('flash');
+            // },
 
-            'search' => function () use ($request) {
-                return $request->session()->get('search');
+            "search" => function () use ($request) {
+                return $request->session()->get("search");
             },
-
         ]);
     }
 }
