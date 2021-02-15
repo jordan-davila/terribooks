@@ -1,5 +1,9 @@
 <template>
-    <div class="module-container px-14 pt-8 text-gray-300" v-if="$page.props.permissions.canAddTeamMembers">
+    <div
+        id="invite-members"
+        class="module-container px-14 pt-8 text-gray-300"
+        v-if="$page.props.permissions.canAddTeamMembers"
+    >
         <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100">
                 <div class="title">Invite Members</div>
@@ -12,6 +16,7 @@
                         <input
                             name="email"
                             type="email"
+                            v-model="addTeamMemberForm.email"
                             :disabled="!$page.props.permissions.canUpdateTeam"
                             class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
                         />
@@ -59,8 +64,9 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-options bg-gray-100 w-full py-6 px-8 flex justify-end items-center text-gray-300">
+            <div class="module-options bg-gray-50 w-full py-6 px-8 flex justify-end items-center text-gray-300">
                 <button
+                    @click="addTeamMember()"
                     class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-red active:bg-indigo-600 transition ease-in-out duration-150"
                 >
                     Invite User
@@ -82,6 +88,21 @@ export default {
                 role: null
             })
         };
+    },
+
+    methods: {
+        addTeamMember() {
+            this.addTeamMemberForm.post(route("team-members.store", this.$page.props.team), {
+                preserveScroll: true,
+                onSuccess: page => {
+                    this.addTeamMemberForm.reset();
+                    this.$page.props.flash = {
+                        type: "success",
+                        message: "Member Invited."
+                    };
+                }
+            });
+        }
     }
 };
 </script>

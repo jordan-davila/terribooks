@@ -8,19 +8,14 @@
             <NavCongregations />
             <section id="congregation-settings-smooth-scroll" class="flex flex-1 relative overflow-hidden">
                 <div class="settings-container flex flex-col flex-1 h-full overflow-y-auto">
-                    <!-- <OwnerModule /> -->
-                    <!-- <DetailsModule /> -->
+                    <OwnerModule />
+                    <DetailsModule />
                     <MemberInviteModule />
-                    <MemberListModule />
-                    <!-- <MemberManagerModule /> -->
-                    <!-- <MemberManagerModule
-                        :team="$page.props.team"
-                        :availableRoles="$page.props.availableRoles"
-                        :userPermissions="$page.props.permissions"
-                    /> -->
+                    <MemberPendingListModule />
+                    <MemberManagerModule />
 
-                    <template v-if="permissions.canDeleteTeam && !team.personal_team">
-                        <DeleteTeamForm class="mt-10 mb-8 sm:mt-0" :team="team" />
+                    <template v-if="$page.props.permissions.canDeleteTeam && !$page.props.team.personal_team">
+                        <DeleteTeamModule />
                     </template>
                 </div>
             </section>
@@ -30,7 +25,6 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout";
-import DeleteTeamForm from "./DeleteTeamForm";
 import Scrollbar from "smooth-scrollbar";
 import Copyright from "@/Components/Copyright";
 import NavSettings from "@/Pages/Settings/Components/NavSettings";
@@ -38,23 +32,22 @@ import NavCongregations from "@/Pages/Settings/Components/NavCongregations";
 import OwnerModule from "@/Pages/Settings/Congregations/OwnerModule";
 import DetailsModule from "@/Pages/Settings/Congregations/DetailsModule";
 import MemberInviteModule from "@/Pages/Settings/Congregations/MemberInviteModule";
-import MemberListModule from "@/Pages/Settings/Congregations/MemberListModule";
-import MemberManagerModule from "@/Pages/Settings/Congregations/MemberManagerModuleBak";
+import MemberPendingListModule from "@/Pages/Settings/Congregations/MemberPendingListModule";
+import MemberManagerModule from "@/Pages/Settings/Congregations/MemberManagerModule";
+import DeleteTeamModule from "@/Pages/Settings/Congregations/DeleteTeamModule";
 
 export default {
-    props: ["team", "availableRoles", "permissions"],
-
     components: {
         AppLayout,
-        DeleteTeamForm,
-        MemberListModule,
         Copyright,
         NavSettings,
         NavCongregations,
         OwnerModule,
         DetailsModule,
         MemberInviteModule,
-        MemberManagerModule
+        MemberPendingListModule,
+        MemberManagerModule,
+        DeleteTeamModule
     },
 
     mounted() {

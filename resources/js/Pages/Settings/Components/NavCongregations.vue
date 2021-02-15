@@ -7,65 +7,113 @@
                     <i class="fas fa-caret-down"></i>
                 </button>
             </div>
-            <a href="#" class="uppercase font-bold py-4 flex justify-between items-center">
+            <button
+                @click="scrollToSetting('#owner-details')"
+                class="uppercase font-bold py-4 flex justify-between items-center w-full"
+            >
                 <div class="info flex items-center">
-                    <span class="w-10 h-10 flex justify-center items-center text-xs rounded-lg text-gray-500 bg-gray-100">
+                    <span
+                        class="w-10 h-10 flex justify-center items-center text-xs rounded-lg text-gray-500 bg-gray-100"
+                    >
                         <i class="fas fa-book-user"></i>
                     </span>
-                    <div class="info flex flex-col ml-4 text-xxs text-gray-300">
-                        <span>Name & Owner</span>
-                        <span class="opacity-60">Information</span>
+                    <div class="info flex flex-col items-start ml-4 text-xxs text-gray-300">
+                        <span>Owner Details</span>
+                        <span class="opacity-60">Contact</span>
                     </div>
                 </div>
-                <button class="text-gray-300 text-xxs">
+                <div class="text-gray-300 text-xxs">
                     <i class="fas fa-chevron-right"></i>
-                </button>
-            </a>
-            <a href="#" class="uppercase font-bold py-4 flex justify-between items-center">
+                </div>
+            </button>
+            <button
+                @click="scrollToSetting('#update-details')"
+                class="uppercase font-bold py-4 flex justify-between items-center w-full"
+            >
                 <div class="info flex items-center">
-                    <span class="w-10 h-10 flex justify-center items-center text-xs rounded-lg text-gray-500 bg-gray-100">
-                        <i class="fas fa-city"></i>
+                    <span
+                        class="w-10 h-10 flex justify-center items-center text-xs rounded-lg text-gray-500 bg-gray-100"
+                    >
+                        <i class="fas fa-info-square"></i>
                     </span>
-                    <div class="info flex flex-col ml-4 text-xxs text-gray-300">
-                        <span>Cities</span>
-                        <span class="opacity-60">Add Cities</span>
+                    <div class="info flex flex-col items-start ml-4 text-xxs text-gray-300">
+                        <span>Update Details</span>
+                        <span class="opacity-60">Name & Location</span>
                     </div>
                 </div>
-                <button class="text-gray-300 text-xxs">
+                <div class="text-gray-300 text-xxs">
                     <i class="fas fa-chevron-right"></i>
-                </button>
-            </a>
-            <a href="#" class="uppercase font-bold py-4 flex justify-between items-center">
+                </div>
+            </button>
+            <button
+                @click="scrollToSetting('#invite-members')"
+                class="uppercase font-bold py-4 flex justify-between items-center w-full"
+            >
                 <div class="info flex items-center">
-                    <span class="w-10 h-10 flex justify-center items-center text-xs rounded-lg text-gray-500 bg-gray-100">
+                    <span
+                        class="w-10 h-10 flex justify-center items-center text-xs rounded-lg text-gray-500 bg-gray-100"
+                    >
+                        <i class="fas fa-user-plus"></i>
+                    </span>
+                    <div class="info flex flex-col items-start ml-4 text-xxs text-gray-300">
+                        <span>Invite Members</span>
+                        <span class="opacity-60">Ask to Join</span>
+                    </div>
+                </div>
+                <div class="text-gray-300 text-xxs">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </button>
+            <button
+                @click="scrollToSetting('#member-manager')"
+                class="uppercase font-bold py-4 flex justify-between items-center w-full"
+            >
+                <div class="info flex items-center">
+                    <span
+                        class="w-10 h-10 flex justify-center items-center text-xs rounded-lg text-gray-500 bg-gray-100"
+                    >
                         <i class="fas fa-users"></i>
                     </span>
-                    <div class="info flex flex-col ml-4 text-xxs text-gray-300">
-                        <span>Members</span>
-                        <span class="opacity-60">Invite Users</span>
+                    <div class="info flex flex-col items-start ml-4 text-xxs text-gray-300">
+                        <span>Member Manager</span>
+                        <span class="opacity-60">Update Users</span>
                     </div>
                 </div>
-                <button class="text-gray-300 text-xxs">
+                <div class="text-gray-300 text-xxs">
                     <i class="fas fa-chevron-right"></i>
-                </button>
-            </a>
-            <a href="#" class="uppercase font-bold py-4 flex justify-between items-center">
+                </div>
+            </button>
+            <button
+                @click="scrollToSetting('#delete')"
+                class="uppercase font-bold py-4 flex justify-between items-center w-full"
+            >
                 <div class="info flex items-center">
-                    <span class="w-10 h-10 flex justify-center items-center text-xs rounded-lg text-gray-500 bg-gray-100">
+                    <span
+                        class="w-10 h-10 flex justify-center items-center text-xs rounded-lg text-gray-500 bg-gray-100"
+                    >
                         <i class="fas fa-trash-alt"></i>
                     </span>
-                    <div class="info flex flex-col ml-4 text-xxs text-gray-300">
+                    <div class="info flex flex-col items-start ml-4 text-xxs text-gray-300">
                         <span>Delete</span>
                         <span class="opacity-60">Permanently</span>
                     </div>
                 </div>
-                <button class="text-gray-300 text-xxs">
+                <div class="text-gray-300 text-xxs">
                     <i class="fas fa-chevron-right"></i>
-                </button>
-            </a>
+                </div>
+            </button>
         </div>
     </nav>
 </template>
 <script>
-export default {};
+import Scrollbar from "smooth-scrollbar";
+export default {
+    methods: {
+        scrollToSetting(setting) {
+            let child = document.querySelector(setting);
+            let scroll = Scrollbar.get(document.querySelector("#congregation-settings-smooth-scroll"));
+            scroll.scrollTo(0, child.offsetTop, 1000);
+        }
+    }
+};
 </script>
