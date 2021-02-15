@@ -1,27 +1,24 @@
 <template lang="">
-    <modal
-        name="export"
-        draggable
-        width="430px"
-        height="auto"
-        focusTrap
-        classes="w-80 rounded-lg bg-gray-900 shadow-lg"
-        @opened="opened"
-    >
-        <div class="modal-title w-full py-8 px-8 flex justify-between items-center text-gray-300">
-            <div class="relative flex items-center">
+    <modal name="export" draggable width="430px" height="auto" classes="rounded-lg bg-white shadow-lg" @opened="opened">
+        <div
+            class="modal-title text-xxs text-gray-300 uppercase w-full px-8 py-6 font-bold border-b border-gray-100 flex items-center justify-between"
+        >
+            <div class="title flex items-center">
                 <div
-                    class="icon bg-indigo-100 rounded-full w-8 h-8 text-indigo-600 text-xs flex items-center justify-center mr-4"
+                    class="icon bg-indigo-100 rounded-lg w-8 h-8 text-indigo-600 text-xs flex items-center justify-center mr-4"
                 >
                     <i class="fas fa-download"></i>
                 </div>
-                <span class="text-xxs uppercase font-bold">Export Territory</span>
+                <div class="flex flex-col">
+                    <div class="title">Export Territory</div>
+                    <div class="subtitle opacity-60">Fill the below form for more options</div>
+                </div>
             </div>
-            <button @click="$modal.hide('export')" class="opacity-60">
+            <button @click="$modal.hide('export')" class="text-sm opacity-60 ml-6">
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div class="content px-8 mb-8 text-gray-300 text-xxs font-bold uppercase">
+        <div class="content px-8 py-6 text-gray-300 text-xxs font-bold uppercase">
             <div class="input-row grid grid-cols-2 gap-2 mb-3">
                 <div class="input-col">
                     <label for="#symbol">Type</label>
@@ -65,10 +62,10 @@
                 </div>
             </div>
         </div>
-        <div class="modal-options bg-gray-100 w-full py-6 px-8 flex justify-end items-center text-gray-300">
+        <div class="modal-options bg-gray-50 w-full py-6 px-8 flex justify-end items-center text-gray-300">
             <button
                 @click="exportPDF()"
-                class="py-2 px-4 rounded-full flex items-center uppercase text-xxs font-bold text-white bg-indigo-500"
+                class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150"
             >
                 <i class="fas fa-file-pdf mr-2"></i>
                 <span>Export as PDF</span>

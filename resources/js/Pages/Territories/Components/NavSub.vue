@@ -19,14 +19,14 @@
                         placement: 'left',
                         modifiers: {
                             flip: { enabled: true },
-                            offset: { offset: '20,20' }
+                            offset: { offset: '10,10' }
                         }
                     }"
                 >
-                    <div class="popper rounded-md shadow-lg w-60 bg-white overflow-hidden z-50">
+                    <div class="popper rounded-md shadow-lg w-48 bg-white overflow-hidden z-50">
                         <div class="rounded-md ring-1 ring-black ring-opacity-5 text-xxs uppercase">
                             <!-- Account Management -->
-                            <div class="block px-4 py-2 text-gray-300 font-bold">
+                            <div class="block px-4 py-2 leading-5 text-gray-300 font-bold">
                                 Select Type
                             </div>
 
@@ -34,27 +34,27 @@
                                 preserve-state
                                 @click="$refs.editorTypePicker.doClose()"
                                 :href="getEditorLink('field')"
-                                class="block px-6 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                                class="block px-4 py-2 leading-5 text-gray-300 hover:bg-gray-100 transition duration-150 ease-in-out"
                             >
-                                Field
+                                Field Ministry
                             </inertia-link>
 
                             <inertia-link
                                 preserve-state
                                 @click="$refs.editorTypePicker.doClose()"
                                 :href="getEditorLink('phone')"
-                                class="block px-6 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                                class="block px-4 py-2 leading-5 text-gray-300 hover:bg-gray-100 transition duration-150 ease-in-out"
                             >
-                                Phone
+                                Phone Ministry
                             </inertia-link>
 
                             <inertia-link
                                 preserve-state
                                 @click="$refs.editorTypePicker.doClose()"
                                 :href="getEditorLink('business')"
-                                class="block px-6 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                                class="block px-4 py-2 leading-5 text-gray-300 hover:bg-gray-100 transition duration-150 ease-in-out"
                             >
-                                Business
+                                Business Ministry
                             </inertia-link>
                         </div>
                     </div>

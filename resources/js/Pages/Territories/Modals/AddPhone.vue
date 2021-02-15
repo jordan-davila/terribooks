@@ -9,20 +9,25 @@
         @opened="opened"
         @closed="reset"
     >
-        <div class="modal-title w-full py-8 px-8 flex justify-between items-center text-gray-300">
-            <div class="relative flex items-center">
+        <div
+            class="modal-title text-xxs text-gray-300 uppercase w-full px-8 py-6 font-bold border-b border-gray-100 flex items-center justify-between"
+        >
+            <div class="title flex items-center">
                 <div
-                    class="icon bg-indigo-100 rounded-full w-8 h-8 text-indigo-600 text-xs flex items-center justify-center mr-4"
+                    class="icon bg-indigo-100 rounded-lg w-8 h-8 text-indigo-600 text-xs flex items-center justify-center mr-4"
                 >
                     <i class="fas fa-phone-plus"></i>
                 </div>
-                <span class="text-xxs uppercase font-bold">Add Phone Number</span>
+                <div class="flex flex-col">
+                    <div class="title">Add Phone Number</div>
+                    <div class="subtitle opacity-60">Fill the below form for more options</div>
+                </div>
             </div>
-            <button @click="$modal.hide('add-phone')" class="opacity-60">
+            <button @click="$modal.hide('add-phone')" class="text-sm opacity-60 ml-6">
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div class="content px-8 mb-8 text-gray-300 text-xxs font-bold uppercase">
+        <div class="content px-8 py-6 text-gray-300 text-xxs font-bold uppercase">
             <div class="input-row grid grid-cols-2 gap-2 mb-3">
                 <div class="input-col">
                     <label for="#name">Name</label>

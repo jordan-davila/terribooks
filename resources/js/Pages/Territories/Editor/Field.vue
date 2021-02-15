@@ -1,11 +1,11 @@
 <template>
-    <div class="flex-auto flex flex-col h-full bg-gray-50 shadow-lg rounded-lg overflow-hidden">
+    <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden">
         <AddHouse />
         <AddApartment />
         <EditHouse />
         <EditApartment />
         <div
-            class="title-phone-editor w-full py-6 px-8 flex justify-between items-center border-b border-gray-200 border-solid bg-white relative"
+            class="title-phone-editor w-full py-6 px-8 flex justify-between items-center border-b border-gray-100 border-solid bg-white relative"
         >
             <div class="title text-xxs uppercase font-bold text-gray-300">
                 Field Ministry List
@@ -13,20 +13,20 @@
             <div class="buttons flex text-xxs text-white absolute right-0 mr-6">
                 <button
                     @click="saveAll()"
-                    class="rounded-full bg-green-400 flex items-center justify-center h-8 w-8 px-4 uppercase font-bold"
+                    class="rounded-lg bg-green-400 flex items-center justify-center h-8 w-8 px-4 uppercase font-bold"
                     v-if="!housesToDelete.length && !apartmentsToDelete.length && $page.props.houses.length"
                 >
                     <i class="fas fa-save"></i>
                 </button>
                 <button
-                    class="rounded-full bg-red-400 flex items-center h-8 w-8 px-4 uppercase font-bold justify-center"
+                    class="rounded-lg bg-red-400 flex items-center h-8 w-8 px-4 uppercase font-bold justify-center"
                     @click="deleteSelected()"
                     v-if="housesToDelete.length || apartmentsToDelete.length"
                 >
                     <i class="fas fa-trash-alt"></i>
                 </button>
                 <button
-                    class="rounded-full bg-indigo-500 flex items-center justify-center h-8 w-8 px-4 uppercase font-bold ml-2"
+                    class="rounded-lg bg-indigo-500 flex items-center justify-center h-8 w-8 px-4 uppercase font-bold ml-2"
                     @click="$modal.show('add-house')"
                 >
                     <i class="fas fa-plus"></i>
@@ -49,12 +49,12 @@
                     <template v-for="(house, house_index) in $page.props.houses">
                         <div
                             :id="house.number"
-                            class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-white border-b border-gray-100 border-solid"
+                            class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-gray-50 border-b border-gray-100 border-solid"
                             :key="house.id"
                             @input="housesWillUpdate(house_index)"
                         >
                             <div
-                                class="column w-full px-2 py-4 text-indigo-600 text-xs"
+                                class="column w-full px-2 py-4 text-indigo-600 text-xs cursor-pointer"
                                 @click="$modal.show('add-apartment', { house_id: house.id })"
                             >
                                 <i class="far fa-plus"></i>
@@ -107,7 +107,7 @@
                         <template v-for="(apt, apt_index) in house.apartments">
                             <div
                                 :id="apt.number"
-                                class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-white border-b border-gray-100 border-solid"
+                                class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-gray-50 border-b border-gray-100 border-solid"
                                 :key="apt.id"
                                 @input="housesWillUpdate(house_index)"
                             >
@@ -256,15 +256,15 @@ export default {
                         preserveScroll: true,
                         onSuccess: page => {
                             this.apartmentsToDelete = [];
-                            this.$page.props.flash = {
-                                type: "success",
-                                message: "Field Numbers Deleted"
+                            this.$page.props.jetstream.flash = {
+                                alertStyle: "success",
+                                alert: "House Numbers Deleted"
                             };
                         },
                         onError: page => {
-                            this.$page.props.flash = {
-                                type: "error",
-                                message: "Something Went Wrong"
+                            this.$page.props.jetstream.flash = {
+                                alertStyle: "danger",
+                                alert: "Sorry, something went wrong"
                             };
                         }
                     }
@@ -313,13 +313,16 @@ export default {
                     preserveScroll: true,
                     onSuccess: page => {
                         this.housesToUpdate = [];
-                        this.$page.props.flash = {
-                            type: "success",
-                            message: "Field Numbers Saved"
+                        this.$page.props.jetstream.flash = {
+                            alertStyle: "success",
+                            alert: "Field Numbers Saved"
                         };
                     },
                     onError: page => {
-                        this.$page.props.flash = { type: "error", message: "Something Went Wrong" };
+                        this.$page.props.jetstream.flash = {
+                            alertStyle: "danger",
+                            alert: "Sorry, something went wrong"
+                        };
                     }
                 }
             );

@@ -1,32 +1,30 @@
 <template>
-    <div class="flex-auto flex flex-col h-full bg-gray-50 shadow-lg rounded-lg overflow-hidden">
+    <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden">
         <AddPhone />
         <EditPhone />
         <div
-            class="title-phone-editor w-full py-6 px-8 flex justify-between items-center border-b border-gray-200 border-solid bg-white"
+            class="title-phone-editor w-full py-6 px-8 flex justify-between items-center border-b border-gray-100 border-solid bg-white relative"
         >
             <div class="title text-xxs uppercase font-bold text-gray-300">
                 Phone Ministry List
             </div>
-            <div class="buttons flex text-xxs text-white">
+            <div class="buttons flex text-xxs text-white absolute right-0 mr-6">
                 <button
-                    class="rounded-full bg-green-400 flex items-center h-6 px-4 uppercase font-bold"
                     @click="saveAll()"
+                    class="rounded-lg bg-green-400 flex items-center justify-center h-8 w-8 px-4 uppercase font-bold"
                     v-if="!phonesToDelete.length && $page.props.phones.length"
                 >
-                    <i class="fas fa-save mr-2"></i>
-                    <span class="mt-0.5">Save All</span>
+                    <i class="fas fa-save"></i>
                 </button>
                 <button
-                    class="rounded-full bg-red-400 flex items-center h-6 px-4 uppercase font-bold"
                     @click="deleteSelected()"
+                    class="rounded-lg bg-red-400 flex items-center h-8 w-8 px-4 uppercase font-bold justify-center"
                     v-if="phonesToDelete.length"
                 >
-                    <i class="fas fa-trash-alt mr-2"></i>
-                    <span class="mt-0.5">Delete Selected</span>
+                    <i class="fas fa-trash-alt"></i>
                 </button>
                 <button
-                    class="rounded-full bg-indigo-500 flex items-center justify-center h-6 w-6 ml-2"
+                    class="rounded-lg bg-indigo-500 flex items-center justify-center h-8 w-8 px-4 uppercase font-bold ml-2"
                     @click="$modal.show('add-phone')"
                 >
                     <i class="fas fa-plus"></i>
@@ -48,7 +46,7 @@
                 <div class="scroll-wrapper">
                     <div
                         :id="phone.number"
-                        class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-white border-b border-gray-100 border-solid"
+                        class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-gray-50 border-b border-gray-100 border-solid"
                         v-for="(phone, index) in $page.props.phones"
                         :key="phone.id"
                         @input="phoneWillUpdate(index)"
@@ -79,7 +77,10 @@
                                 class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200"
                             >
                                 <input type="checkbox" class="opacity-0 absolute" @click="phonesWillDelete(index)" />
-                                <svg class="fill-current hidden w-2 h-2 text-indigo-500 pointer-events-none" viewBox="0 0 20 20">
+                                <svg
+                                    class="fill-current hidden w-2 h-2 text-indigo-500 pointer-events-none"
+                                    viewBox="0 0 20 20"
+                                >
                                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
                                 </svg>
                             </div>
@@ -101,8 +102,8 @@
                     <i class="far fa-bomb"></i>
                 </div>
                 <div class="info text-left">
-                    <span class="text-gray-500">No Phones on this Street.</span><br />Please conduct a census and add a new phone
-                    number.
+                    <span class="text-gray-500">No Phones on this Street.</span><br />Please conduct a census and add a
+                    new phone number.
                 </div>
             </div>
         </div>
@@ -179,13 +180,16 @@ export default {
                     preserveScroll: true,
                     onSuccess: page => {
                         this.phonesToUpdate = [];
-                        this.$page.props.flash = {
-                            type: "success",
-                            message: "Phone Numbers Saved"
+                        this.$page.props.jetstream.flash = {
+                            alertType: "success",
+                            alert: "Phone Numbers Saved"
                         };
                     },
                     onError: page => {
-                        this.$page.props.flash = { type: "error", message: "Something Went Wrong" };
+                        this.$page.props.jetstream.flash = {
+                            alertType: "error",
+                            alert: "Something Went Wrong"
+                        };
                     }
                 }
             );
@@ -206,15 +210,15 @@ export default {
                     preserveScroll: true,
                     onSuccess: page => {
                         this.phonesToDelete = [];
-                        this.$page.props.flash = {
-                            type: "success",
-                            message: "Phone Numbers Deleted"
+                        this.$page.props.jetstream.flash = {
+                            alertType: "success",
+                            alert: "Phone Numbers Deleted"
                         };
                     },
                     onError: page => {
-                        this.$page.props.flash = {
-                            type: "error",
-                            message: "Something Went Wrong"
+                        this.$page.props.jetstream.flash = {
+                            alertType: "error",
+                            alert: "Something Went Wrong"
                         };
                     }
                 }
