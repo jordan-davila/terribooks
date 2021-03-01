@@ -10,6 +10,7 @@
             <inertia-link
                 :href="route('teams.show', $page.props.user.current_team)"
                 class="uppercase font-bold py-4 flex justify-between items-center"
+                v-if="$page.props.user.current_team"
             >
                 <div class="info flex items-center">
                     <span :class="classes('teams.show')">
@@ -24,7 +25,10 @@
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </inertia-link>
-            <inertia-link :href="route('profile.show')" class="uppercase font-bold py-4 flex justify-between items-center">
+            <inertia-link
+                :href="route('profile.show')"
+                class="uppercase font-bold py-4 flex justify-between items-center"
+            >
                 <div class="info flex items-center">
                     <span :class="classes('profile.show')">
                         <i class="fas fa-user"></i>
@@ -38,7 +42,10 @@
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </inertia-link>
-            <inertia-link :href="route('profile.show')" class="uppercase font-bold py-4 flex justify-between items-center">
+            <inertia-link
+                :href="route('profile.show')"
+                class="uppercase font-bold py-4 flex justify-between items-center"
+            >
                 <div class="info flex items-center">
                     <span :class="classes('dashboard')">
                         <i class="fas fa-download"></i>

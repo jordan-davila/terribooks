@@ -3,7 +3,9 @@
         <FlashBanner />
         <FlashAlert />
         <NavMain />
-        <ExportTerritoryModal />
+        <template v-if="$page.props.territory">
+            <ExportTerritoryModal />
+        </template>
         <ConfirmationModal />
         <AddCongregationModal />
         <section class="flex h-full w-full overflow-hidden">

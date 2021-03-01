@@ -14,18 +14,14 @@ class TerritoryController extends Controller
 {
     public function index()
     {
-        // Check for first territory
-        // If not, render territory.index
-        $default = Auth()->user()->currentTeam->territories->first();
-        return !is_null($default)
-            ? Redirect::route('territories.show', ['territory' => $default])
-            : Inertia::render('Territories/Overview/Index');
+        $default = Auth()->user()->currentTeam;
+        return !is_null($default) ? Redirect::route("territories.show", ["territory" => $default->territories->first()]) : Inertia::render("Territories/Overview/Index");
     }
 
     public function show(Territory $territory)
     {
-        return Inertia::render('Territories/Overview/Show', [
-            'territory' => new TerritoryResource($territory),
+        return Inertia::render("Territories/Overview/Show", [
+            "territory" => new TerritoryResource($territory),
         ]);
     }
 

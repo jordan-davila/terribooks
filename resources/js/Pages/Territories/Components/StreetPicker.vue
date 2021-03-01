@@ -1,8 +1,89 @@
 <template lang="">
-    <div class="editor-options w-80 h-full flex flex-col bg-white border-r border-gray-200">
-        <div
-            class="text-xxs text-gray-300 w-full pt-12 pb-4 uppercase font-bold flex justify-between items-center px-14"
-        >
+    <div class="editor-options w-80 h-full flex flex-col bg-white border-r border-gray-200" style="flex: 0 295px;">
+        <div class="assignment-list px-14 pt-8">
+            <div class="text-xxs text-gray-300 w-full py-4 uppercase font-bold flex justify-between items-center">
+                <span>By Type</span>
+                <button class="w-6 h-6 text-gray-300 text-sm">
+                    <i class="fas fa-caret-down"></i>
+                </button>
+            </div>
+            <inertia-link
+                :href="getEditorLink('field')"
+                class="uppercase font-bold py-3 flex justify-between items-center"
+                v-if="$page.props.user.current_team"
+            >
+                <div class="info flex items-center">
+                    <span
+                        class="w-10 h-10 flex justify-center items-center text-xs rounded-lg"
+                        :class="
+                            route().current('territories.editor.field.*')
+                                ? 'text-indigo-600 bg-indigo-100 shadow-lg'
+                                : 'text-gray-500 bg-gray-100'
+                        "
+                    >
+                        <i class="fas fa-home-lg-alt"></i>
+                    </span>
+                    <div class="info flex flex-col ml-4 text-xxs text-gray-300">
+                        <span>Field</span>
+                        <span class="opacity-60">Ministry</span>
+                    </div>
+                </div>
+                <button class="text-gray-300 text-xxs">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </inertia-link>
+            <inertia-link
+                :href="getEditorLink('phone')"
+                class="uppercase font-bold py-3 flex justify-between items-center"
+                v-if="$page.props.user.current_team"
+            >
+                <div class="info flex items-center">
+                    <span
+                        class="w-10 h-10 flex justify-center items-center text-xs rounded-lg"
+                        :class="
+                            route().current('territories.editor.phone.*')
+                                ? 'text-indigo-600 bg-indigo-100 shadow-lg'
+                                : 'text-gray-500 bg-gray-100'
+                        "
+                    >
+                        <i class="fas fa-phone"></i>
+                    </span>
+                    <div class="info flex flex-col ml-4 text-xxs text-gray-300">
+                        <span>Phone</span>
+                        <span class="opacity-60">Ministry</span>
+                    </div>
+                </div>
+                <button class="text-gray-300 text-xxs">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </inertia-link>
+            <inertia-link
+                :href="getEditorLink('business')"
+                class="uppercase font-bold py-3 flex justify-between items-center"
+                v-if="$page.props.user.current_team"
+            >
+                <div class="info flex items-center">
+                    <span
+                        class="w-10 h-10 flex justify-center items-center text-xs rounded-lg"
+                        :class="
+                            route().current('territories.editor.business.*')
+                                ? 'text-indigo-600 bg-indigo-100 shadow-lg'
+                                : 'text-gray-500 bg-gray-100'
+                        "
+                    >
+                        <i class="fas fa-building"></i>
+                    </span>
+                    <div class="info flex flex-col ml-4 text-xxs text-gray-300">
+                        <span>Business</span>
+                        <span class="opacity-60">Ministry</span>
+                    </div>
+                </div>
+                <button class="text-gray-300 text-xxs">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </inertia-link>
+        </div>
+        <div class="text-xxs text-gray-300 w-full py-4 uppercase font-bold flex justify-between items-center px-14">
             <span>Streets</span>
             <button class="w-6 h-6 text-gray-300 text-sm">
                 <i class="fas fa-caret-down"></i>
@@ -71,6 +152,15 @@ export default {
             let classes = "uppercase text-xxs ";
             classes += route().current(link) ? "text-indigo-600 font-black" : "text-gray-300 font-bold";
             return classes;
+        },
+
+        getEditorLink(type) {
+            let territory = this.$page.props.territory
+                ? this.$page.props.territory.data
+                : this.$page.props.territories.data.cities[0].territories[0].id;
+            return typeof this.$page.props.street != "undefined"
+                ? route(`territories.editor.${type}.show`, [territory, this.$page.props.street.id])
+                : route(`territories.editor.${type}.index`, territory);
         }
     }
 };

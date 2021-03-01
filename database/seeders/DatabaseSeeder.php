@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+// prettier-ignore
 class DatabaseSeeder extends Seeder
 {
     public function run()
@@ -17,6 +18,8 @@ class DatabaseSeeder extends Seeder
             PhoneSeeder::class,
             BusinessSeeder::class,
             UserSeeder::class,
+            PublisherSeeder::class,
+            AssignmentSeeder::class,
         ]);
     }
 }

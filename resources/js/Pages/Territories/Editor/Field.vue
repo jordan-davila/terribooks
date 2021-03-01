@@ -33,9 +33,9 @@
                 </button>
             </div>
         </div>
-        <div id="grid-territory-editor-field" class="flex flex-col overflow-hidden">
+        <div id="grid-territory-editor-field" class="flex flex-col overflow-hidden" v-show="$page.props.houses.length">
             <div
-                class="list-header grid row border-b border-solid border-gray-200 text-gray-300 uppercase font-bold text-xxs px-6 bg-white"
+                class="list-header grid row border-b border-solid border-gray-100 text-gray-300 uppercase font-bold text-xxs px-6 bg-white"
             >
                 <div class="column w-full px-2 py-3"></div>
                 <div class="column w-full px-2 py-3">#</div>
@@ -166,20 +166,39 @@
                 </div>
             </div>
         </div>
+        <div
+            class="w-full h-full flex flex-1 justify-center items-center relative"
+            v-show="$page.props.houses.length == 0"
+        >
+            <div class="flex text-xxs uppercase text-gray-300 font-bold justify-center items-center">
+                <div class="info text-center">
+                    No House Numbers on this Street<br />
+                    <span class="opacity-50">Please conduct a census and add a new house number</span>
+                </div>
+            </div>
+            <div
+                id="particles"
+                class="slide-up-particles absolute top-0 left-0 w-full block z-0"
+                style="height: 100%"
+            ></div>
+        </div>
     </div>
 </template>
 <script>
 import EditorLayout from "@/Pages/Territories/Editor/Layout";
-import Scrollbar from "smooth-scrollbar";
 import AddHouse from "@/Pages/Territories/Modals/AddHouse";
 import EditHouse from "@/Pages/Territories/Modals/EditHouse";
 import AddApartment from "@/Pages/Territories/Modals/AddApartment";
 import EditApartment from "@/Pages/Territories/Modals/EditApartment";
+import Scrollbar from "smooth-scrollbar";
+import { Config } from "@/Mixins/Config";
+import "particles.js";
 
 export default {
     props: ["territory"],
     layout: EditorLayout,
     components: { AddHouse, AddApartment, EditHouse, EditApartment },
+    mixins: [Config],
     data() {
         return {
             housesToUpdate: [],
@@ -189,6 +208,7 @@ export default {
         };
     },
     mounted() {
+        window.particlesJS("particles", this.particleParams);
         Scrollbar.init(document.querySelector("#field-editor-smooth-scroll"), {
             damping: 0.1,
             renderByPixels: true,

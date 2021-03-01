@@ -1,10 +1,12 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TerritoryController;
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\TerritoryEditorFieldController;
 use App\Http\Controllers\TerritoryEditorPhoneController;
 use App\Http\Controllers\TerritoryExportFieldController;
 use App\Http\Controllers\TerritoryExportPhoneController;
+use App\Http\Controllers\TerritoryExportBusinessController;
 use App\Http\Controllers\TerritoryEditorBusinessController;
 
 // prettier-ignore
@@ -12,6 +14,21 @@ Route::middleware(["auth:sanctum", "verified"])->group(function () {
     // Redirect to Default Territory
     Route::get("/territories", [TerritoryController::class, "index"])
     ->name("territories.index");
+
+     // Assignments
+     Route::group(["prefix" => "/assignments", "as" => "assignments."], function () {
+        Route::get("/type/{type}", [AssignmentController::class, "index"])
+        ->name("type.index");
+        Route::get("/type/{type}/territory/{territory}", [AssignmentController::class, "showByType"])
+        ->name("type.show");
+        Route::get("/publisher/{publisher}", [AssignmentController::class, "showByPublisher"])
+        ->name("publisher.show");
+        Route::put("/", [AssignmentController::class, "updateAll"])->name("update.all");
+        Route::delete("/", [AssignmentController::class, "deleteSelected"])->name("delete.selected");
+        Route::put("/{assignment}", [AssignmentController::class, "update"])->name("update");
+        Route::get("/type/{type}/download/", [AssignmentController::class, "download"])->name("download");
+        Route::put("/{assignment}/mark/complete", [AssignmentController::class, "markAsComplete"])->name("mark.complete");
+    });
 
     // Territories Group
     Route::group([
@@ -31,10 +48,12 @@ Route::middleware(["auth:sanctum", "verified"])->group(function () {
                 ->name("field.download");
                 Route::get("/phone/download", [TerritoryExportPhoneController::class, "download"])
                 ->name("phone.download");
+                Route::get("/business/download", [TerritoryExportBusinessController::class, "download"])
+                ->name("business.download");
             });
 
             // Editor Group
-            Route::group(["prefix" => "{territory}/editor", "as" => "editor."], function () {
+            Route::group(["prefix" => "{territory?}/editor", "as" => "editor."], function () {
                 // Streets [Store, Update, UpdateOrder, Delete]
                 Route::post("/street", [StreetController::class, "store"])
                 ->name("street.store");
@@ -84,14 +103,16 @@ Route::middleware(["auth:sanctum", "verified"])->group(function () {
                     ->name("phone.delete.selected");
 
                     // Business [Show, Store, Update, UpdateAll, Destroy]
-                    Route::get("/business/street/{street}", [TerritoryEditorBusinessController::class, "show"]
-                    )->name("business.show");
+                    Route::get("/business/street/{street}", [TerritoryEditorBusinessController::class, "show"])
+                    ->name("business.show");
                     Route::post("/business/street/{street}", [TerritoryEditorBusinessController::class, "store"]
                     )->name("business.store");
                     Route::put("/business/street/{street}/{business}", [TerritoryEditorBusinessController::class, "update"])
                     ->name("business.update");
-                    Route::put("/business/street/{street}", [TerritoryEditorBusinessController::class, "updateAll"])
-                    ->name("business.update.all");
+                    Route::put("/business/street/{street}", [TerritoryEditorBusinessController::class, "updateAll"]
+                    )->name("business.update.all");
+                    Route::delete("/business/street/{street}", [TerritoryEditorBusinessController::class, "deleteSelected"])
+                    ->name("business.delete.selected");
                 });
             });
         }

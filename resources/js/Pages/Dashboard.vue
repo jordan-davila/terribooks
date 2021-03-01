@@ -10,22 +10,34 @@
                 class="star-info flex flex-col h-full border-r border-gray-200 border-solid bg-white py-12 px-16"
             >
                 <div class="uppercase font-bold text-xxs text-gray-300 mb-2">
-                    Dashboard · {{ $page.props.user.current_team.name }}
+                    Dashboard ·
+                    <template v-if="$page.props.user.current_team">
+                        {{ $page.props.user.current_team.name }}
+                    </template>
                 </div>
                 <h1 class="font-black text-gray-700 text-4xl mb-4">
                     Welcome, <br />
                     {{ user.name }}
                 </h1>
                 <div class="flex card-container mb-8">
-                    <div class="cards flex flex-col rounded-lg bg-gray-100 w-32 h-32 p-4 mr-4 justify-center items-center">
+                    <div
+                        class="cards flex flex-col rounded-lg bg-gray-100 w-32 h-32 p-4 mr-4 justify-center items-center"
+                    >
                         <div class="uppercase font-bold text-xxs text-gray-400 mb-2">Territories</div>
                         <div class="circle rounded-full bg-white w-16 h-16 flex justify-center items-center">
-                            <span class="text-gray-400 font-semibold text-lg">{{
-                                $page.props.territories.data.territory_count
-                            }}</span>
+                            <span class="text-gray-400 font-semibold text-lg">
+                                <template v-if="$page.props.territories">
+                                    {{ $page.props.territories.data.territory_count }}
+                                </template>
+                                <template v-else>
+                                    0
+                                </template>
+                            </span>
                         </div>
                     </div>
-                    <div class="cards flex flex-col rounded-lg bg-gray-100 w-32 h-32 p-4 mr-4 justify-center items-center">
+                    <div
+                        class="cards flex flex-col rounded-lg bg-gray-100 w-32 h-32 p-4 mr-4 justify-center items-center"
+                    >
                         <div class="uppercase font-bold text-xxs text-gray-400 mb-2">Congregations</div>
                         <div class="circle rounded-full bg-white w-16 h-16 flex justify-center items-center">
                             <span class="text-gray-400 font-semibold text-lg">{{ user.all_teams.length }}</span>
@@ -46,13 +58,16 @@
                     <inertia-link :href="route('profile.show')" target="_blank" class="mb-3 inline-flex">
                         <i class="fas fa-link mr-2"></i> <span class="text-gray-400">Update Profile</span>
                     </inertia-link>
-                    <inertia-link
-                        :href="route('teams.show', [$page.props.user.current_team.id])"
-                        target="_blank"
-                        class="mb-3 inline-flex"
-                    >
-                        <i class="fas fa-link mr-2"></i> <span class="text-gray-400">Update Congregation Details</span>
-                    </inertia-link>
+                    <template v-if="$page.props.user.current_team">
+                        <inertia-link
+                            :href="route('teams.show', [$page.props.user.current_team.id])"
+                            target="_blank"
+                            class="mb-3 inline-flex"
+                        >
+                            <i class="fas fa-link mr-2"></i>
+                            <span class="text-gray-400">Update Congregation Details</span>
+                        </inertia-link>
+                    </template>
                     <inertia-link :href="route('dashboard')" target="_blank" class="mb-3 inline-flex">
                         <i class="fas fa-link mr-2"></i> <span class="text-gray-400">Documentation</span>
                     </inertia-link>

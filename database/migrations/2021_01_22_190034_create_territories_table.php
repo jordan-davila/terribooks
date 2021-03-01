@@ -8,29 +8,23 @@ class CreateTerritoriesTable extends Migration
 {
     public function up()
     {
-        Schema::create('territories', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create("territories", function (Blueprint $table) {
+            $table->increments("id");
             $table
-                ->unsignedInteger('city_id')
-                ->foreign('city_id')
-                ->references('id')
-                ->on('city')
-                ->onDelete('cascade');
-            $table->integer('order')->nullable();
-            $table->string('code')->nullable();
-            $table->text('coordinates')->nullable();
-            $table
-                ->integer('user_id')
-                ->foreign('user_id')
-                ->references('id')
-                ->on('user')
-                ->nullable();
+                ->unsignedInteger("city_id")
+                ->foreign("city_id")
+                ->references("id")
+                ->on("city")
+                ->onDelete("cascade");
+            $table->integer("order")->nullable();
+            $table->string("code")->nullable();
+            $table->text("coordinates")->nullable();
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('territories');
+        Schema::dropIfExists("territories");
     }
 }

@@ -26,68 +26,59 @@
                             >
                                 {{ $page.props.territory.data.code }}
                             </div>
-                            <div
-                                class="details text-xxs text-gray-300 uppercase font-bold flex flex-col"
-                            >
+                            <div class="details text-xxs text-gray-300 uppercase font-bold flex flex-col">
                                 <span>
-                                    {{
-                                        $page.props.territory.data.city_name +
-                                            " " +
-                                            $page.props.territory.data.order
-                                    }}
+                                    {{ $page.props.territory.data.city_name + " " + $page.props.territory.data.order }}
                                 </span>
                                 <span class="opacity-60">No Current Assignee</span>
                             </div>
                         </div>
                         <div class="territory-stats flex items-center">
-                            <div
-                                class="cards flex flex-col rounded-lg bg-gray-100 w-20 h-20 p-3 mr-4 justify-center items-center"
+                            <inertia-link
+                                :href="route('territories.editor.field.index', $page.props.territory.data.id)"
+                                class="cards flex flex-col rounded-lg bg-gray-100 w-20 h-20 p-3 mr-4 justify-center items-center hover:shadow-md transition-all ease-out"
                             >
                                 <div class="uppercase font-bold text-xxs text-gray-400 mb-2">
-                                    House #
+                                    House
                                 </div>
-                                <div
-                                    class="circle rounded-full bg-white flex justify-center items-center"
-                                >
+                                <div class="circle rounded-full bg-white flex justify-center items-center">
                                     <span
                                         class="text-gray-400 font-semibold text-sm h-8 w-8 flex justify-center items-center"
                                     >
                                         {{ $page.props.territory.data.house_count }}
                                     </span>
                                 </div>
-                            </div>
-                            <div
-                                class="cards flex flex-col rounded-lg bg-gray-100 w-20 h-20 p-3 mr-4 justify-center items-center"
+                            </inertia-link>
+                            <inertia-link
+                                :href="route('territories.editor.phone.index', $page.props.territory.data.id)"
+                                class="cards flex flex-col rounded-lg bg-gray-100 w-20 h-20 p-3 mr-4 justify-center items-center hover:shadow-md transition-all ease-out"
                             >
                                 <div class="uppercase font-bold text-xxs text-gray-400 mb-2">
-                                    PHONE #
+                                    PHONE
                                 </div>
-                                <div
-                                    class="circle rounded-full bg-white flex justify-center items-center"
-                                >
+                                <div class="circle rounded-full bg-white flex justify-center items-center">
                                     <span
                                         class="text-gray-400 font-semibold text-sm h-8 w-8 flex justify-center items-center"
                                     >
                                         {{ $page.props.territory.data.phone_count }}
                                     </span>
                                 </div>
-                            </div>
-                            <div
-                                class="cards flex flex-col rounded-lg bg-gray-100 w-20 h-20 p-3 justify-center items-center"
+                            </inertia-link>
+                            <inertia-link
+                                :href="route('territories.editor.phone.index', $page.props.territory.data.id)"
+                                class="cards flex flex-col rounded-lg bg-gray-100 w-20 h-20 p-3 justify-center items-center hover:shadow-md transition-all ease-out"
                             >
                                 <div class="uppercase font-bold text-xxs text-gray-400 mb-2">
-                                    BIZ #
+                                    Business
                                 </div>
-                                <div
-                                    class="circle rounded-full bg-white flex justify-center items-center"
-                                >
+                                <div class="circle rounded-full bg-white flex justify-center items-center">
                                     <span
                                         class="text-gray-400 font-semibold text-sm h-8 w-8 flex justify-center items-center"
                                     >
                                         {{ $page.props.territory.data.business_count }}
                                     </span>
                                 </div>
-                            </div>
+                            </inertia-link>
                         </div>
                     </div>
                     <Map />

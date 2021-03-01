@@ -37,8 +37,10 @@
         "eslint": "^7.18.0",
         "leaflet": "^1.7.1",
         "moment": "^2.29.1",
+        "particles.js": "^2.0.0",
         "puppeteer": "^7.0.4",
         "smooth-scrollbar": "^8.5.3",
+        "v-calendar": "^2.2.3",
         "vue-js-modal": "^2.0.0-rc.6",
         "vue-popperjs": "^2.3.0",
         "vue2-leaflet": "^2.6.0"

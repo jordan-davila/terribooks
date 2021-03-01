@@ -13,23 +13,20 @@ class Team extends JetstreamTeam
     use HasFactory;
 
     protected $casts = [
-        'personal_team' => 'boolean',
+        "personal_team" => "boolean",
     ];
 
-    protected $fillable = [
-        'name',
-        'personal_team',
-    ];
+    protected $fillable = ["name", "personal_team"];
 
     protected $dispatchesEvents = [
-        'created' => TeamCreated::class,
-        'updated' => TeamUpdated::class,
-        'deleted' => TeamDeleted::class,
+        "created" => TeamCreated::class,
+        "updated" => TeamUpdated::class,
+        "deleted" => TeamDeleted::class,
     ];
 
     public function cities()
     {
-        return $this->hasMany(City::class)->orderBy('id', 'asc');
+        return $this->hasMany(City::class)->orderBy("id", "asc");
     }
 
     public function territories()
@@ -37,7 +34,18 @@ class Team extends JetstreamTeam
         return $this->hasManyThrough(Territory::class, City::class);
     }
 
-    public function getTerritoryCountAttribute() {
+    public function publishers()
+    {
+        return $this->hasMany(Publisher::class);
+    }
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
+    }
+
+    public function getTerritoryCountAttribute()
+    {
         return $this->territories->count();
     }
 }

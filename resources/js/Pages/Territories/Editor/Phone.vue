@@ -31,9 +31,9 @@
                 </button>
             </div>
         </div>
-        <div id="grid-territory-editor-phone" class="flex flex-col overflow-hidden" v-if="$page.props.phones.length">
+        <div id="grid-territory-editor-phone" class="flex flex-col overflow-hidden" v-show="$page.props.phones.length">
             <div
-                class="list-header grid row border-b border-solid border-gray-200 text-gray-300 uppercase font-bold text-xxs px-6 bg-white"
+                class="list-header grid row border-b border-solid border-gray-100 text-gray-300 uppercase font-bold text-xxs px-6 bg-white"
             >
                 <div class="column w-full px-2 py-3">Name</div>
                 <div class="column w-full px-2 py-3">#</div>
@@ -92,33 +92,37 @@
                 </div>
             </div>
         </div>
-        <div class="w-full h-full flex flex-1 justify-center items-center" v-else>
-            <div
-                class="flex text-xxs uppercase text-gray-300 font-bold justify-center items-center bg-white px-6 py-4 rounded-lg shadow-md"
-            >
-                <div
-                    class="icon mr-4 bg-indigo-100 text-indigo-500 text-base flex justify-center items-center h-8 w-8 rounded-full"
-                >
-                    <i class="far fa-bomb"></i>
-                </div>
-                <div class="info text-left">
-                    <span class="text-gray-500">No Phones on this Street.</span><br />Please conduct a census and add a
-                    new phone number.
+        <div
+            class="w-full h-full flex flex-1 justify-center items-center relative"
+            v-show="$page.props.phones.length == 0"
+        >
+            <div class="flex text-xxs uppercase text-gray-300 font-bold justify-center items-center">
+                <div class="info text-center">
+                    No Phone Numbers on this Street<br />
+                    <span class="opacity-50">Please conduct a census and add a new phone number</span>
                 </div>
             </div>
+            <div
+                id="particles"
+                class="slide-up-particles absolute top-0 left-0 w-full block z-0"
+                style="height: 100%"
+            ></div>
         </div>
     </div>
 </template>
 <script>
 import EditorLayout from "@/Pages/Territories/Editor/Layout";
-import Scrollbar from "smooth-scrollbar";
 import AddPhone from "@/Pages/Territories/Modals/AddPhone";
 import EditPhone from "@/Pages/Territories/Modals/EditPhone";
+import Scrollbar from "smooth-scrollbar";
+import { Config } from "@/Mixins/Config";
+import "particles.js";
 
 export default {
     props: ["territory"],
     components: { AddPhone, EditPhone },
     layout: EditorLayout,
+    mixins: [Config],
     data() {
         return {
             phonesToUpdate: [],
@@ -127,6 +131,7 @@ export default {
         };
     },
     mounted() {
+        window.particlesJS("particles", this.particleParams);
         Scrollbar.init(document.querySelector("#phone-editor-smooth-scroll"), {
             damping: 0.1,
             renderByPixels: true,

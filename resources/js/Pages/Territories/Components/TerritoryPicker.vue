@@ -4,7 +4,7 @@
             <div class="wrapper pb-8">
                 <template v-for="city in $page.props.territories.data.cities">
                     <div
-                        class="text-xxs text-gray-300 w-full py-4 uppercase font-bold flex justify-between items-center"
+                        class="text-xxs text-gray-300 w-full py-3 uppercase font-bold flex justify-between items-center"
                         :key="city.id"
                     >
                         <span>{{ city.name }}</span>

@@ -98,10 +98,7 @@
                     Congregations
                 </div>
             </popper>
-            <inertia-link
-                :href="route('profile.show')"
-                class="text-gray-300 text-xs justify-center items-center px-8 flex capitalize hover:border-indigo-600 border-b-2 border-solid border-white"
-            >
+            <inertia-link :href="route('profile.show')" :class="classes('profile.*')">
                 Docs
             </inertia-link>
 
@@ -140,7 +137,7 @@ export default {
 
         classes(link) {
             let classes =
-                "text-gray-300 text-xs justify-center items-center px-8 flex capitalize hover:border-indigo-600 border-b-2 border-solid ";
+                "text-gray-300 font-bold uppercase text-xxs justify-center items-center px-8 flex hover:border-indigo-600 border-b-2 border-solid ";
 
             classes += route().current(link) ? "border-indigo-600" : "border-white";
 

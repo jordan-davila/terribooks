@@ -16,37 +16,36 @@ class TerritoryEditorPhoneController extends Controller
     public function index(Territory $territory)
     {
         $default = $territory->streets->first();
-        return !is_null($default)
-            ? Redirect::route('territories.editor.phone.show', ['territory' => $territory, 'street' => $default])
-            : Inertia::render('Territories/Editor/Phone');
+
+        return !is_null($default) ? Redirect::route("territories.editor.phone.show", ["territory" => $territory, "street" => $default]) : abort(403);
     }
 
     public function show(Territory $territory, Street $street)
     {
-        return Inertia::render('Territories/Editor/Phone', [
-            'type' => 'Phone',
-            'territory' => new TerritoryResource($territory),
-            'street' => $street,
-            'phones' => $street->phones,
+        return Inertia::render("Territories/Editor/Phone", [
+            "type" => "Phone",
+            "territory" => new TerritoryResource($territory),
+            "street" => $street,
+            "phones" => $street->phones,
         ]);
     }
 
     public function store(Territory $territory, Street $street, Request $request)
     {
         $request->validate([
-            'number' => 'required|min:1',
-            'street_id' => 'required',
+            "number" => "required|min:1",
+            "street_id" => "required",
         ]);
 
         Phone::create([
-            'name' => $request->name,
-            'number' => $request->number,
-            'phone' => $request->phone,
-            'apartment' => $request->apartment,
-            'symbol' => $request->symbol,
-            'color' => $request->color,
-            'observations' => $request->observations,
-            'street_id' => $street->id,
+            "name" => $request->name,
+            "number" => $request->number,
+            "phone" => $request->phone,
+            "apartment" => $request->apartment,
+            "symbol" => $request->symbol,
+            "color" => $request->color,
+            "observations" => $request->observations,
+            "street_id" => $street->id,
         ]);
 
         return back(303);
@@ -54,12 +53,16 @@ class TerritoryEditorPhoneController extends Controller
 
     public function update(Territory $territory, Street $street, Phone $phone, Request $request)
     {
-        Gate::allows('handlePhone', [$territory, $phone]) ?: abort(403);
+        Gate::allows("handlePhone", [$territory, $phone]) ?: abort(403);
 
-        $request->validate(['number' => 'required|min:1']);
+        $request->validate(["number" => "required|min:1"]);
 
         // Make sure its actually from the users territory and street
-        $phone = $territory->streets()->find($street->id)->phones()->find($request->id);
+        $phone = $territory
+            ->streets()
+            ->find($street->id)
+            ->phones()
+            ->find($request->id);
         $phone->number = $request->number;
         $phone->apartment = $request->apartment;
         $phone->name = $request->name;
@@ -85,8 +88,8 @@ class TerritoryEditorPhoneController extends Controller
     public function deleteSelected(Territory $territory, Street $street, Request $request)
     {
         foreach ($request->phones as $req) {
-            $phone = Phone::find($req['id']);
-            Gate::allows('handlePhone', [$territory, $phone]) ?: abort(403);
+            $phone = Phone::find($req["id"]);
+            Gate::allows("handlePhone", [$territory, $phone]) ?: abort(403);
             $phone->delete();
         }
 

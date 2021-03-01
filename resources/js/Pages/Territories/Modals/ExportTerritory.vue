@@ -1,5 +1,12 @@
 <template lang="">
-    <modal name="export" draggable width="430px" height="auto" classes="rounded-lg bg-white shadow-lg" @opened="opened">
+    <modal
+        name="export"
+        draggable
+        width="430px"
+        height="auto"
+        classes="rounded-lg bg-white shadow-lg overflow-hidden"
+        @opened="opened"
+    >
         <div
             class="modal-title text-xxs text-gray-300 uppercase w-full px-8 py-6 font-bold border-b border-gray-100 flex items-center justify-between"
         >
@@ -30,10 +37,11 @@
                         <option value="field">Field</option>
                         <option value="phone">Phone</option>
                         <option value="business">Business</option>
+                        <option value="assignment">Assignment Record</option>
                         <option value="map">Map Card</option>
                     </select>
                 </div>
-                <div class="input-col">
+                <div class="input-col" v-if="type != 'assignment'">
                     <label for="#name">Territory</label>
                     <select
                         name="symbol"
@@ -45,6 +53,18 @@
                                 {{ territory.code }}
                             </option>
                         </template>
+                    </select>
+                </div>
+                <div class="input-col" v-else>
+                    <label for="#symbol">Ministry Type</label>
+                    <select
+                        name="symbol"
+                        v-model="assignment_type"
+                        class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
+                    >
+                        <option value="field">Field</option>
+                        <option value="phone">Phone</option>
+                        <option value="business">Business</option>
                     </select>
                 </div>
             </div>
@@ -62,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal-options bg-gray-50 w-full py-6 px-8 flex justify-end items-center text-gray-300">
+        <div class="modal-options rounded-b-lg bg-gray-50 w-full py-6 px-8 flex justify-end items-center text-gray-300">
             <button
                 @click="exportPDF()"
                 class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150"
@@ -79,7 +99,8 @@ export default {
         return {
             type: "field",
             territory: null,
-            grouped: 0
+            grouped: 0,
+            assignment_type: "field"
         };
     },
     methods: {
@@ -89,8 +110,13 @@ export default {
         },
 
         exportPDF() {
-            let url = `${window.location.origin}/territories/${this.territory}/export/${this.type}/download`;
-            this.type === "field" && this.grouped == "1" ? (url += "?grouped=1") : null;
+            let url = window.location.origin;
+            if (this.type != "assignment") {
+                url += `/territories/${this.territory}/export/${this.type}/download`;
+                this.type === "field" && this.grouped == "1" ? (url += "?grouped=1") : null;
+            } else {
+                url += `/assignments/type/${this.assignment_type}/download`;
+            }
             window.open(url, "_blank");
         }
     }

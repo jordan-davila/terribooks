@@ -42,9 +42,14 @@ class Territory extends Model
         return $this->hasManyThrough(Phone::class, Street::class);
     }
 
-    public function businessess()
+    public function businesses()
     {
         return $this->hasManyThrough(Business::class, Street::class);
+    }
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
     }
 
     public function url()
@@ -88,6 +93,6 @@ class Territory extends Model
 
     public function getBusinessCountAttribute()
     {
-        return $this->businessess->count();
+        return $this->businesses->count();
     }
 }
