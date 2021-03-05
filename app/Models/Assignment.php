@@ -13,11 +13,6 @@ class Assignment extends Model
 
     protected $guarded = [];
 
-    protected $casts = [
-        // "date_in" => "datetime:m/d/Y",
-        // "date_out" => "datetime:m/d/Y",
-    ];
-
     public function territory()
     {
         return $this->belongsTo(Territory::class);

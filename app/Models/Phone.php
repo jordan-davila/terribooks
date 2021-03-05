@@ -22,4 +22,14 @@ class Phone extends Model implements Searchable
         $route = "territories.editor.phone.show";
         return new SearchResult($this, "Phone", $route);
     }
+
+    public function getAddressAttribute()
+    {
+        if (!empty($this->apartment)) {
+            $apt = $this->apartment == "BSMT" ? $this->apartment : "APT " . $this->apartment;
+        } else {
+            $apt = "";
+        }
+        return trim($this->number . " " . $this->street->name . " " . $apt);
+    }
 }

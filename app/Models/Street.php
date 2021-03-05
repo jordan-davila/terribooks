@@ -6,14 +6,15 @@ use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class Street extends Model implements Searchable
 {
     use HasFactory;
+    use CascadesDeletes;
+    protected $guarded = [];
 
-    protected $guarded = [
-        'id', 'city_id'
-    ];
+    protected $cascadeDeletes = ["houses", "phones", "businesses"];
 
     public function houses()
     {

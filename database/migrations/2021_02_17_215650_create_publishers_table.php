@@ -17,8 +17,11 @@ class CreatePublishersTable extends Migration
                 ->on("team")
                 ->onDelete("cascade");
             $table->string("name");
-            $table->string("email")->unique();
-            $table->string("phone");
+            $table
+                ->string("email")
+                ->unique()
+                ->nullable();
+            $table->string("phone")->nullable();
             $table->timestamps();
         });
     }

@@ -12,6 +12,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class User extends Authenticatable
 {
@@ -26,7 +27,9 @@ class User extends Authenticatable
         HasNoPersonalTeams::ownsTeam insteadof HasTeams;
         HasNoPersonalTeams::isCurrentTeam insteadof HasTeams;
     }
+    use CascadesDeletes;
 
+    protected $cascadeDeletes = ["teams"];
     protected $fillable = ["name", "email", "password"];
 
     protected $hidden = ["password", "remember_token", "two_factor_recovery_codes", "two_factor_secret"];

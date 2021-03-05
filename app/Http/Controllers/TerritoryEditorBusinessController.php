@@ -13,20 +13,21 @@ use App\Http\Resources\TerritoryResource;
 
 class TerritoryEditorBusinessController extends Controller
 {
-    public function index(Territory $territory)
+    public function show(Territory $territory, Street $street = null)
     {
-        $default = $territory->streets->first();
-        return !is_null($default) ? Redirect::route("territories.editor.business.show", ["territory" => $territory, "street" => $default]) : abort(403);
-    }
-
-    public function show(Territory $territory, Street $street)
-    {
-        return Inertia::render("Territories/Editor/Business", [
-            "type" => "Business",
-            "territory" => new TerritoryResource($territory),
-            "street" => $street,
-            "businesses" => $street->businesses,
-        ]);
+        $default = is_null($street) ? $territory->streets->first() : $street;
+        if (!is_null($default)) {
+            return Inertia::render("Territories/Editor/Business", [
+                "type" => "Business",
+                "territory" => new TerritoryResource($territory),
+                "street" => $default,
+                "businesses" => $default->businesses,
+            ]);
+        } else {
+            return Inertia::render("Territories/Editor/Index", [
+                "territory" => new TerritoryResource($territory),
+            ]);
+        }
     }
 
     public function store(Territory $territory, Street $street, Request $request)

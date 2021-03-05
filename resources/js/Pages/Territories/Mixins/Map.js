@@ -19,7 +19,7 @@ export const MapMixin = {
             styles: {
                 purple: {
                     fillColor: "#6366F1",
-                    weight: 0,
+                    weight: 3,
                     opacity: 1,
                     color: "white",
                     dashArray: "3",
@@ -27,7 +27,7 @@ export const MapMixin = {
                 },
                 green: {
                     fillColor: "#6EE7B7",
-                    weight: 2,
+                    weight: 3,
                     opacity: 1,
                     color: "white",
                     dashArray: "3",

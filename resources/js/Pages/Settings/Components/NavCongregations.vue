@@ -46,6 +46,25 @@
                 </div>
             </button>
             <button
+                @click="scrollToSetting('#city-manager')"
+                class="uppercase font-bold py-4 flex justify-between items-center w-full"
+            >
+                <div class="info flex items-center">
+                    <span
+                        class="w-10 h-10 flex justify-center items-center text-xs rounded-lg text-gray-500 bg-gray-100"
+                    >
+                        <i class="fas fa-city"></i>
+                    </span>
+                    <div class="info flex flex-col items-start ml-4 text-xxs text-gray-300">
+                        <span>City Manager</span>
+                        <span class="opacity-60">Update Cities</span>
+                    </div>
+                </div>
+                <div class="text-gray-300 text-xxs">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </button>
+            <button
                 @click="scrollToSetting('#invite-members')"
                 class="uppercase font-bold py-4 flex justify-between items-center w-full"
             >

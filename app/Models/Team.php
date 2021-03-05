@@ -7,10 +7,13 @@ use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
 use Laravel\Jetstream\Team as JetstreamTeam;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class Team extends JetstreamTeam
 {
     use HasFactory;
+    use CascadesDeletes;
+    protected $cascadeDeletes = ["cities", "publishers", "assignments"];
 
     protected $casts = [
         "personal_team" => "boolean",

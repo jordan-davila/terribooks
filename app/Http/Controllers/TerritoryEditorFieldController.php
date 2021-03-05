@@ -14,39 +14,41 @@ use App\Http\Resources\TerritoryResource;
 
 class TerritoryEditorFieldController extends Controller
 {
-    public function index(Territory $territory)
+    public function show(Territory $territory, Street $street = null)
     {
-        $default = $territory->streets->first();
-        return !is_null($default)
-            ? Redirect::route('territories.editor.field.show', ['territory' => $territory, 'street' => $default])
-            : Inertia::render('Territories/Editor/Field');
-    }
-
-    public function show(Territory $territory, Street $street)
-    {
-        return Inertia::render('Territories/Editor/Field', [
-            'type' => 'Field',
-            'territory' => new TerritoryResource($territory),
-            'street' => $street,
-            'houses' => $street->houses()->with('apartments')->get(),
-        ]);
+        $default = is_null($street) ? $territory->streets->first() : $street;
+        if (!is_null($default)) {
+            return Inertia::render("Territories/Editor/Field", [
+                "type" => "Field",
+                "territory" => new TerritoryResource($territory),
+                "street" => $default,
+                "houses" => $default
+                    ->houses()
+                    ->with("apartments")
+                    ->get(),
+            ]);
+        } else {
+            return Inertia::render("Territories/Editor/Index", [
+                "territory" => new TerritoryResource($territory),
+            ]);
+        }
     }
 
     public function storeHouse(Territory $territory, Street $street, Request $request)
     {
         $request->validate([
-            'number' => 'required|min:1',
-            'type' => 'required|max:1',
-            'symbol' => 'required|max:3',
+            "number" => "required|min:1",
+            "type" => "required|max:1",
+            "symbol" => "required|max:3",
         ]);
 
         House::create([
-            'number' => $request->number,
-            'type' => $request->type,
-            'observations' => $request->observations,
-            'symbol' => $request->symbol,
-            'color' => $request->color,
-            'street_id' => $street->id,
+            "number" => $request->number,
+            "type" => $request->type,
+            "observations" => $request->observations,
+            "symbol" => $request->symbol,
+            "color" => $request->color,
+            "street_id" => $street->id,
         ]);
 
         return back(303);
@@ -55,16 +57,16 @@ class TerritoryEditorFieldController extends Controller
     public function storeApartment(Territory $territory, Street $street, Request $request)
     {
         $request->validate([
-            'number' => 'required|min:1',
-            'symbol' => 'required|max:3',
+            "number" => "required|min:1",
+            "symbol" => "required|max:3",
         ]);
 
         Apartment::create([
-            'number' => $request->number,
-            'observations' => $request->observations,
-            'symbol' => $request->symbol,
-            'color' => $request->color,
-            'house_id' => $request->house_id,
+            "number" => $request->number,
+            "observations" => $request->observations,
+            "symbol" => $request->symbol,
+            "color" => $request->color,
+            "house_id" => $request->house_id,
         ]);
 
         return back(303);
@@ -72,16 +74,20 @@ class TerritoryEditorFieldController extends Controller
 
     public function updateHouse(Territory $territory, Street $street, House $house, Request $request)
     {
-        Gate::allows('handleHouse', [$territory, $house]) ?: abort(403);
+        Gate::allows("handleHouse", [$territory, $house]) ?: abort(403);
 
         $request->validate([
-            'number' => 'required|min:1',
-            'type' => 'required|max:1',
-            'symbol' => 'required|max:3',
+            "number" => "required|min:1",
+            "type" => "required|max:1",
+            "symbol" => "required|max:3",
         ]);
 
         // Make sure its actually from the users territory and street
-        $house = $territory->streets()->find($street->id)->houses()->find($request->id);
+        $house = $territory
+            ->streets()
+            ->find($street->id)
+            ->houses()
+            ->find($request->id);
         $house->number = $request->number;
         $house->type = $request->type;
         $house->observations = $request->observations;
@@ -94,17 +100,20 @@ class TerritoryEditorFieldController extends Controller
 
     public function updateApartment(Territory $territory, Street $street, Apartment $apartment, Request $request)
     {
-        Gate::allows('handleHouse', [$territory, House::find($apartment->house_id)]) ?: abort(403);
+        Gate::allows("handleHouse", [$territory, House::find($apartment->house_id)]) ?: abort(403);
 
         $request->validate([
-            'number' => 'required|min:1',
-            'symbol' => 'required|max:3',
+            "number" => "required|min:1",
+            "symbol" => "required|max:3",
         ]);
 
         $apartment = $territory
-            ->streets()->find($street->id)
-            ->houses()->find($request->house_id)
-            ->apartments()->find($request->id);
+            ->streets()
+            ->find($street->id)
+            ->houses()
+            ->find($request->house_id)
+            ->apartments()
+            ->find($request->id);
         $apartment->number = $request->number;
         $apartment->observations = $request->observations;
         $apartment->symbol = $request->symbol;
@@ -120,8 +129,8 @@ class TerritoryEditorFieldController extends Controller
         foreach ($request->houses as $house) {
             $this->updateHouse($territory, $street, new House($house), new Request($house));
 
-            if (!is_null($house['apartments'])) {
-                foreach ($house['apartments'] as $apartment) {
+            if (!is_null($house["apartments"])) {
+                foreach ($house["apartments"] as $apartment) {
                     $this->updateApartment($territory, $street, new Apartment($apartment), new Request($apartment));
                 }
             }
@@ -133,8 +142,8 @@ class TerritoryEditorFieldController extends Controller
     public function deleteSelectedHouses(Territory $territory, Street $street, Request $request)
     {
         foreach ($request->houses as $req) {
-            $house = House::find($req['id']);
-            Gate::allows('handleHouse', [$territory, $house]) ?: abort(403);
+            $house = House::find($req["id"]);
+            Gate::allows("handleHouse", [$territory, $house]) ?: abort(403);
             $house->delete();
         }
 
@@ -144,7 +153,7 @@ class TerritoryEditorFieldController extends Controller
     public function deleteSelectedApartments(Territory $territory, Street $street, Request $request)
     {
         foreach ($request->apartments as $req) {
-            $apartment = Apartment::find($req['id']);
+            $apartment = Apartment::find($req["id"]);
             // Gate::allows('handleHouse', [$territory, $apartment->house]) ?: abort(403);
             $apartment->delete();
         }

@@ -34,7 +34,9 @@
                 <div class="input-col text-gray-300 font-bold text-xxs uppercase">{{ message }}</div>
             </div>
         </div>
-        <div class="modal-options bg-gray-100 w-full py-6 px-8 flex justify-end items-center text-gray-300">
+        <div
+            class="modal-options bg-gray-100 w-full py-6 px-8 flex justify-end items-center text-gray-300 rounded-b-lg"
+        >
             <button
                 @click="action"
                 class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 focus:outline-none transition ease-in-out duration-150"

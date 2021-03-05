@@ -26,12 +26,15 @@ export default {
 
     methods: {
         getBoundsJSON(feature, layer) {
-            this.$refs.map.fitBounds(this.$refs.geojson.getBounds());
+            this.$page.props.territory.data.coordinates && this.$refs.map.fitBounds(this.$refs.geojson.getBounds());
         },
         getGeoJSONCoordinates() {
-            return JSON.parse(
-                `{ "type": "FeatureCollection", "features": [ { "type": "Feature", "properties": {}, "geometry": { "type": "Polygon", "coordinates": ${this.$page.props.territory.data.coordinates} } } ] }`
+            let json = JSON.parse(
+                `{ "type": "FeatureCollection", "features": [ { "type": "Feature", "properties": {}, "geometry": { "type": "Polygon", "coordinates": ${
+                    this.$page.props.territory.data.coordinates ? this.$page.props.territory.data.coordinates : "{}"
+                } } } ] }`
             );
+            return json;
         }
     }
 };

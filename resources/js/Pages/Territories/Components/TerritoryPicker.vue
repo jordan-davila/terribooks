@@ -8,22 +8,30 @@
                         :key="city.id"
                     >
                         <span>{{ city.name }}</span>
-                        <button class="w-6 h-6 text-gray-300 text-sm">
-                            <i class="fas fa-caret-down"></i>
+                        <button
+                            @click="$modal.show('add-territory', { city_id: city.id })"
+                            class="w-5 h-5 text-gray-300 text-xxs bg-white border border-gray-300 rounded-md leading-none"
+                        >
+                            <i class="fas fa-plus"></i>
                         </button>
                     </div>
                     <template v-for="territory in city.territories">
-                        <inertia-link
-                            preserve-state
+                        <div
                             :id="'link-' + territory.id"
                             @click="scrollToTerritory(territory.id)"
-                            :href="route(currentRoute(), [territory.id])"
                             class="uppercase font-bold py-4 flex justify-between items-center"
                             :key="territory.code"
                         >
                             <div class="info flex items-center">
-                                <span :class="classes(territory.id)">{{ territory.code }}</span>
-                                <div
+                                <inertia-link
+                                    preserve-state
+                                    :href="route(currentRoute(), [territory.id])"
+                                    :class="classes(territory.id)"
+                                    >{{ territory.code }}</inertia-link
+                                >
+                                <inertia-link
+                                    preserve-state
+                                    :href="route(currentRoute(), [territory.id])"
                                     v-bind:class="[
                                         { 'opacity-60': route().params.territory != territory.id },
                                         'info flex flex-col ml-4 text-xxs text-gray-300'
@@ -35,12 +43,48 @@
                                     <span>
                                         {{ territory.phone_count + " Phone #" }}
                                     </span>
-                                </div>
+                                </inertia-link>
                             </div>
-                            <button class="w-6 h-6 text-gray-300 text-sm">
-                                <i class="far fa-ellipsis-h"></i>
-                            </button>
-                        </inertia-link>
+                            <popper
+                                trigger="clickToOpen"
+                                :options="{
+                                    placement: 'bottom',
+                                    modifiers: {
+                                        flip: { enabled: false },
+                                        offset: { offset: '0,-5' }
+                                    }
+                                }"
+                            >
+                                <div class="popper rounded-md shadow-lg bg-white overflow-hidden z-10">
+                                    <div class="rounded-md ring-1 ring-black ring-opacity-5 text-xxs uppercase">
+                                        <!-- Account Management -->
+                                        <button
+                                            @click="$modal.show('edit-territory', { territory: territory })"
+                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left"
+                                        >
+                                            Edit Territory
+                                        </button>
+                                        <button
+                                            @click="
+                                                $modal.show('confirmation', {
+                                                    type: 'warning',
+                                                    title: 'Delete Territory',
+                                                    message:
+                                                        'Are you sure you want to delete this territory? This action can not be undone.',
+                                                    action: () => deleteTerritory(territory.id)
+                                                })
+                                            "
+                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left"
+                                        >
+                                            Delete Territory
+                                        </button>
+                                    </div>
+                                </div>
+                                <button slot="reference" class="w-6 h-6 text-gray-300 text-sm">
+                                    <i class="far fa-ellipsis-h"></i>
+                                </button>
+                            </popper>
+                        </div>
                     </template>
                 </template>
             </div>
@@ -49,7 +93,10 @@
 </template>
 <script>
 import Scrollbar from "smooth-scrollbar";
+import Popper from "vue-popperjs";
+
 export default {
+    components: { Popper },
     mounted() {
         Scrollbar.init(document.querySelector("#territory-picker-smooth-scroll"), {
             damping: 0.1,
@@ -91,6 +138,25 @@ export default {
             let split_route = current_route.split(".");
             if (split_route.length > 3) split_route[3] = "index";
             return split_route.join(".");
+        },
+
+        deleteTerritory(id) {
+            this.$inertia.delete(route("territories.delete", id), {
+                preserveScroll: true,
+                onSuccess: page => {
+                    this.$modal.hide("confirmation");
+                    this.$page.props.jetstream.flash = {
+                        alertStyle: "success",
+                        alert: "Territory Deleted"
+                    };
+                },
+                onError: page => {
+                    this.$page.props.jetstream.flash = {
+                        alertStyle: "danger",
+                        alert: "Sorry, something went wrong"
+                    };
+                }
+            });
         }
     }
 };

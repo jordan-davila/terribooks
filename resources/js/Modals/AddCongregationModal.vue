@@ -10,8 +10,8 @@
                     <i class="far fa-globe-americas"></i>
                 </div>
                 <div class="flex flex-col">
-                    <div class="title">Congregation Details</div>
-                    <div class="subtitle opacity-60">Provide the following details</div>
+                    <div class="title">Add Congregation</div>
+                    <div class="subtitle opacity-60">Fill the following form to add a new congregation</div>
                 </div>
             </div>
             <button @click="$modal.hide('add-congregation')" class="text-sm opacity-60 ml-6">

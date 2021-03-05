@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4440a5ba493265ec03d07ca987d6a45b",
+    "content-hash": "84bcdee369c39fd31b3b9445a1dd774e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2804,16 +2804,16 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "1.16.0",
+            "version": "1.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "76d4323b85129d0c368149c831a07a3e258b2b50"
+                "reference": "c55269cb06911575a126dc225a05c0e4626e5fb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/76d4323b85129d0c368149c831a07a3e258b2b50",
-                "reference": "76d4323b85129d0c368149c831a07a3e258b2b50",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/c55269cb06911575a126dc225a05c0e4626e5fb4",
+                "reference": "c55269cb06911575a126dc225a05c0e4626e5fb4",
                 "shasum": ""
             },
             "require": {
@@ -2841,7 +2841,7 @@
             },
             "require-dev": {
                 "dompdf/dompdf": "^0.8.5",
-                "friendsofphp/php-cs-fixer": "^2.16",
+                "friendsofphp/php-cs-fixer": "^2.18",
                 "jpgraph/jpgraph": "^4.0",
                 "mpdf/mpdf": "^8.0",
                 "phpcompatibility/php-compatibility": "^9.3",
@@ -2899,9 +2899,9 @@
             ],
             "support": {
                 "issues": "https://github.com/PHPOffice/PhpSpreadsheet/issues",
-                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/1.16.0"
+                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/1.17.1"
             },
-            "time": "2020-12-31T18:03:49+00:00"
+            "time": "2021-03-02T17:54:11+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -3672,6 +3672,63 @@
                 }
             ],
             "time": "2020-08-18T17:17:46+00:00"
+        },
+        {
+            "name": "shiftonelabs/laravel-cascade-deletes",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shiftonelabs/laravel-cascade-deletes.git",
+                "reference": "af256e3796f997b5f66d34c7ec25c2a1c560e36f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shiftonelabs/laravel-cascade-deletes/zipball/af256e3796f997b5f66d34c7ec25c2a1c560e36f",
+                "reference": "af256e3796f997b5f66d34c7ec25c2a1c560e36f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": ">=4.1",
+                "illuminate/events": ">=4.1",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0",
+                "shiftonelabs/codesniffer-standard": "0.*",
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ShiftOneLabs\\LaravelCascadeDeletes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Patrick Carlo-Hickman",
+                    "email": "patrick@shiftonelabs.com"
+                }
+            ],
+            "description": "Adds application level cascading deletes to Eloquent Models.",
+            "homepage": "https://github.com/shiftonelabs/laravel-cascade-deletes",
+            "keywords": [
+                "cascade",
+                "deletes",
+                "eloquent",
+                "laravel",
+                "lumen",
+                "model"
+            ],
+            "support": {
+                "issues": "https://github.com/shiftonelabs/laravel-cascade-deletes/issues",
+                "source": "https://github.com/shiftonelabs/laravel-cascade-deletes"
+            },
+            "time": "2020-04-02T07:31:25+00:00"
         },
         {
             "name": "spatie/browsershot",

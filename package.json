@@ -36,6 +36,7 @@
         "epic-spinners": "^1.1.0",
         "eslint": "^7.18.0",
         "leaflet": "^1.7.1",
+        "leaflet-draw": "^1.0.4",
         "moment": "^2.29.1",
         "particles.js": "^2.0.0",
         "puppeteer": "^7.0.4",

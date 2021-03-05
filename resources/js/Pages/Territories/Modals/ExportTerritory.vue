@@ -18,7 +18,7 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="title">Export Territory</div>
-                    <div class="subtitle opacity-60">Fill the below form for more options</div>
+                    <div class="subtitle opacity-60">Fill the form below for more options</div>
                 </div>
             </div>
             <button @click="$modal.hide('export')" class="text-sm opacity-60 ml-6">
@@ -84,6 +84,14 @@
         </div>
         <div class="modal-options rounded-b-lg bg-gray-50 w-full py-6 px-8 flex justify-end items-center text-gray-300">
             <button
+                @click="exportExcel()"
+                v-if="type == 'phone'"
+                class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150 mr-4"
+            >
+                <i class="fas fa-file-excel mr-2"></i>
+                <span>Export to Excel</span>
+            </button>
+            <button
                 @click="exportPDF()"
                 class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150"
             >
@@ -117,6 +125,12 @@ export default {
             } else {
                 url += `/assignments/type/${this.assignment_type}/download`;
             }
+            window.open(url, "_blank");
+        },
+
+        exportExcel() {
+            let url = window.location.origin;
+            url += `/territories/${this.territory}/export/${this.type}/download?type=excel`;
             window.open(url, "_blank");
         }
     }

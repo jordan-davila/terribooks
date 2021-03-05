@@ -35,8 +35,8 @@
                     preserve-state
                     :href="
                         $page.props.territory
-                            ? route('territories.show', [$page.props.territory.data.id])
-                            : route('territories.show', [
+                            ? route('territories.map.show', [$page.props.territory.data.id])
+                            : route('territories.map.show', [
                                   'field',
                                   $page.props.territories.data.cities[0].territories[0].id
                               ])

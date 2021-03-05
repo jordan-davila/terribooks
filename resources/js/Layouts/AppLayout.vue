@@ -5,6 +5,8 @@
         <NavMain />
         <template v-if="$page.props.territory">
             <ExportTerritoryModal />
+            <AddTerritory />
+            <EditTerritory />
         </template>
         <ConfirmationModal />
         <AddCongregationModal />
@@ -24,6 +26,8 @@ import FlashBanner from "@/Components/FlashBanner";
 import ExportTerritoryModal from "@/Pages/Territories/Modals/ExportTerritory";
 import ConfirmationModal from "@/Modals/ConfirmationModal";
 import AddCongregationModal from "@/Modals/AddCongregationModal";
+import AddTerritory from "@/Pages/Territories/Modals/AddTerritory";
+import EditTerritory from "@/Pages/Territories/Modals/EditTerritory";
 
 export default {
     components: {
@@ -32,7 +36,9 @@ export default {
         FlashBanner,
         ExportTerritoryModal,
         ConfirmationModal,
-        AddCongregationModal
+        AddCongregationModal,
+        AddTerritory,
+        EditTerritory
     }
 };
 </script>

@@ -96,10 +96,16 @@
             class="w-full h-full flex flex-1 justify-center items-center relative"
             v-show="$page.props.phones.length == 0"
         >
-            <div class="flex text-xxs uppercase text-gray-300 font-bold justify-center items-center">
+            <div class="flex text-xxs uppercase text-gray-300 font-bold justify-center items-center relative z-10">
                 <div class="info text-center">
-                    No Phone Numbers on this Street<br />
-                    <span class="opacity-50">Please conduct a census and add a new phone number</span>
+                    <div class="title">No Phone Numbers on this Street</div>
+                    <div class="opacity-50 mb-4">Please conduct a census and add a new phone number</div>
+                    <button
+                        @click="$modal.show('add-phone')"
+                        class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150"
+                    >
+                        Add Phone
+                    </button>
                 </div>
             </div>
             <div

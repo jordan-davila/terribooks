@@ -40,7 +40,9 @@
                     >
                         <div class="uppercase font-bold text-xxs text-gray-400 mb-2">Congregations</div>
                         <div class="circle rounded-full bg-white w-16 h-16 flex justify-center items-center">
-                            <span class="text-gray-400 font-semibold text-lg">{{ user.all_teams.length }}</span>
+                            <span class="text-gray-400 font-semibold text-lg">
+                                {{ Object.keys($page.props.user.all_teams).length }}
+                            </span>
                         </div>
                     </div>
                     <div class="cards flex flex-col rounded-lg bg-gray-100 w-32 h-32 p-4 justify-center items-center">
@@ -121,20 +123,25 @@ export default {
 
     created() {
         this.dailyText();
-        this.fixLinks();
     },
 
     methods: {
         dailyText() {
-            const proxyurl = "https://cors-anywhere.herokuapp.com/";
+            // const proxyurl = "https://cors-anywhere.herokuapp.com/";
+            const proxyurl = "https://cors.terribooks.com/";
             const date = this.getDate();
-            axios.get(proxyurl + "https://wol.jw.org/wol/dt/r1/lp-e/" + date).then(response => {
-                const doc = new DOMParser().parseFromString(response.data.items[0].content, "text/html");
-                const data = doc.querySelectorAll("[data-pid]");
-                this.title = data[0].innerHTML;
-                this.text = data[1].innerHTML;
-                this.content = data[2].innerHTML;
-            });
+            axios
+                .get(proxyurl + "https://wol.jw.org/wol/dt/r1/lp-e/" + date)
+                .then(response => {
+                    const doc = new DOMParser().parseFromString(response.data.items[0].content, "text/html");
+                    const data = doc.querySelectorAll("[data-pid]");
+                    this.title = data[0].innerHTML;
+                    this.text = data[1].innerHTML;
+                    this.content = data[2].innerHTML;
+                })
+                .then(() => {
+                    this.fixLinks();
+                });
         },
 
         getDate() {

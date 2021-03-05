@@ -3,83 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Models\Street;
+use App\Models\Territory;
 use Illuminate\Http\Request;
 
 class StreetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected $abrs = [
+        "North" => "N",
+        "South" => "S",
+        "West" => "W",
+        "East" => "E",
+        "Street" => "St",
+        "Avenue" => "Ave",
+        "Parkway" => "Pky",
+        "Boulevard" => "Blvd",
+    ];
+
+    public function fixName($name)
     {
-        //
+        $request = str_replace([",", "."], "", $name);
+        $explode = explode(" ", $request);
+        $last_index = count($explode) - 1;
+        $long = $explode[$last_index];
+        $abr = isset($this->abrs[$long]) ? $this->abrs[$long] : $long;
+        $explode[$last_index] = $abr;
+        return implode(" ", $explode);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(Territory $territory, Request $request)
     {
-        //
+        $validator = $request->validate([
+            "name" => "required|unique:cities|min:3",
+        ]);
+
+        $last_street = $territory
+            ->streets()
+            ->orderBy("order")
+            ->get()
+            ->last();
+
+        $street = $territory->streets()->create([
+            "territory_id" => $territory->id,
+            "name" => $this->fixName($request["name"]),
+            "order" => $last_street ? $last_street->order + 1 : 1,
+        ]);
+
+        return back(303);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function update(Territory $territory, Street $street, Request $request)
     {
-        //
+        $validator = $request->validate([
+            "name" => "required|unique:cities|min:3",
+        ]);
+
+        $street->name = $request["name"];
+        $street->order = $request["order"];
+        $street->save();
+        return back(303);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Street  $street
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Street $street)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Street  $street
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Street $street)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Street  $street
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Street $street)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Street  $street
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Street $street)
     {
-        //
+        $street->delete();
+        return back(303);
     }
 }

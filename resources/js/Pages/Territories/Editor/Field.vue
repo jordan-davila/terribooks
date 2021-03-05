@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden" v-if="$page.props.street">
         <AddHouse />
         <AddApartment />
         <EditHouse />
@@ -170,10 +170,16 @@
             class="w-full h-full flex flex-1 justify-center items-center relative"
             v-show="$page.props.houses.length == 0"
         >
-            <div class="flex text-xxs uppercase text-gray-300 font-bold justify-center items-center">
+            <div class="flex text-xxs uppercase text-gray-300 font-bold justify-center items-center relative z-10">
                 <div class="info text-center">
-                    No House Numbers on this Street<br />
-                    <span class="opacity-50">Please conduct a census and add a new house number</span>
+                    <div class="title">No House Numbers on this Street</div>
+                    <div class="opacity-50 mb-4">Please conduct a census and add a new house number</div>
+                    <button
+                        @click="$modal.show('add-house')"
+                        class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150"
+                    >
+                        Add House
+                    </button>
                 </div>
             </div>
             <div
@@ -208,26 +214,28 @@ export default {
         };
     },
     mounted() {
-        window.particlesJS("particles", this.particleParams);
-        Scrollbar.init(document.querySelector("#field-editor-smooth-scroll"), {
-            damping: 0.1,
-            renderByPixels: true,
-            alwaysShowTracks: false,
-            continuousScrolling: true
-        });
+        if (this.$page.props.street) {
+            window.particlesJS("particles", this.particleParams);
+            Scrollbar.init(document.querySelector("#field-editor-smooth-scroll"), {
+                damping: 0.1,
+                renderByPixels: true,
+                alwaysShowTracks: false,
+                continuousScrolling: true
+            });
 
-        this.fieldKeyListener = function(e) {
-            if (e.key === "s" && (e.ctrlKey || e.metaKey)) {
-                e.preventDefault();
-                this.saveAll();
-            }
-            if (e.key === "d" && (e.ctrlKey || e.metaKey)) {
-                e.preventDefault();
-                this.$modal.show("add-house");
-            }
-        };
+            this.fieldKeyListener = function(e) {
+                if (e.key === "s" && (e.ctrlKey || e.metaKey)) {
+                    e.preventDefault();
+                    this.saveAll();
+                }
+                if (e.key === "d" && (e.ctrlKey || e.metaKey)) {
+                    e.preventDefault();
+                    this.$modal.show("add-house");
+                }
+            };
 
-        document.addEventListener("keydown", this.fieldKeyListener.bind(this));
+            document.addEventListener("keydown", this.fieldKeyListener.bind(this));
+        }
     },
 
     beforeDestroy() {

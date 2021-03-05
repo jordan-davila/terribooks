@@ -83,14 +83,15 @@ class AssignmentController extends Controller
             "team_id" => $assignment->team_id,
             "territory_id" => $assignment->territory_id,
             "publisher_id" => $request->publisher_id,
-            "date_in" => $request->date_in,
-            "date_out" => $request->date_out,
+            "date_in" => $request->date_in ? Carbon::parse($request->date_in) : null,
+            "date_out" => $request->date_out ? Carbon::parse($request->date_out) : null,
             "type" => $assignment->type,
             "current" => false,
         ]);
 
         $assignment->publisher_id = null;
         $assignment->date_in = null;
+        $assignment->date_out = null;
         $assignment->save();
 
         return back(303);
@@ -103,7 +104,7 @@ class AssignmentController extends Controller
         $assignment->territory_id = $request->territory_id;
         $assignment->publisher_id = $request->publisher_id;
         $assignment->date_in = $request->date_in ? Carbon::parse($request->date_in) : null;
-        $assignment->date_out = $request->date_in ? Carbon::parse($request->date_out) : null;
+        $assignment->date_out = $request->date_out ? Carbon::parse($request->date_out) : null;
         $assignment->type = $request->type;
         $assignment->save();
 

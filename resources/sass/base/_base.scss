@@ -87,3 +87,19 @@ button {
     background-color: #4f46e5 !important;
     color: white !important;
 }
+
+.map-marker {
+    font-size: 28px;
+}
+
+.map-label {
+    background-color: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: #4338ca !important;
+    font-weight: 900;
+    padding: 0px 5px;
+    &:before {
+        display: none;
+    }
+}

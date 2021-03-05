@@ -4,12 +4,16 @@ namespace App\Models;
 
 use App\Traits\Territory\HasRecords;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Territory extends Model
 {
     use HasFactory;
     use HasRecords;
+    use CascadesDeletes;
+
+    protected $cascadeDeletes = ["streets", "assignments"];
 
     protected $dates = ["created_at", "updated_at"];
 
@@ -18,7 +22,7 @@ class Territory extends Model
         "updated_at" => "datetime:F d, Y",
     ];
 
-    protected $guarded = ["id", "city_id"];
+    protected $guarded = [];
 
     public function city()
     {

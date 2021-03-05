@@ -1,19 +1,48 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\StreetController;
+use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\TerritoryController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\TerritoryEditorFieldController;
 use App\Http\Controllers\TerritoryEditorPhoneController;
 use App\Http\Controllers\TerritoryExportFieldController;
 use App\Http\Controllers\TerritoryExportPhoneController;
-use App\Http\Controllers\TerritoryExportBusinessController;
 use App\Http\Controllers\TerritoryEditorBusinessController;
+use App\Http\Controllers\TerritoryExportBusinessController;
 
 // prettier-ignore
 Route::middleware(["auth:sanctum", "verified"])->group(function () {
+
+    // Cities
+    Route::group(["prefix" => "/settings/team/{team}", "as" => "teams.", "middleware" => "can:view,team"], function () {
+        Route::post("/city/store", [CityController::class, "store"])->name("city.store");
+        Route::put("/city/{city}", [CityController::class, "update"])->name("city.update");
+        Route::delete("/city/{city}", [CityController::class, "destroy"])->name("city.delete");
+    });
+
+    // Publishers
+    Route::group(["prefix" => "/settings/team/{team}", "as" => "teams.", "middleware" => "can:view,team"], function () {
+        Route::post("/publisher/store", [PublisherController::class, "store"])->name("publisher.store");
+        Route::put("/publisher/{publisher}", [PublisherController::class, "update"])->name("publisher.update");
+        Route::delete("/publisher/{publisher}", [PublisherController::class, "destroy"])->name("publisher.delete");
+    });
+
     // Redirect to Default Territory
     Route::get("/territories", [TerritoryController::class, "index"])
     ->name("territories.index");
+    Route::post("/territories/store", [TerritoryController::class, "store"])
+    ->name("territories.store");
+
+    Route::group(["middleware" => "can:handleTerritory,territory"], function () {
+        Route::put("/territories/{territory}", [TerritoryController::class, "update"])
+        ->name("territories.update");
+        Route::put("/territories/{territory}", [TerritoryController::class, "updateCoordinates"])
+        ->name("territories.update.coordinates");
+        Route::delete("/territories/{territory}", [TerritoryController::class, "destroy"])
+        ->name("territories.delete");
+    });
 
      // Assignments
      Route::group(["prefix" => "/assignments", "as" => "assignments."], function () {
@@ -61,19 +90,21 @@ Route::middleware(["auth:sanctum", "verified"])->group(function () {
                 ->name("street.update");
                 Route::put("/street", [StreetController::class, "updateOrder"])
                 ->name("street.update.order");
+                Route::delete("/street/{street}", [StreetController::class, "destroy"])
+                ->name("street.delete");
 
                 // Redirect to Default Street -> territories/editor/{type}/street/{street}
-                Route::get("/field", [TerritoryEditorFieldController::class, "index"])
+                Route::get("/field", [TerritoryEditorFieldController::class, "show"])
                 ->name("field.index");
-                Route::get("/phone", [TerritoryEditorPhoneController::class, "index"])
+                Route::get("/phone", [TerritoryEditorPhoneController::class, "show"])
                 ->name("phone.index");
-                Route::get("/business", [TerritoryEditorBusinessController::class, "index"])
+                Route::get("/business", [TerritoryEditorBusinessController::class, "show"])
                 ->name("business.index");
 
                 // Middleware: Check if street belongs to the selected territory
                 Route::group(["middleware" => "can:handleStreet,territory,street"], function () {
                     // Field [Show, Store, Update, UpdateAll, Destroy]
-                    Route::get("/field/street/{street}", [TerritoryEditorFieldController::class, "show"])
+                    Route::get("/field/street/{street?}", [TerritoryEditorFieldController::class, "show"])
                     ->name("field.show");
                     Route::post("/field/street/{street}/house", [TerritoryEditorFieldController::class, "storeHouse"])
                     ->name("field.store.house");
@@ -91,7 +122,7 @@ Route::middleware(["auth:sanctum", "verified"])->group(function () {
                     ->name("field.delete.selected.apartments");
 
                     // Phone [Show, Store, Update, UpdateAll, Destroy]
-                    Route::get("/phone/street/{street}", [TerritoryEditorPhoneController::class, "show"])
+                    Route::get("/phone/street/{street?}", [TerritoryEditorPhoneController::class, "show"])
                     ->name("phone.show");
                     Route::post("/phone/street/{street}", [TerritoryEditorPhoneController::class, "store"]
                     )->name("phone.store");

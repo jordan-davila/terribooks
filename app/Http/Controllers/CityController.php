@@ -3,83 +3,54 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Team;
+use App\Models\Territory;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function store(Team $team, Request $request)
     {
-        //
+        $request->validate([
+            "name" => "required|min:3",
+        ]);
+
+        $city = $team->cities()->create([
+            "team_id" => $team->id,
+            "name" => $request["name"],
+        ]);
+
+        $territory = $city->territories()->create([
+            "city_id" => $city->id,
+            "order" => 1,
+        ]);
+
+        $types = ["field", "phone", "business"];
+        foreach ($types as $type) {
+            $territory->assignments()->create([
+                "team_id" => $team->id,
+                "territory_id" => $territory->id,
+                "date_out" => null,
+                "date_in" => null,
+                "current" => true,
+                "type" => $type,
+            ]);
+        }
+
+        return back(303);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function update(Team $team, City $city, Request $request)
     {
-        //
+        $request->validate(["name" => "required|min:3"]);
+        $city->name = $request["name"];
+        $city->save();
+        return back(303);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function destroy(Team $team, City $city)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function show(City $city)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(City $city)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, City $city)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(City $city)
-    {
-        //
+        $city->delete();
+        return back(303);
     }
 }

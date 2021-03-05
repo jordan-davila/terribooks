@@ -10,6 +10,7 @@
                 <div class="settings-container flex flex-col flex-1 h-full overflow-y-auto">
                     <OwnerModule />
                     <DetailsModule />
+                    <CityManagerModule />
                     <MemberInviteModule />
                     <MemberPendingListModule />
                     <MemberManagerModule />
@@ -31,6 +32,7 @@ import NavSettings from "@/Pages/Settings/Components/NavSettings";
 import NavCongregations from "@/Pages/Settings/Components/NavCongregations";
 import OwnerModule from "@/Pages/Settings/Congregations/OwnerModule";
 import DetailsModule from "@/Pages/Settings/Congregations/DetailsModule";
+import CityManagerModule from "@/Pages/Settings/Congregations/CityManagerModule";
 import MemberInviteModule from "@/Pages/Settings/Congregations/MemberInviteModule";
 import MemberPendingListModule from "@/Pages/Settings/Congregations/MemberPendingListModule";
 import MemberManagerModule from "@/Pages/Settings/Congregations/MemberManagerModule";
@@ -44,6 +46,7 @@ export default {
         NavCongregations,
         OwnerModule,
         DetailsModule,
+        CityManagerModule,
         MemberInviteModule,
         MemberPendingListModule,
         MemberManagerModule,

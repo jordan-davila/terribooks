@@ -85,13 +85,16 @@
         </div>
         <div class="text-xxs text-gray-300 w-full py-4 uppercase font-bold flex justify-between items-center px-14">
             <span>Streets</span>
-            <button class="w-6 h-6 text-gray-300 text-sm">
-                <i class="fas fa-caret-down"></i>
+            <button
+                @click="$modal.show('add-street')"
+                class="w-5 h-5 text-gray-300 text-xxs bg-white border border-gray-300 rounded-md leading-none"
+            >
+                <i class="fas fa-plus"></i>
             </button>
         </div>
         <div id="street-picker-smooth-scroll" class="street-list w-full flex-1 overflow-auto">
             <div class="street-list w-full px-14">
-                <div class="wrapper pb-8">
+                <div class="wrapper pb-8" v-if="$page.props.territory.data.streets.length != 0">
                     <template v-for="street in $page.props.territory.data.streets">
                         <div
                             class="text-xxs text-gray-700 w-full py-3 font-bold flex justify-between items-center"
@@ -115,11 +118,21 @@
                                     {{ street.name }}
                                 </inertia-link>
                             </div>
-                            <button class="w-6 h-6 flex justify-center text-gray-300 text-sm">
+                            <button class="w-6 h-6 flex justify-center items-center text-gray-300 text-sm">
                                 <i class="far fa-ellipsis-h"></i>
                             </button>
                         </div>
                     </template>
+                </div>
+                <div class="wrapper pb-8 mt-8" v-else>
+                    <div class="text-center uppercase font-bold text-gray-300 text-xxs">
+                        <div class="title">No Streets on this Territory</div>
+                        <div class="info">
+                            <span class="opacity-50 mr-1">To proceed, click on the</span>
+                            <i class="fas fa-plus text-gray-300"></i>
+                            <span class="opacity-50">button above to add a new street</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -136,8 +149,7 @@ export default {
             alwaysShowTracks: false,
             continuousScrolling: true
         });
-
-        this.scrollToStreet();
+        this.$page.props.street && this.scrollToStreet();
     },
 
     methods: {

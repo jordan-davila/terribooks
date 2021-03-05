@@ -17,7 +17,8 @@
         "laravel/jetstream": "^2.1",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
-        "phpoffice/phpspreadsheet": "^1.16",
+        "phpoffice/phpspreadsheet": "^1.17",
+        "shiftonelabs/laravel-cascade-deletes": "^1.0",
         "spatie/laravel-searchable": "^1.9",
         "tightenco/ziggy": "^1.0",
         "verumconsilium/laravel-browsershot": "^1.3"

@@ -41,7 +41,7 @@
                                 <div class="column w-full px-2 py-3 flex items-center">
                                     {{ assignment.territory.code }}
                                 </div>
-                                <div class="column w-full px-2 py-3 flex items-center uppercase">
+                                <div class="column w-full px-2 py-3 flex items-center capitalize">
                                     {{ assignment.type }}
                                 </div>
                                 <div class="column w-full px-2 py-3 flex items-center">
@@ -100,7 +100,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="flex flex-col overflow-hidden">
+                <div class="flex flex-1 flex-col overflow-hidden">
                     <div
                         class="list-header grid row border-b border-solid border-gray-100 text-gray-300 uppercase font-bold text-xxs px-6 bg-white"
                         style="grid-template-columns: 1fr 80px 100px 100px 30px;"
@@ -123,7 +123,7 @@
                                 <div class="column w-full px-2 py-3 flex items-center">
                                     {{ assignment.territory.code }}
                                 </div>
-                                <div class="column w-full px-2 py-3 flex items-center uppercase">
+                                <div class="column w-full px-2 py-3 flex items-center capitalize">
                                     {{ assignment.type }}
                                 </div>
                                 <div class="column w-full">

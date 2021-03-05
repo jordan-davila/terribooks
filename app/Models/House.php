@@ -6,13 +6,15 @@ use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 class House extends Model implements Searchable
 {
     use HasFactory;
-
+    use CascadesDeletes;
     protected $guarded = [];
     protected $appends = ["apartment_count"];
+    protected $cascadeDeletes = ["apartments"];
 
     public function apartments()
     {
