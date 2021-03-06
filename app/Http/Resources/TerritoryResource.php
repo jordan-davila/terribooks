@@ -22,6 +22,7 @@ class TerritoryResource extends JsonResource
             "apartment_count" => $this->apartment_count,
             "updated_at" => $this->updated_at,
             "streets" => StreetResource::collection($this->streets),
+            "current_assignee" => $this->current_assignee,
         ];
     }
 }

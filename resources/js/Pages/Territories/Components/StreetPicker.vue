@@ -113,14 +113,55 @@
                                             ? 'text-indigo-600 uppercase'
                                             : 'text-gray-300 uppercase opacity-75'
                                     "
-                                    :href="route(route().current(), [$page.props.territory.data.id, street.id])"
+                                    :href="
+                                        route(`territories.editor.${$page.props.type.toLowerCase()}.show`, [
+                                            $page.props.territory.data.id,
+                                            street.id
+                                        ])
+                                    "
                                 >
                                     {{ street.name }}
                                 </inertia-link>
                             </div>
-                            <button class="w-6 h-6 flex justify-center items-center text-gray-300 text-sm">
-                                <i class="far fa-ellipsis-h"></i>
-                            </button>
+                            <popper
+                                trigger="clickToOpen"
+                                :options="{
+                                    placement: 'bottom',
+                                    modifiers: {
+                                        flip: { enabled: false },
+                                        offset: { offset: '0,-5' }
+                                    }
+                                }"
+                            >
+                                <div class="popper rounded-md shadow-lg bg-white overflow-hidden z-10">
+                                    <div class="rounded-md ring-1 ring-black ring-opacity-5 text-xxs uppercase">
+                                        <!-- Account Management -->
+                                        <button
+                                            @click="$modal.show('edit-street', { street: street })"
+                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left"
+                                        >
+                                            Edit Street
+                                        </button>
+                                        <button
+                                            @click="
+                                                $modal.show('confirmation', {
+                                                    type: 'warning',
+                                                    title: 'Delete Street',
+                                                    message:
+                                                        'Are you sure you want to delete this street? This action can not be undone.',
+                                                    action: () => deleteStreet(street.id)
+                                                })
+                                            "
+                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left"
+                                        >
+                                            Delete Street
+                                        </button>
+                                    </div>
+                                </div>
+                                <button slot="reference" class="w-6 h-6 text-gray-300 text-sm">
+                                    <i class="far fa-ellipsis-h"></i>
+                                </button>
+                            </popper>
                         </div>
                     </template>
                 </div>
@@ -140,8 +181,10 @@
 </template>
 <script>
 import Scrollbar from "smooth-scrollbar";
+import Popper from "vue-popperjs";
 
 export default {
+    components: { Popper },
     mounted() {
         Scrollbar.init(document.querySelector("#street-picker-smooth-scroll"), {
             damping: 0.1,
@@ -173,6 +216,25 @@ export default {
             return typeof this.$page.props.street != "undefined"
                 ? route(`territories.editor.${type}.show`, [territory, this.$page.props.street.id])
                 : route(`territories.editor.${type}.index`, territory);
+        },
+
+        deleteStreet(id) {
+            this.$inertia.delete(route("territories.editor.street.delete", [this.$page.props.territory.data.id, id]), {
+                preserveScroll: true,
+                onSuccess: page => {
+                    this.$modal.hide("confirmation");
+                    this.$page.props.jetstream.flash = {
+                        alertStyle: "success",
+                        alert: "Street Deleted"
+                    };
+                },
+                onError: page => {
+                    this.$page.props.jetstream.flash = {
+                        alertStyle: "danger",
+                        alert: "Sorry, something went wrong"
+                    };
+                }
+            });
         }
     }
 };

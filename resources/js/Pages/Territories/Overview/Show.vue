@@ -30,7 +30,10 @@
                                 <span>
                                     {{ $page.props.territory.data.city_name + " " + $page.props.territory.data.order }}
                                 </span>
-                                <span class="opacity-60">No Current Assignee</span>
+                                <span class="opacity-60" v-if="$page.props.territory.data.current_assignee">
+                                    Assigned To: {{ $page.props.territory.data.current_assignee }}
+                                </span>
+                                <span class="opacity-60" v-else>No Current Assignee</span>
                             </div>
                         </div>
                         <div class="territory-stats flex items-center">

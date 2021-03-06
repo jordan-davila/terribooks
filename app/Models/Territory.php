@@ -99,4 +99,15 @@ class Territory extends Model
     {
         return $this->businesses->count();
     }
+
+    public function getCurrentAssigneeAttribute()
+    {
+        $assignment = $this->assignments()
+            ->where("current", true)
+            ->where("type", "field")
+            ->with("publisher")
+            ->get()
+            ->toArray();
+        return $assignment[0]["publisher"] ? $assignment[0]["publisher"]["name"] : null;
+    }
 }

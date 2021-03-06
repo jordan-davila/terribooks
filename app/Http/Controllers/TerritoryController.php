@@ -87,8 +87,14 @@ class TerritoryController extends Controller
             $this->store(new Request(["city_id" => $city->id, "number" => 1]));
         }
 
+        // This removes "street" paramater from current route
+        $route = explode(".", previousRoute()->getName());
+        count($route) > 3 && ($route[3] = "index");
+        $route = implode(".", $route);
+
+        // Redirect to Previous
         return Redirect::route(
-            "territories.editor.field.index",
+            $route,
             Auth()
                 ->user()
                 ->currentTeam->territories->first()->id

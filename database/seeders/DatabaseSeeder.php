@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 // prettier-ignore
 class DatabaseSeeder extends Seeder
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
             PhoneSeeder::class,
             BusinessSeeder::class,
             UserSeeder::class,
+            TeamSeeder::class,
             PublisherSeeder::class,
             AssignmentSeeder::class,
         ]);

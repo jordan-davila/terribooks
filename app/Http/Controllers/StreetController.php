@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Street;
 use App\Models\Territory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
 
 class StreetController extends Controller
 {
@@ -57,15 +59,17 @@ class StreetController extends Controller
             "name" => "required|unique:cities|min:3",
         ]);
 
-        $street->name = $request["name"];
+        $street->name = $this->fixName($request["name"]);
         $street->order = $request["order"];
         $street->save();
         return back(303);
     }
 
-    public function destroy(Street $street)
+    public function destroy(Territory $territory, Street $street)
     {
         $street->delete();
-        return back(303);
+        $params = previousRoute()->originalParameters();
+        $params["street"] = $street->territory->streets->first()->id;
+        return Redirect::route(previousRoute()->getName(), $params);
     }
 }

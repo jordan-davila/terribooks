@@ -133,7 +133,6 @@ export default {
 
         currentRoute() {
             // *TODO* Fine a better solution //
-            //  Don't use routes with editor.[type].show, instead replace them witho editor.[type].index
             let current_route = route().current();
             let split_route = current_route.split(".");
             if (split_route.length > 3) split_route[3] = "index";
