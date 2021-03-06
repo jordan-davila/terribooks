@@ -1,12 +1,21 @@
 <template>
-    <div id="member-manager" class="module-container px-14 pt-8 text-gray-300" v-if="$page.props.team.users.length > 0">
+    <div
+        id="member-manager"
+        class="module-container px-14 pt-8 text-gray-300"
+        :class="$page.props.permissions.canUpdateTeam ? 'pt-8' : 'py-8'"
+        v-if="$page.props.team.users.length > 0"
+    >
         <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100">
                 <div class="title">Member Manager</div>
                 <div class="subtitle opacity-60">Update or remove users from your congregation.</div>
             </div>
             <div class="card-content px-8 py-6 text-xxs font-bold uppercase">
-                <div class="flex items-center justify-between" v-for="user in $page.props.team.users" :key="user.id">
+                <div
+                    class="flex items-center justify-between mb-6 last:mb-0"
+                    v-for="user in $page.props.team.users"
+                    :key="user.id"
+                >
                     <div class="flex items-center">
                         <img class="w-8 h-8 rounded-full" :src="user.profile_photo_url" :alt="user.name" />
                         <div class="info flex flex-col ml-4 text-xxs text-gray-300 uppercase font-bold">

@@ -10,7 +10,9 @@
                 <div class="settings-container flex flex-col flex-1 h-full overflow-y-auto">
                     <OwnerModule />
                     <DetailsModule />
-                    <CityManagerModule />
+                    <template v-if="$page.props.permissions.canUpdateTeam">
+                        <CityManagerModule />
+                    </template>
                     <MemberInviteModule />
                     <MemberPendingListModule />
                     <MemberManagerModule />

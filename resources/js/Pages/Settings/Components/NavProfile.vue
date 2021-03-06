@@ -8,7 +8,7 @@
                 </button>
             </div>
             <button
-                @click="scrollToSetting('#owner-details')"
+                @click="scrollToSetting('#profile-photo')"
                 class="uppercase font-bold py-4 flex justify-between items-center w-full"
             >
                 <div class="info flex items-center">
@@ -46,7 +46,7 @@
                 </div>
             </button>
             <button
-                @click="scrollToSetting('#invite-members')"
+                @click="scrollToSetting('#update-password')"
                 class="uppercase font-bold py-4 flex justify-between items-center w-full"
             >
                 <div class="info flex items-center">
@@ -73,7 +73,7 @@ export default {
     methods: {
         scrollToSetting(setting) {
             let child = document.querySelector(setting);
-            let scroll = Scrollbar.get(document.querySelector("#congregation-settings-smooth-scroll"));
+            let scroll = Scrollbar.get(document.querySelector("#profile-smooth-scroll"));
             scroll.scrollTo(0, child.offsetTop, 1000);
         }
     }

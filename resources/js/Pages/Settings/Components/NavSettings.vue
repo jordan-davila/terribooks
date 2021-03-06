@@ -43,7 +43,7 @@
                 </button>
             </inertia-link>
             <inertia-link
-                :href="route('profile.show')"
+                :href="route('settings.maintenance')"
                 class="uppercase font-bold py-4 flex justify-between items-center"
             >
                 <div class="info flex items-center">
@@ -59,7 +59,10 @@
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </inertia-link>
-            <a href="#" class="uppercase font-bold py-4 flex justify-between items-center">
+            <inertia-link
+                :href="route('settings.maintenance')"
+                class="uppercase font-bold py-4 flex justify-between items-center"
+            >
                 <div class="info flex items-center">
                     <span :class="classes('dashboard')">
                         <i class="fas fa-palette"></i>
@@ -72,8 +75,11 @@
                 <button class="text-gray-300 text-xxs">
                     <i class="fas fa-chevron-right"></i>
                 </button>
-            </a>
-            <a href="#" class="uppercase font-bold py-4 flex justify-between items-center">
+            </inertia-link>
+            <inertia-link
+                :href="route('settings.maintenance')"
+                class="uppercase font-bold py-4 flex justify-between items-center"
+            >
                 <div class="info flex items-center">
                     <span :class="classes('dashboard')">
                         <i class="fas fa-cogs"></i>
@@ -86,8 +92,11 @@
                 <button class="text-gray-300 text-xxs">
                     <i class="fas fa-chevron-right"></i>
                 </button>
-            </a>
-            <a href="#" class="uppercase font-bold py-4 flex justify-between items-center">
+            </inertia-link>
+            <inertia-link
+                :href="route('settings.maintenance')"
+                class="uppercase font-bold py-4 flex justify-between items-center"
+            >
                 <div class="info flex items-center">
                     <span :class="classes('dashboard')">
                         <i class="fas fa-heart" style="user-select: auto;"></i>
@@ -100,7 +109,7 @@
                 <button class="text-gray-300 text-xxs">
                     <i class="fas fa-chevron-right"></i>
                 </button>
-            </a>
+            </inertia-link>
         </div>
     </div>
 </template>

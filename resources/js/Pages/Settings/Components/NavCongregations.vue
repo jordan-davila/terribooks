@@ -48,6 +48,7 @@
             <button
                 @click="scrollToSetting('#city-manager')"
                 class="uppercase font-bold py-4 flex justify-between items-center w-full"
+                v-if="$page.props.permissions.canUpdateTeam"
             >
                 <div class="info flex items-center">
                     <span
@@ -67,6 +68,7 @@
             <button
                 @click="scrollToSetting('#invite-members')"
                 class="uppercase font-bold py-4 flex justify-between items-center w-full"
+                v-if="$page.props.permissions.canAddTeamMembers"
             >
                 <div class="info flex items-center">
                     <span
@@ -105,6 +107,7 @@
             <button
                 @click="scrollToSetting('#delete')"
                 class="uppercase font-bold py-4 flex justify-between items-center w-full"
+                v-if="$page.props.permissions.canUpdateTeam"
             >
                 <div class="info flex items-center">
                     <span
