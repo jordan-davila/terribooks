@@ -6,7 +6,6 @@ use Laravel\Jetstream\Jetstream;
 
 trait HasNoPersonalTeams
 {
-
     /**
      * Determine if the user owns the given team.
      *
@@ -30,5 +29,4 @@ trait HasNoPersonalTeams
         // return $team->id === $this->currentTeam->id;
         return optional($team)->id === $this->currentTeam->id;
     }
-
 }

@@ -7,7 +7,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Traits\Territory\HasTerritory;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
-use App\Traits\Jetstream\HasNoPersonalTeams;
+use App\Traits\JetStream\HasNoPersonalTeams;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
