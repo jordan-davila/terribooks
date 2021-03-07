@@ -1,5 +1,6 @@
 <template>
     <section class="app-container max-w-none bg-gray-100 flex flex-col h-screen">
+        <TooSmall />
         <FlashBanner />
         <FlashAlert />
         <NavMain />
@@ -28,6 +29,7 @@ import ConfirmationModal from "@/Modals/ConfirmationModal";
 import AddCongregationModal from "@/Modals/AddCongregationModal";
 import AddTerritory from "@/Pages/Territories/Modals/AddTerritory";
 import EditTerritory from "@/Pages/Territories/Modals/EditTerritory";
+import TooSmall from "@/Pages/TooSmall";
 
 export default {
     components: {
@@ -38,7 +40,8 @@ export default {
         ConfirmationModal,
         AddCongregationModal,
         AddTerritory,
-        EditTerritory
+        EditTerritory,
+        TooSmall
     }
 };
 </script>

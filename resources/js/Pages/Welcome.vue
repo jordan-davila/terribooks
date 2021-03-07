@@ -1,5 +1,6 @@
 <template>
     <section class="app-container max-w-none flex flex-col relative">
+        <TooSmall />
         <header class="relative w-full">
             <div
                 id="particlesJs"
@@ -32,12 +33,9 @@
                         >
                             Support Us
                         </inertia-link>
-                        <inertia-link
-                            class="h-full flex items-center px-4 uppercase font-bold"
-                            :href="route('welcome')"
-                        >
+                        <a class="h-full flex items-center px-4 uppercase font-bold" href="mailto:info@terribooks.com">
                             Contact Us
-                        </inertia-link>
+                        </a>
                         <inertia-link
                             class="h-full flex items-center px-4 uppercase font-bold"
                             :href="route('welcome')"
@@ -81,7 +79,7 @@
                     :href="route('register')"
                     class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150"
                 >
-                    Try it for free
+                    Try it now
                 </inertia-link>
             </div>
             <div class="mac-app-container relative z-10">
@@ -141,7 +139,7 @@
                     :href="route('register')"
                     class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150"
                 >
-                    Try it for free
+                    Try it now
                 </inertia-link>
             </div>
         </section>
@@ -219,9 +217,11 @@
 <script>
 import Logo from "@/Components/Logo";
 import { Config } from "@/Mixins/Config";
+import TooSmall from "@/Pages/TooSmall";
 import "particles.js";
+
 export default {
-    components: { Logo },
+    components: { Logo, TooSmall },
     mixins: [Config],
     mounted() {
         window.particlesJS("particlesJs", this.particleParams);
