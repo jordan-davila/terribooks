@@ -1,6 +1,7 @@
 <template>
     <section class="app-container max-w-none flex flex-col relative">
         <TooSmall />
+        <SupportUs />
         <header class="relative w-full">
             <div
                 id="particlesJs"
@@ -27,12 +28,12 @@
                         >
                             Home
                         </inertia-link>
-                        <inertia-link
+                        <a
                             class="h-full flex items-center px-4 uppercase font-bold"
-                            :href="route('welcome')"
+                            @click.prevent="$modal.show('support-us')"
                         >
                             Support Us
-                        </inertia-link>
+                        </a>
                         <a class="h-full flex items-center px-4 uppercase font-bold" href="mailto:info@terribooks.com">
                             Contact Us
                         </a>
@@ -151,13 +152,16 @@
                     </div>
                     <div class="support-info text-gray-500 font-bold flex flex-col items-start justify-center">
                         <span>Help us keep this tool alive and running.</span>
-                        <button class="text-gray-600 font-bold hover:text-indigo-600">
+                        <button
+                            @click="$modal.show('support-us')"
+                            class="text-gray-600 font-bold hover:text-indigo-600"
+                        >
                             Click here to learn more about our operation costs.
                         </button>
                     </div>
                 </div>
                 <a
-                    href="https://www.paypal.com/donate?hosted_button_id=3QX7AGHP54HZE"
+                    href="https://www.paypal.com/donate?hosted_button_id=8EXRUWZT4UAJJ"
                     target="_blank"
                     class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150"
                     >Support Us</a
@@ -218,10 +222,11 @@
 import Logo from "@/Components/Logo";
 import { Config } from "@/Mixins/Config";
 import TooSmall from "@/Pages/TooSmall";
+import SupportUs from "@/Modals/SupportUs";
 import "particles.js";
 
 export default {
-    components: { Logo, TooSmall },
+    components: { Logo, TooSmall, SupportUs },
     mixins: [Config],
     mounted() {
         window.particlesJS("particlesJs", this.particleParams);

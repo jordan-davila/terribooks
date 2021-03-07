@@ -107,7 +107,7 @@
             <button
                 @click="scrollToSetting('#delete')"
                 class="uppercase font-bold py-4 flex justify-between items-center w-full"
-                v-if="$page.props.permissions.canUpdateTeam"
+                v-if="$page.props.permissions.canDeleteTeam"
             >
                 <div class="info flex items-center">
                     <span

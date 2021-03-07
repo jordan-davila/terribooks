@@ -25,6 +25,16 @@ class HandleInertiaRequests extends Middleware
                 }
             },
 
+            "role" => function () {
+                if (Auth()->user()) {
+                    return Auth()->user()->currentTeam
+                        ? Auth()
+                            ->user()
+                            ->teamRole(Auth()->user()->currentTeam)
+                        : null;
+                }
+            },
+
             // 'flash' => function () use ($request) {
             //     return $request->session()->get('flash');
             // },

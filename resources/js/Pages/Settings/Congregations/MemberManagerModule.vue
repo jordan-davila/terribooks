@@ -2,7 +2,7 @@
     <div
         id="member-manager"
         class="module-container px-14 pt-8 text-gray-300"
-        :class="$page.props.permissions.canUpdateTeam ? 'pt-8' : 'py-8'"
+        :class="$page.props.user.current_team.user_id == $page.props.user.id ? 'pt-8' : 'py-8'"
         v-if="$page.props.team.users.length > 0"
     >
         <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
@@ -36,7 +36,10 @@
                                     offset: { offset: '0,-5' }
                                 }
                             }"
-                            v-if="$page.props.permissions.canAddTeamMembers && $page.props.availableRoles.length"
+                            v-if="
+                                $page.props.user.current_team.user_id == $page.props.user.id &&
+                                    $page.props.availableRoles.length
+                            "
                         >
                             <div class="popper rounded-md shadow-lg w-48 bg-white overflow-hidden">
                                 <div class="rounded-md ring-1 ring-black ring-opacity-5 text-xxs uppercase">

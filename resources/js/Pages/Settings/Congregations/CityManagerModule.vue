@@ -1,5 +1,9 @@
 <template>
-    <div id="city-manager" class="module-container px-14 pt-8 text-gray-300">
+    <div
+        id="city-manager"
+        class="module-container px-14 pt-8 text-gray-300"
+        v-if="$page.props.permissions.canUpdateTeam"
+    >
         <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100">
                 <div class="title">City Manager</div>

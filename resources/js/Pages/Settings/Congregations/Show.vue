@@ -10,16 +10,11 @@
                 <div class="settings-container flex flex-col flex-1 h-full overflow-y-auto">
                     <OwnerModule />
                     <DetailsModule />
-                    <template v-if="$page.props.permissions.canUpdateTeam">
-                        <CityManagerModule />
-                    </template>
+                    <CityManagerModule />
                     <MemberInviteModule />
                     <MemberPendingListModule />
                     <MemberManagerModule />
-
-                    <template v-if="$page.props.permissions.canDeleteTeam && !$page.props.team.personal_team">
-                        <DeleteTeamModule />
-                    </template>
+                    <DeleteTeamModule />
                 </div>
             </section>
         </div>

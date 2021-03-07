@@ -29,4 +29,9 @@ trait HasNoPersonalTeams
         // return $team->id === $this->currentTeam->id;
         return optional($team)->id === $this->currentTeam->id;
     }
+
+    public function isAdmin($team)
+    {
+        return $this->teamRole(optional($team))->key == "admin";
+    }
 }

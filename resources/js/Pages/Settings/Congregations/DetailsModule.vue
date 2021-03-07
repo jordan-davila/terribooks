@@ -14,7 +14,7 @@
                             name="name"
                             type="text"
                             v-model="name"
-                            :disabled="!$page.props.permissions.canUpdateTeam"
+                            :disabled="$page.props.role.key != 'admin'"
                             class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
                         />
                     </div>
@@ -23,7 +23,7 @@
                         <select
                             name="state"
                             v-model="state"
-                            :disabled="!$page.props.permissions.canUpdateTeam"
+                            :disabled="$page.props.role.key != 'admin'"
                             class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
                         >
                             <option v-for="(st, index) in states" :key="index" :value="index">{{ st }}</option>
@@ -33,7 +33,7 @@
             </div>
             <div
                 class="modal-options bg-gray-50 w-full py-6 px-8 flex justify-end items-center text-gray-300"
-                v-if="$page.props.permissions.canUpdateTeam"
+                v-if="$page.props.role.key == 'admin'"
             >
                 <button
                     @click="update"

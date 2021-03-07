@@ -1,5 +1,5 @@
 <template>
-    <div id="delete" class="module-container px-14 py-8 text-gray-300">
+    <div id="delete" class="module-container px-14 py-8 text-gray-300" v-if="$page.props.permissions.canDeleteTeam">
         <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100">
                 <div class="title">Delete Congregation</div>
