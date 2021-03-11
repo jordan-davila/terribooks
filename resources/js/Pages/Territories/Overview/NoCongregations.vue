@@ -15,9 +15,9 @@
                             <b class="font-bold">Create Congregation</b>
                             or click on the button below:
                         </p>
-                        <div class="font-bold text-xxs mb-2">Create A New Congregation</div>
+                        <div class="font-bold text-xxs mb-2">Join A Congregation</div>
                         <p class="mb-4">
-                            To join a congregation, please ask the bother in charge of the territories to send you an
+                            To join a congregation, please ask the brother in charge of the territories to send you an
                             invite under <b class="font-bold">Congregations</b> >
                             <b class="font-bold">Congregation Settings</b> > <b class="font-bold">Invite Members</b>.
                             <br /><br />
