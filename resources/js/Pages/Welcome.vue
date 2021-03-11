@@ -37,12 +37,9 @@
                         <a class="h-full flex items-center px-4 uppercase font-bold" href="mailto:info@terribooks.com">
                             Contact Us
                         </a>
-                        <inertia-link
-                            class="h-full flex items-center px-4 uppercase font-bold"
-                            :href="route('welcome')"
-                        >
+                        <a class="h-full flex items-center px-4 uppercase font-bold" href="/docs">
                             Docs
-                        </inertia-link>
+                        </a>
                     </div>
                 </div>
                 <div class="login-register h-16 flex items-center">

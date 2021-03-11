@@ -1,0 +1,60 @@
+/**************** Root ****************/
+:root {
+    --documentation: rgba(243, 244, 246, 1);
+    --navbar: white;
+    --sidebar: white;
+    --primary: rgba(79, 70, 229, 1);
+    --info: #818cf8;
+}
+
+.documentation {
+    padding-left: 22rem;
+    margin-top: 7rem;
+    margin-bottom: 7rem;
+}
+
+/*************** Sidebar **************/
+.sidebar {
+    width: 18rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+.sidebar ul li h2 {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 900;
+}
+
+.sidebar ul li ul li a {
+    color: rgba(160, 174, 192, 1);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.button {
+    padding: 0.55rem 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/*************** Logo **************/
+.cls-1 {
+    isolation: isolate;
+}
+.cls-2 {
+    fill: url(#linear-gradient);
+}
+.cls-3 {
+    fill: url(#linear-gradient-2);
+}
+.cls-4 {
+    mix-blend-mode: multiply;
+}
+.cls-5 {
+    fill: url(#linear-gradient-3);
+}
+.cls-6 {
+    fill: url(#linear-gradient-4);
+}

@@ -164,7 +164,7 @@
                                     "
                                     class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left"
                                 >
-                                    Delete Territory
+                                    Delete Publisher
                                 </button>
                             </div>
                         </div>
@@ -214,7 +214,7 @@ export default {
                     this.$modal.hide("confirmation");
                     this.$page.props.jetstream.flash = {
                         alertStyle: "success",
-                        alert: "Publisher Saved"
+                        alert: "Publisher Deleted"
                     };
                 },
                 onError: page => {

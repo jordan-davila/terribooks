@@ -98,9 +98,9 @@
                     Congregations
                 </div>
             </popper>
-            <inertia-link :href="route('profile.show')" :class="classes('profile.*')">
+            <a href="/docs" :class="classes('profile.*')">
                 Docs
-            </inertia-link>
+            </a>
 
             <!-- Settings Dropdown -->
             <AccountDropdown />

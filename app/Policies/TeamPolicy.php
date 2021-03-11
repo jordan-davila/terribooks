@@ -53,7 +53,7 @@ class TeamPolicy
      */
     public function update(User $user, Team $team)
     {
-        return $user->isAdmin($team);
+        return $user->isAdmin($team) || $user->ownsTeam($team);
     }
 
     /**
@@ -65,7 +65,7 @@ class TeamPolicy
      */
     public function addTeamMember(User $user, Team $team)
     {
-        return $user->isAdmin($team);
+        return $user->isAdmin($team) || $user->ownsTeam($team);
     }
 
     /**
@@ -77,7 +77,7 @@ class TeamPolicy
      */
     public function updateTeamMember(User $user, Team $team)
     {
-        return $user->isAdmin($team);
+        return $user->isAdmin($team) || $user->ownsTeam($team);
     }
 
     /**
