@@ -25,7 +25,15 @@ class HandleInertiaRequests extends Middleware
                 }
             },
 
-            "user.belongsToAnyTeam" => (bool) optional($request->user()->allTeams())->isNotEmpty(),
+            "user.belongsToAnyTeam" => function () {
+                if (Auth()->user()) {
+                    return optional(
+                        Auth()
+                            ->user()
+                            ->allTeams()
+                    )->isNotEmpty();
+                }
+            },
 
             "role" => function () {
                 if (Auth()->user()) {
