@@ -92,7 +92,7 @@
                 <div class="info w-96">
                     <div class="text-white text-4xl mb-4 font-bold">Features & Tools</div>
                     <div class="text-indigo-200 text-lg mb-4">
-                        A system that comes packed with all the necesary tools needed to maintain and organize
+                        A system that comes packed with all the necessary tools needed to maintain and organize
                         territories.
                     </div>
                     <div class="list text-sm font-medium text-indigo-200">

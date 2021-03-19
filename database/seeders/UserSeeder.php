@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
             "name" => "Jordan Davila",
             "email" => "hi@jordandavila.com",
             "email_verified_at" => "2020-06-08 22:52:22",
-            "password" => bcrypt("allsop55"),
+            "password" => '$2y$10$FvRZke9Y.X2L3bi2JaE1uuqtDVHI34L88it9LlaW5Y80wTYTSF9JS',
             "remember_token" => "Hkr7XHHwqE2KG40RT2LPoIz6tExh6JDQFxKAhEUI3wTydFvYTkp7aSEfurLV",
             "created_at" => "2020-06-08 22:52:22",
             "updated_at" => "2020-06-08 22:52:22",
