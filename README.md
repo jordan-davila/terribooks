@@ -10,7 +10,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="public/img/logos/icon.png" alt="Logo" width="120" height="120">
+    <img src="public/images/icon.png" alt="Logo" width="120" height="120">
   </a>
 
   <h3 align="center">Terribooks</h3>
