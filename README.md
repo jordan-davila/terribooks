@@ -119,10 +119,10 @@ cp .env-example .env
 php artisan key:generate
 ```
 
-6. Migrate & Install Laravel Passport.
+6. Migrate
 
 ```sh
-php artisan migrate && php artisan passport:install
+php artisan migrate
 ```
 
 7. Directory Permissions (Optional)
