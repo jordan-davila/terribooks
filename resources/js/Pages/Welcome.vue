@@ -46,21 +46,21 @@
                     <inertia-link
                         :href="route('login')"
                         class="text-xxs font-bold px-4 py-2 text-indigo-600 uppercase hover:opacity-90 transition ease-in-out duration-150 mr-2"
-                        v-if="!$page.props.user"
+                        v-if="!$page.props.user.id"
                     >
                         Login
                     </inertia-link>
                     <inertia-link
                         :href="route('register')"
                         class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150"
-                        v-if="!$page.props.user"
+                        v-if="!$page.props.user.id"
                     >
                         Register
                     </inertia-link>
                     <inertia-link
                         :href="route('dashboard')"
                         class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150"
-                        v-if="$page.props.user"
+                        v-else
                     >
                         Dashboard
                     </inertia-link>
