@@ -15,7 +15,7 @@ class Assignment extends Model
 
     public function territory()
     {
-        return $this->belongsTo(Territory::class);
+        return $this->belongsTo(Territory::class)->orderByRaw("CAST(`order` AS UNSIGNED) ASC");
     }
 
     public function publisher()

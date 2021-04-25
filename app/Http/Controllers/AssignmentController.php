@@ -32,7 +32,10 @@ class AssignmentController extends Controller
             ->currentTeam->assignments()
             ->with("publisher")
             ->with("territory")
-            ->where("type", $type);
+            ->where("type", $type)
+            ->join("territories", "territories.id", "=", "assignments.territory_id")
+            ->orderByRaw("CAST(`order` AS UNSIGNED) ASC");
+
         return Inertia::render("Territories/Assignments/Type", [
             "type" => $type,
             "territory" => new TerritoryResource($territory),
@@ -59,7 +62,9 @@ class AssignmentController extends Controller
             ->currentTeam->assignments()
             ->with("publisher")
             ->with("territory")
-            ->where("publisher_id", $publisher->id);
+            ->where("publisher_id", $publisher->id)
+            ->join("territories", "territories.id", "=", "assignments.territory_id")
+            ->orderByRaw("CAST(`order` AS UNSIGNED) ASC");
         return Inertia::render("Territories/Assignments/Publisher", [
             "publisher" => $publisher,
             "publishers" => PublisherResource::collection(
