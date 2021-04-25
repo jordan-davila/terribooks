@@ -34,4 +34,19 @@ trait HasNoPersonalTeams
     {
         return $this->teamRole(optional($team))->key == "admin";
     }
+
+    public function belongsToTeam($team)
+    {
+        return $this->teams->contains(function ($t) use ($team) {
+            return $t->id === optional($team)->id;
+        }) || $this->ownsTeam($team);
+    }
+
+    public function currentTeam()
+    {
+        if (is_null($this->current_team_id) && $this->id) {
+            $this->switchTeam($this->allTeams()->first());
+        }
+        return $this->belongsTo(Jetstream::teamModel(), "current_team_id");
+    }
 }

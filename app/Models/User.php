@@ -26,6 +26,9 @@ class User extends Authenticatable
     use HasNoPersonalTeams {
         HasNoPersonalTeams::ownsTeam insteadof HasTeams;
         HasNoPersonalTeams::isCurrentTeam insteadof HasTeams;
+        HasNoPersonalTeams::currentTeam insteadof HasTeams;
+        HasNoPersonalTeams::isAdmin insteadof HasTeams;
+        HasNoPersonalTeams::belongsToTeam insteadof HasTeams;
     }
     use CascadesDeletes;
 

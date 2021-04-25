@@ -30,6 +30,7 @@ class TeamPolicy
      */
     public function view(User $user, Team $team)
     {
+        // dd($user->belongsToTeam($team));
         return $user->belongsToTeam($team);
     }
 
