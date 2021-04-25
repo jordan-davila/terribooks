@@ -35,14 +35,14 @@ Route::middleware(["auth:sanctum", "verified"])->group(function () {
     Route::post("/territories/store", [TerritoryController::class, "store"])
     ->name("territories.store");
 
-    Route::group(["middleware" => "can:handleTerritory,territory"], function () {
-        Route::put("/territories/{territory}", [TerritoryController::class, "update"])
-        ->name("territories.update");
-        Route::put("/territories/{territory}", [TerritoryController::class, "updateCoordinates"])
-        ->name("territories.update.coordinates");
-        Route::delete("/territories/{territory}", [TerritoryController::class, "destroy"])
-        ->name("territories.delete");
-    });
+    // Route::group(["middleware" => "can:handleTerritory,territory"], function () {
+    //     Route::put("/territories/{territory}", [TerritoryController::class, "update"])
+    //     ->name("territories.update");
+    //     Route::put("/territories/{territory}", [TerritoryController::class, "updateCoordinates"])
+    //     ->name("territories.update.coordinates");
+    //     Route::delete("/territories/{territory}", [TerritoryController::class, "destroy"])
+    //     ->name("territories.delete");
+    // });
 
      // Assignments
      Route::group(["prefix" => "/assignments", "as" => "assignments."], function () {
@@ -65,6 +65,13 @@ Route::middleware(["auth:sanctum", "verified"])->group(function () {
             "prefix" => "territories",
             "as" => "territories.",
         ], function () {
+            Route::put("/{territory}", [TerritoryController::class, "update"])
+            ->name("update");
+            Route::put("/{territory}/coordinates", [TerritoryController::class, "updateCoordinates"])
+            ->name("update.coordinates");
+            Route::delete("/{territory}", [TerritoryController::class, "destroy"])
+            ->name("delete");
+
             // None Editor Routes
             Route::get("/{territory}", [TerritoryController::class, "show"])
             ->name("show");
