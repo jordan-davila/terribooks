@@ -37,16 +37,23 @@ class TerritoryEditorPhoneController extends Controller
             "street_id" => "required",
         ]);
 
-        Phone::create([
-            "name" => $request->name,
-            "number" => $request->number,
-            "phone" => $request->phone,
-            "apartment" => $request->apartment,
-            "symbol" => $request->symbol,
-            "color" => $request->color,
-            "observations" => $request->observations,
-            "street_id" => $street->id,
-        ]);
+        try {
+            Phone::create([
+                "name" => $request->name,
+                "number" => $request->number,
+                "phone" => $request->phone,
+                "apartment" => $request->apartment,
+                "symbol" => $request->symbol,
+                "color" => $request->color,
+                "observations" => $request->observations,
+                "street_id" => $street->id,
+            ]);
+        } catch (\Throwable $th) {
+            request()->session()->flash("flash.alertStyle", "danger");
+            $th->errorInfo[1] === 1062 ?
+                request()->session()->flash("flash.alert", "Duplicate Entry Error: " . $th->errorInfo[1]) :
+                request()->session()->flash("flash.alert", "Something Crashed. Error: " . $th->errorInfo[1]);
+        }
 
         return back(303);
     }
@@ -70,7 +77,15 @@ class TerritoryEditorPhoneController extends Controller
         $phone->color = $request->color;
         $phone->phone = $request->phone;
         $phone->observations = $request->observations;
-        $phone->save();
+
+        try {
+            $phone->save();
+        } catch (\Throwable $th) {
+            request()->session()->flash("flash.alertStyle", "danger");
+            $th->errorInfo[1] === 1062 ?
+                request()->session()->flash("flash.alert", "Duplicate Entry Error: " . $th->errorInfo[1]) :
+                request()->session()->flash("flash.alert", "Something Crashed. Error: " . $th->errorInfo[1]);
+        }
 
         return back(303);
     }

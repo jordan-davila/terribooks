@@ -61,13 +61,20 @@ class TerritoryEditorFieldController extends Controller
             "symbol" => "required|max:3",
         ]);
 
-        Apartment::create([
-            "number" => $request->number,
-            "observations" => $request->observations,
-            "symbol" => $request->symbol,
-            "color" => $request->color,
-            "house_id" => $request->house_id,
-        ]);
+        try {
+            Apartment::create([
+                "number" => $request->number,
+                "observations" => $request->observations,
+                "symbol" => $request->symbol,
+                "color" => $request->color,
+                "house_id" => $request->house_id,
+            ]);
+        } catch (\Throwable $th) {
+            request()->session()->flash("flash.alertStyle", "danger");
+            $th->errorInfo[1] === 1062 ?
+                request()->session()->flash("flash.alert", "Duplicate Entry Error: ". $th->errorInfo[1]) :
+                request()->session()->flash("flash.alert", "Something Crashed. Error: " . $th->errorInfo[1]);
+        }
 
         return back(303);
     }
@@ -93,7 +100,13 @@ class TerritoryEditorFieldController extends Controller
         $house->observations = $request->observations;
         $house->symbol = $request->symbol;
         $house->color = $request->color;
-        $house->save();
+
+        try { $house->save(); } catch (\Throwable $th) {
+            request()->session()->flash("flash.alertStyle", "danger");
+            $th->errorInfo[1] === 1062 ?
+                request()->session()->flash("flash.alert", "Duplicate Entry Error: ". $th->errorInfo[1]) :
+                request()->session()->flash("flash.alert", "Something Crashed. Error: " . $th->errorInfo[1]);
+        }
 
         return back(303);
     }
@@ -118,7 +131,13 @@ class TerritoryEditorFieldController extends Controller
         $apartment->observations = $request->observations;
         $apartment->symbol = $request->symbol;
         $apartment->color = $request->color;
-        $apartment->save();
+
+        try { $apartment->save(); } catch (\Throwable $th) {
+            request()->session()->flash("flash.alertStyle", "danger");
+            $th->errorInfo[1] === 1062 ?
+                request()->session()->flash("flash.alert", "Duplicate Entry Error: ". $th->errorInfo[1]) :
+                request()->session()->flash("flash.alert", "Something Crashed. Error: " . $th->errorInfo[1]);
+        }
 
         return back(303);
     }

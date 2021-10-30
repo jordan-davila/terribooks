@@ -37,15 +37,22 @@ class TerritoryEditorBusinessController extends Controller
             "street_id" => "required",
         ]);
 
-        Business::create([
-            "name" => $request->name,
-            "number" => $request->number,
-            "phone" => $request->phone,
-            "symbol" => $request->symbol,
-            "color" => $request->color,
-            "observations" => $request->observations,
-            "street_id" => $street->id,
-        ]);
+        try {
+            Business::create([
+                "name" => $request->name,
+                "number" => $request->number,
+                "phone" => $request->phone,
+                "symbol" => $request->symbol,
+                "color" => $request->color,
+                "observations" => $request->observations,
+                "street_id" => $street->id,
+            ]);
+        } catch (\Throwable $th) {
+            request()->session()->flash("flash.alertStyle", "danger");
+            $th->errorInfo[1] === 1062 ?
+                request()->session()->flash("flash.alert", "Duplicate Entry Error: " . $th->errorInfo[1]) :
+                request()->session()->flash("flash.alert", "Something Crashed. Error: " . $th->errorInfo[1]);
+        }
 
         return back(303);
     }
@@ -68,7 +75,15 @@ class TerritoryEditorBusinessController extends Controller
         $business->color = $request->color;
         $business->phone = $request->phone;
         $business->observations = $request->observations;
-        $business->save();
+
+        try {
+            $business->save();
+        } catch (\Throwable $th) {
+            request()->session()->flash("flash.alertStyle", "danger");
+            $th->errorInfo[1] === 1062 ?
+                request()->session()->flash("flash.alert", "Duplicate Entry Error: " . $th->errorInfo[1]) :
+                request()->session()->flash("flash.alert", "Something Crashed. Error: " . $th->errorInfo[1]);
+        }
 
         return back(303);
     }

@@ -45,9 +45,9 @@ class HandleInertiaRequests extends Middleware
                 }
             },
 
-            // 'flash' => function () use ($request) {
-            //     return $request->session()->get('flash');
-            // },
+            'flash' => function () use ($request) {
+                return $request->session()->get('flash');
+            },
 
             "search" => function () use ($request) {
                 return $request->session()->get("search");

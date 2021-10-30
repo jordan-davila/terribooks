@@ -28,7 +28,7 @@
 export default {
     data() {
         return {
-            show: true,
+            show: false,
             classStyles: {
                 success: {
                     bg: "bg-indigo-500",

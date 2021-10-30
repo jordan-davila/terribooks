@@ -2,8 +2,9 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -33,8 +34,21 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (Throwable $e, $request) {
+            if (!app()->environment(['local', 'testing'])) {
+                if ($e instanceof HttpException) {
+                    request()->session()->flash("flash.bannerStyle", "danger");
+                    request()->session()->flash("flash.banner", "Sorry, something went wrong. Status Code: " . $e->getStatusCode());
+                    return back()->with([
+                        'message' => 'The page expired, please try again.',
+                    ]);
+                } else {
+                    // dd($e);
+                    request()->session()->flash("flash.bannerStyle", "danger");
+                    request()->session()->flash("flash.banner", "Sorry, app crashed. Please contact web admin for help");
+                    return back();
+                }
+            }
         });
     }
 }

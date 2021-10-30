@@ -49,15 +49,22 @@ export default {
             setTimeout(() => {
                 this.show = false;
             }, 2500);
+        },
+        "$page.props.flash": function() {
+            if (this.$page.props.flash == null) return;
+            this.show = true;
+            setTimeout(() => {
+                this.show = false;
+            }, 2500);
         }
     },
 
     computed: {
         style() {
-            return this.$page.props.jetstream.flash?.alertStyle || "success";
+            return this.$page.props.flash?.alertStyle || this.$page.props.jetstream.flash?.alertStyle || "success";
         },
         message() {
-            return this.$page.props.jetstream.flash?.alert || "";
+            return this.$page.props.flash?.alert || this.$page.props.jetstream.flash?.alert || "";
         }
     }
 };
