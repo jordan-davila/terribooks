@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "21fb772320a9a37184c95226e72e0c3e",
+    "content-hash": "df4f7b9c33648fcef9b53e1ba8803481",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6695,7 +6695,7 @@
         },
         {
             "name": "terribooks/light",
-            "version": "dev-master",
+            "version": "dev-dependabot/composer/laravel/framework-8.75.0",
             "dist": {
                 "type": "path",
                 "url": "./larecipe-components/Light",
