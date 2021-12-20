@@ -1,18 +1,18 @@
 <template lang="">
-    <nav class="flex justify-between w-full h-16 bg-white border-b border-gray-200 border-solid" style="z-index: 999">
+    <nav class="flex justify-between w-full h-16 bg-white border-b border-gray-200 border-solid dark:bg-gray-800 dark:border-gray-600" style="z-index: 999">
         <!-- Logo -->
         <div
-            class="w-16 h-full border-solid border-gray-200 border-r text-gray-300 text-base flex justify-center items-center"
+            class="w-16 h-full border-solid border-gray-200 border-r text-gray-300 text-base flex justify-center items-center dark:border-gray-600"
         >
             <Logo class="w-4" />
         </div>
         <inertia-link
             :href="route('welcome')"
-            class="flex justify-between items-center border-solid border-gray-200 border-r text-gray-900 font-bold h-full px-14"
+            class="flex justify-between items-center border-solid border-gray-200 border-r text-gray-900 font-bold h-full px-14 dark:text-gray-200 dark:border-gray-600"
             style="flex: 0 295px"
         >
             <div class="logo text-lg">terri<span class="text-indigo-600">books</span></div>
-            <div class="logo text-gray-300 text-xxs mt pt">v2.0.1</div>
+            <div class="logo text-gray-300 text-xxs mt pt">v2.2.0</div>
         </inertia-link>
 
         <!-- SearchBar Component with SearchFocus -->
@@ -139,7 +139,7 @@ export default {
             let classes =
                 "text-gray-300 font-bold uppercase text-xxs justify-center items-center px-8 flex hover:border-indigo-600 border-b-2 border-solid ";
 
-            classes += route().current(link) ? "border-indigo-600" : "border-white";
+            classes += route().current(link) ? "border-indigo-500" : "border-white dark:border-gray-600";
 
             return classes;
         }

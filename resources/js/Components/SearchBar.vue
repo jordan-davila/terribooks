@@ -1,7 +1,7 @@
 <template>
     <div class="relative flex-1">
         <div
-            class="search flex flex-1 justify-center items-center text-gray-300 font-normal h-full relative border-r border-solid border-gray-200"
+            class="search flex flex-1 justify-center items-center text-gray-300 font-normal h-full relative border-r border-solid border-gray-200 dark:border-gray-600"
         >
             <SearchFocus @keyup="focusSearch"></SearchFocus>
             <i class="far fa-search absolute top-0 left-0 mt-6 ml-8"></i>
@@ -17,7 +17,7 @@
                 @keydown.enter.prevent="goToRoute(null)"
                 ref="search"
                 type="text"
-                class="bg-white h-full w-full px-16 text-xs border-0 rounded-none focus:outline-none text-gray-400 placeholder-gray-300 focus:border-indigo-600 focus:border-solid focus:border-b-2"
+                class="bg-white h-full w-full px-16 text-xs border-0 rounded-none focus:outline-none text-gray-400 placeholder-gray-300 focus:border-indigo-600 focus:border-solid focus:border-b-2 dark:bg-gray-800"
                 placeholder='Search Territories  ( Type " / " To Focus )'
             />
         </div>

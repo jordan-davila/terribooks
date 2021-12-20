@@ -1,5 +1,5 @@
 <template lang="">
-    <div style="flex: 0 295px;" class="flex flex-col h-full border-r border-gray-200 border-solid bg-white">
+    <div style="flex: 0 295px;" class="flex flex-col h-full border-r border-gray-200 border-solid bg-white dark:bg-gray-800 dark:border-gray-600">
         <div id="territory-picker-smooth-scroll" class="territory-list w-full flex-1 px-14 pt-8">
             <div class="wrapper pb-8">
                 <template v-for="city in $page.props.territories.data.cities">
@@ -10,7 +10,7 @@
                         <span>{{ city.name }}</span>
                         <button
                             @click="$modal.show('add-territory', { city_id: city.id })"
-                            class="w-5 h-5 text-gray-300 text-xxs bg-white border border-gray-300 rounded-md leading-none"
+                            class="w-5 h-5 text-gray-300 text-xxs bg-white border border-gray-300 rounded-md leading-none dark:bg-gray-700 dark:border-gray-600"
                         >
                             <i class="fas fa-plus"></i>
                         </button>
@@ -27,8 +27,8 @@
                                     preserve-state
                                     :href="route(currentRoute(), [territory.id])"
                                     :class="classes(territory.id)"
-                                    >{{ territory.code }}</inertia-link
-                                >
+                                    >{{ territory.code }}
+                                </inertia-link>
                                 <inertia-link
                                     preserve-state
                                     :href="route(currentRoute(), [territory.id])"
@@ -119,8 +119,8 @@ export default {
             let classes = "w-10 h-10 flex justify-center items-center text-xs rounded-lg ";
             classes +=
                 route().params.territory == id
-                    ? "text-indigo-600 bg-indigo-100 shadow-lg"
-                    : "text-gray-500 bg-gray-100";
+                    ? "text-indigo-600 bg-indigo-100 shadow-lg dark:bg-slate-600 dark:text-gray-200 border-indigo-600 border-solid border"
+                    : "text-gray-500 bg-gray-100 dark:bg-gray-700 dark:text-gray-300";
             return classes;
         },
 

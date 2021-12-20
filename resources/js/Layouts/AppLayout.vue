@@ -1,5 +1,5 @@
 <template>
-    <section class="app-container max-w-none bg-gray-100 flex flex-col h-screen">
+    <section class="app-container max-w-none bg-gray-100 flex flex-col h-screen dark:bg-gray-900">
         <TooSmall />
         <FlashBanner />
         <FlashAlert />
@@ -42,6 +42,11 @@ export default {
         AddTerritory,
         EditTerritory,
         TooSmall
-    }
+    },
+
+    mounted() {
+        let theme = this.$inertia.page.props.user.theme;
+        document.body.classList.add(theme)
+    },
 };
 </script>

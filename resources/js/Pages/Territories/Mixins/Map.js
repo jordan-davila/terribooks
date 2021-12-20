@@ -12,9 +12,9 @@ export const MapMixin = {
                 zoomControl: false
             },
             options_tile: {
-                id: "nekokyoya/cij1rocih00268ykqxc2j3ukq",
+                id: this.$inertia.page.props.user.theme === "dark" ? "nekokyoya/ckb804r1x1tqc1ijzj1o4abkt" : "nekokyoya/cij1rocih00268ykqxc2j3ukq",
                 tileSize: 512,
-                zoomOffset: -1
+                zoomOffset: -1,
             },
             styles: {
                 purple: {
