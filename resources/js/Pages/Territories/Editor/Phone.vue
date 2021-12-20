@@ -18,7 +18,7 @@
                 </button>
                 <button
                     @click="deleteSelected()"
-                    class="rounded-lg bg-red-400 flex items-center h-8 w-8 px-4 uppercase font-bold justify-center"
+                    class="rounded-lg bg-rose-400 flex items-center h-8 w-8 px-4 uppercase font-bold justify-center"
                     v-if="phonesToDelete.length"
                 >
                     <i class="fas fa-trash-alt"></i>

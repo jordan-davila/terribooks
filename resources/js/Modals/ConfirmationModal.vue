@@ -13,7 +13,7 @@
             <div class="relative flex items-center">
                 <div
                     v-if="type == 'warning'"
-                    class="icon bg-red-100 rounded-full w-8 h-8 text-red-600 text-xs flex items-center justify-center mr-4"
+                    class="icon bg-rose-100 rounded-full w-8 h-8 text-red-600 text-xs flex items-center justify-center mr-4"
                 >
                     <i class="fas fa-trash-alt"></i>
                 </div>
@@ -40,7 +40,7 @@
             <button
                 @click="action"
                 class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 focus:outline-none transition ease-in-out duration-150"
-                :class="type == 'warning' ? 'bg-red-600' : 'bg-indigo-600'"
+                :class="type == 'warning' ? 'bg-rose-600' : 'bg-indigo-600'"
             >
                 <span>Confirm</span>
             </button>

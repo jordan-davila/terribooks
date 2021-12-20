@@ -88,7 +88,7 @@
 
                         <!-- Leave Team -->
                         <button
-                            class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150"
+                            class="inline-flex items-center justify-center px-4 py-2 bg-rose-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:bg-rose-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-rose-600 transition ease-in-out duration-150"
                             @click="
                                 $modal.show('confirmation', {
                                     type: 'warning',
@@ -104,7 +104,7 @@
 
                         <!-- Remove Team Member -->
                         <button
-                            class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150"
+                            class="inline-flex items-center justify-center px-4 py-2 bg-rose-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:bg-rose-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-rose-600 transition ease-in-out duration-150"
                             @click="
                                 $modal.show('confirmation', {
                                     type: 'warning',

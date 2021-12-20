@@ -43,7 +43,7 @@
 
                         <button
                             type="button"
-                            class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150 ml-2"
+                            class="inline-flex items-center justify-center px-4 py-2 bg-rose-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150 ml-2"
                             @click.prevent="deletePhoto"
                             v-if="$page.props.user.profile_photo_path"
                         >

@@ -43,8 +43,8 @@ export default {
                     title: "Warning"
                 },
                 danger: {
-                    bg: "bg-red-500",
-                    iconBG: "bg-red-600",
+                    bg: "bg-rose-500",
+                    iconBG: "bg-rose-600",
                     icon: "far fa-exclamation-circle",
                     title: "Error"
                 }
