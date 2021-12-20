@@ -33,8 +33,7 @@ class User extends Authenticatable
     use CascadesDeletes;
 
     protected $cascadeDeletes = ["teams"];
-    protected $fillable = ["name", "email", "password"];
-
+    protected $fillable = ["name", "email", "password", "theme"];
     protected $hidden = ["password", "remember_token", "two_factor_recovery_codes", "two_factor_secret"];
 
     protected $casts = [
