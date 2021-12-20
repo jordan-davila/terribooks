@@ -1,8 +1,8 @@
 <?php
+
 use Inertia\Inertia;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\Route;
-use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
 use Laravel\Jetstream\Http\Controllers\TeamInvitationController;
 use Laravel\Jetstream\Http\Controllers\Inertia\ApiTokenController;
 use Laravel\Jetstream\Http\Controllers\Inertia\TeamMemberController;
@@ -14,6 +14,7 @@ use Laravel\Jetstream\Http\Controllers\Inertia\OtherBrowserSessionsController;
 // Custom Controllers
 use App\Http\Controllers\CurrentTeamController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\TeamController;
 
 Route::group(["middleware" => config("jetstream.middleware", ["web"])], function () {
     if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
