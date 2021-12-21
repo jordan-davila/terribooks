@@ -3,7 +3,7 @@
         <div class="pl-14 pr-6 py-8 text-gray-300 flex-1">
             <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden">
                 <div
-                    class="setting-title flex items-center justify-between text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 relative"
+                    class="setting-title flex items-center justify-between text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 relative dark:bg-gray-700 dark:border-gray-600"
                 >
                     <div class="title text-xxs uppercase font-bold text-gray-300">
                         <div class="title">Current Assignments</div>
@@ -77,7 +77,7 @@
         <div class="pr-14 py-8 text-gray-300 flex-1">
             <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden">
                 <div
-                    class="setting-title flex items-center justify-between text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 relative"
+                    class="setting-title flex items-center justify-between text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 relative dark:bg-gray-700 dark:border-gray-600"
                 >
                     <div class="title text-xxs uppercase font-bold text-gray-300">
                         <div class="title">Past Assignments</div>

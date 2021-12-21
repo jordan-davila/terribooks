@@ -3,8 +3,8 @@
         class="module-container px-14 pt-8 text-gray-300"
         v-if="$page.props.team.team_invitations.length > 0 && $page.props.permissions.canAddTeamMembers"
     >
-        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100">
+        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800">
+            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 dark:bg-gray-700 dark:border-gray-600">
                 <div class="title">Pending Member Invitations</div>
                 <div class="subtitle opacity-60">
                     An invitaion email has been sent to these users.

@@ -119,7 +119,7 @@ export default {
             let classes = "w-10 h-10 flex justify-center items-center text-xs rounded-lg ";
             classes +=
                 route().params.territory == id
-                    ? "text-indigo-600 bg-indigo-100 shadow-lg dark:bg-slate-600 dark:text-gray-200 border-indigo-600 border-solid border"
+                    ? "text-indigo-600 bg-indigo-100 shadow-lg border-indigo-600 border-solid border dark:bg-slate-600 dark:text-gray-200"
                     : "text-gray-500 bg-gray-100 dark:bg-gray-700 dark:text-gray-300";
             return classes;
         },

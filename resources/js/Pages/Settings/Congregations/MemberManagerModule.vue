@@ -5,8 +5,8 @@
         :class="$page.props.user.current_team.user_id == $page.props.user.id ? 'pt-8' : 'py-8'"
         v-if="$page.props.team.users.length > 0"
     >
-        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100">
+        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800">
+            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 dark:bg-gray-700 dark:border-gray-600">
                 <div class="title">Member Manager</div>
                 <div class="subtitle opacity-60">Update or remove users from your congregation.</div>
             </div>

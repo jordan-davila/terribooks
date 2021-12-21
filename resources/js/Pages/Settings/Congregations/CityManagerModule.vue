@@ -4,8 +4,8 @@
         class="module-container px-14 pt-8 text-gray-300"
         v-if="$page.props.permissions.canUpdateTeam"
     >
-        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100">
+        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800">
+            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 dark:bg-gray-700 dark:border-gray-600">
                 <div class="title">City Manager</div>
                 <div class="subtitle opacity-60">
                     Added cities will automatically have a territory associated with it
@@ -21,7 +21,7 @@
                             type="text"
                             v-model="name"
                             :disabled="!$page.props.permissions.canUpdateTeam"
-                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
+                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3 dark:border-gray-600"
                         />
                     </div>
                     <div class="input-col">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-content px-8 py-6 text-xxs font-bold uppercase border-t border-gray-100">
+            <div class="card-content px-8 py-6 text-xxs font-bold uppercase border-t border-gray-100 dark:border-gray-600">
                 <div
                     class="cities mb-4 flex items-center justify-between w-full"
                     v-for="(city, index) in $page.props.territories.data.cities"
@@ -44,7 +44,7 @@
                     <div class="flex items-center flex-1 mr-4">
                         <input
                             type="text"
-                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
+                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3 dark:border-gray-600"
                             v-model="city.name"
                         />
                     </div>

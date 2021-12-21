@@ -1,9 +1,9 @@
 <template>
-    <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden dark:bg-gray-800">
         <AddPhone />
         <EditPhone />
         <div
-            class="title-phone-editor w-full py-6 px-8 flex justify-between items-center border-b border-gray-100 border-solid bg-white relative"
+            class="title-phone-editor w-full py-6 px-8 flex justify-between items-center border-b border-gray-100 border-solid bg-white relative dark:bg-gray-700 dark:border-gray-600"
         >
             <div class="title text-xxs uppercase font-bold text-gray-300">
                 Phone Ministry List
@@ -33,7 +33,7 @@
         </div>
         <div id="grid-territory-editor-phone" class="flex flex-col overflow-hidden" v-show="$page.props.phones.length">
             <div
-                class="list-header grid row border-b border-solid border-gray-100 text-gray-300 uppercase font-bold text-xxs px-6 bg-white"
+                class="list-header grid row border-b border-solid border-gray-100 text-gray-300 uppercase font-bold text-xxs px-6 bg-white dark:border-gray-600 dark:bg-gray-700"
             >
                 <div class="column w-full px-2 py-3">Name</div>
                 <div class="column w-full px-2 py-3">#</div>
@@ -46,7 +46,7 @@
                 <div class="scroll-wrapper">
                     <div
                         :id="phone.number"
-                        class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-gray-50 border-b border-gray-100 border-solid"
+                        class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-gray-50 border-b border-gray-100 border-solid dark:border-gray-600 dark:hover:bg-gray-700"
                         v-for="(phone, index) in $page.props.phones"
                         :key="phone.id"
                         @input="phoneWillUpdate(index)"
@@ -74,7 +74,7 @@
                         </div>
                         <div class="column w-full flex justify-end items-center">
                             <div
-                                class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200"
+                                class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200 dark:border-gray-600 dark:bg-gray-700"
                             >
                                 <input type="checkbox" class="opacity-0 absolute" @click="phonesWillDelete(index)" />
                                 <svg

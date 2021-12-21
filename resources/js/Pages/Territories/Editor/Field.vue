@@ -49,7 +49,7 @@
                     <template v-for="(house, house_index) in $page.props.houses">
                         <div
                             :id="house.number"
-                            class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-gray-50 border-b border-gray-100 border-solid dark:border-gray-600 dark:hover:bg-gray-700 "
+                            class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-gray-50 border-b border-gray-100 border-solid dark:border-gray-600 dark:hover:bg-gray-700"
                             :key="house.id"
                             @input="housesWillUpdate(house_index)"
                         >
