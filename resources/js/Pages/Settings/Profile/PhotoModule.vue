@@ -1,7 +1,7 @@
 <template>
     <div id="profile-photo" class="module-container px-14 pt-8 text-gray-300">
-        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100">
+        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800">
+            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 dark:bg-gray-700 dark:border-gray-600">
                 <div class="title">Profile Photo</div>
                 <div class="subtitle opacity-60">Add or update your profile picture</div>
             </div>
@@ -34,7 +34,7 @@
 
                     <div class="options">
                         <button
-                            class="inline-flex items-center justify-center px-4 py-2 bg-gray-300 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150"
+                            class="inline-flex items-center justify-center px-4 py-2 bg-gray-300 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:opacity-90 transition ease-in-out duration-150 dark:bg-slate-600"
                             type="button"
                             @click.prevent="selectNewPhoto"
                         >

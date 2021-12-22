@@ -10,7 +10,7 @@
                 deleting, please download all the territories that you wish to retain. Please note that this action can
                 not be undone. Proceed with caution.
             </div>
-            <div class="module-options bg-gray-50 w-full py-6 px-8 flex justify-end items-center text-gray-300 dark:bg-gray-800">
+            <div class="module-options bg-gray-50 w-full py-6 px-8 flex justify-end items-center text-gray-300 dark:bg-gray-800 dark:border-t dark:border-solid dark:border-gray-600">
                 <button
                     @click="
                         $modal.show('confirmation', {

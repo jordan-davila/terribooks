@@ -38,7 +38,7 @@
                     }
                 }"
             >
-                <div class="popper rounded-md shadow-lg w-60 bg-white overflow-hidden">
+                <div class="popper rounded-md shadow-lg w-60 bg-white overflow-hidden dark:bg-gray-700">
                     <div class="rounded-md ring-1 ring-black ring-opacity-5 text-xxs uppercase">
                         <!-- Account Management -->
                         <div class="block px-4 py-2 leading-5 text-gray-300 font-bold">
@@ -48,7 +48,7 @@
                         <inertia-link
                             :href="route('teams.show', $page.props.user.current_team)"
                             v-if="$page.props.user.belongsToAnyTeam"
-                            class="block px-4 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                            class="block px-4 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out dark:hover:bg-gray-600"
                         >
                             Congregation Settings
                         </inertia-link>
@@ -56,14 +56,14 @@
                         <button
                             @click="$modal.show('add-congregation')"
                             v-if="$page.props.jetstream.canCreateTeams"
-                            class="block px-4 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out uppercase w-full text-left"
+                            class="block px-4 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out uppercase w-full text-left dark:hover:bg-gray-600"
                         >
                             Create Congregation
                         </button>
 
                         <!-- Congregation Switcher -->
                         <template v-if="$page.props.user.belongsToAnyTeam">
-                            <div class="border-t border-gray-100"></div>
+                            <div class="border-t border-gray-100 dark:border-gray-500"></div>
                             <div class="block px-4 leading-5 py-2 text-gray-300 font-bold">
                                 Switch Congregations
                             </div>
@@ -71,7 +71,7 @@
                                 <form @submit.prevent="switchToTeam(congregation)" :key="congregation.id">
                                     <button
                                         type="submit"
-                                        class="block w-full px-6 py-2 leading-5 text-gray-300 uppercase text-left hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                                        class="block w-full px-6 py-2 leading-5 text-gray-300 uppercase text-left hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out dark:hover:bg-gray-600"
                                     >
                                         <div class="flex items-center">
                                             <svg

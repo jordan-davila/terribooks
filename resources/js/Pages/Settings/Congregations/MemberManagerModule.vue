@@ -41,7 +41,7 @@
                                     $page.props.availableRoles.length
                             "
                         >
-                            <div class="popper rounded-md shadow-lg w-48 bg-white overflow-hidden">
+                            <div class="popper rounded-md shadow-lg w-48 bg-white overflow-hidden dark:bg-gray-700">
                                 <div class="rounded-md ring-1 ring-black ring-opacity-5 text-xxs uppercase">
                                     <!-- Account Management -->
                                     <div class="block px-4 py-2 text-gray-300 font-bold">
@@ -49,7 +49,7 @@
                                     </div>
                                     <button
                                         @click="updateRole(user, role.key)"
-                                        class="block w-full px-6 py-2 leading-5 text-gray-300 uppercase text-left hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                                        class="block w-full px-6 py-2 leading-5 text-gray-300 uppercase text-left hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out dark:hover:bg-gray-600"
                                         v-for="role in $page.props.availableRoles"
                                         :key="role.key"
                                     >

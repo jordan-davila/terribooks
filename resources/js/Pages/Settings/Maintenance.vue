@@ -7,7 +7,7 @@
             <NavSettings />
             <section class="flex flex-1 relative overflow-hidden">
                 <div class="settings-container flex flex-col flex-1 h-full overflow-y-auto py-8 px-14 ">
-                    <div class="module rounded-lg shadow-lg bg-white flex h-full justify-center items-center">
+                    <div class="module rounded-lg shadow-lg bg-white flex h-full justify-center items-center dark:bg-gray-800">
                         <div class="flex flex-col p-8 text-gray-300 uppercase font-bold text-xxs text-center">
                             <div class="code text-6xl mb-4">503</div>
                             <div class="title">Under Maintenance</div>

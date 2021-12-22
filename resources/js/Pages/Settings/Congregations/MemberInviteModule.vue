@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div class="module-options bg-gray-50 w-full py-6 px-8 flex justify-end items-center text-gray-300 dark:bg-gray-800">
+            <div class="module-options bg-gray-50 w-full py-6 px-8 flex justify-end items-center text-gray-300 dark:bg-gray-800 dark:border-t dark:border-solid dark:border-gray-600">
                 <button
                     @click="addTeamMember()"
                     class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-bold text-xxs text-white uppercase hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-red active:bg-indigo-600 transition ease-in-out duration-150"
