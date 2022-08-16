@@ -1,5 +1,5 @@
 <template>
-    <section class="app-container max-w-none bg-gray-100 flex flex-col h-screen dark:bg-gray-900">
+    <section class="app-container max-w-none bg-gray-100 flex flex-col h-screen dark:bg-gray-900 overflow-hidden">
         <TooSmall />
         <FlashBanner />
         <FlashAlert />

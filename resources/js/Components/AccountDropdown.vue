@@ -2,10 +2,12 @@
     <popper
         trigger="clickToOpen"
         :options="{
-            placement: 'auto',
+            placement: 'bottom-end',
+            positionFixed: false,
             modifiers: {
                 flip: { enabled: false },
-                offset: { offset: '80,-70' }
+                offset: { offset: '100, -10' },
+                preventOverflow: { padding: -10 }
             }
         }"
     >
@@ -18,7 +20,7 @@
 
                 <inertia-link
                     :href="route('profile.show')"
-                    class="block px-4 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                    class="block px-4 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out dark:hover:bg-gray-600"
                 >
                     Profile
                 </inertia-link>

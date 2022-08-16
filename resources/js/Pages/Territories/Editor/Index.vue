@@ -16,7 +16,7 @@
         </div>
         <div
             id="particles"
-            class="slide-up-particles absolute top-0 left-0 w-full block z-0"
+            class="slide-up-particles absolute top-0 left-0 w-full block z-0 dark:bg-slate-800"
             style="height: 100%"
         ></div>
     </div>

@@ -2,7 +2,7 @@
     <div
         id="navigation-assignments-scroll"
         style="flex: 0 295px;"
-        class="flex flex-col h-full border-r border-gray-200 border-solid bg-white"
+        class="flex flex-col h-full border-r border-gray-200 border-solid bg-white dark:bg-gray-800 dark:border-gray-600"
     >
         <div class="assignment-list-by-type w-full px-14 py-8">
             <div class="text-xxs text-gray-300 w-full py-4 uppercase font-bold flex justify-between items-center">
@@ -25,8 +25,8 @@
                         class="w-10 h-10 flex justify-center items-center text-xs rounded-lg"
                         :class="
                             route().current('assignments.type.show', { type: 'field' })
-                                ? 'text-indigo-600 bg-indigo-100 shadow-lg'
-                                : 'text-gray-500 bg-gray-100'
+                                ? 'text-indigo-600 bg-indigo-100 shadow-lg border-indigo-600 border dark:bg-slate-600 dark:text-gray-200'
+                                : 'text-gray-500 bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
                         "
                     >
                         <i class="fas fa-home-lg-alt"></i>
@@ -54,8 +54,8 @@
                         class="w-10 h-10 flex justify-center items-center text-xs rounded-lg"
                         :class="
                             route().current('assignments.type.show', { type: 'phone' })
-                                ? 'text-indigo-600 bg-indigo-100 shadow-lg'
-                                : 'text-gray-500 bg-gray-100'
+                                ? 'text-indigo-600 bg-indigo-100 shadow-lg border-indigo-600 border dark:bg-slate-600 dark:text-gray-200'
+                                : 'text-gray-500 bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
                         "
                     >
                         <i class="fas fa-phone"></i>
@@ -83,8 +83,8 @@
                         class="w-10 h-10 flex justify-center items-center text-xs rounded-lg"
                         :class="
                             route().current('assignments.type.show', { type: 'business' })
-                                ? 'text-indigo-600 bg-indigo-100 shadow-lg'
-                                : 'text-gray-500 bg-gray-100'
+                                ? 'text-indigo-600 bg-indigo-100 shadow-lg border-indigo-600 border dark:bg-slate-600 dark:text-gray-200'
+                                : 'text-gray-500 bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
                         "
                     >
                         <i class="fas fa-building"></i>
@@ -102,7 +102,7 @@
                 <span>By Publisher</span>
                 <button
                     @click="$modal.show('add-publisher')"
-                    class="w-5 h-5 text-gray-300 text-xxs bg-white border border-gray-300 rounded-md leading-none"
+                    class="w-5 h-5 text-gray-300 text-xxs bg-white border border-gray-300 rounded-md leading-none dark:bg-gray-700 dark:border-gray-600"
                 >
                     <i class="fas fa-plus"></i>
                 </button>
@@ -119,8 +119,8 @@
                             class="w-10 h-10 flex justify-center items-center text-xs rounded-lg"
                             :class="
                                 route().current('assignments.publisher.show', { publisher: publisher })
-                                    ? 'text-indigo-600 bg-indigo-100 shadow-lg'
-                                    : 'text-gray-500 bg-gray-100'
+                                    ? 'text-indigo-600 bg-indigo-100 shadow-lg dark:bg-slate-600 dark:text-gray-200'
+                                    : 'text-gray-500 bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
                             "
                         >
                             <div class="initials">{{ publisher.initials }}</div>
@@ -143,12 +143,12 @@
                             }
                         }"
                     >
-                        <div class="popper rounded-md shadow-lg bg-white overflow-hidden z-10">
+                        <div class="popper rounded-md shadow-lg bg-white overflow-hidden z-10 dark:bg-gray-600">
                             <div class="rounded-md ring-1 ring-black ring-opacity-5 text-xxs uppercase">
                                 <!-- Account Management -->
                                 <button
                                     @click="$modal.show('edit-publisher', { publisher: publisher })"
-                                    class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left"
+                                    class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left dark:hover:bg-gray-700"
                                 >
                                     Edit Publisher
                                 </button>
@@ -162,7 +162,7 @@
                                             action: () => deletePublisher(publisher.id)
                                         })
                                     "
-                                    class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left"
+                                    class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left dark:hover:bg-gray-700"
                                 >
                                     Delete Publisher
                                 </button>

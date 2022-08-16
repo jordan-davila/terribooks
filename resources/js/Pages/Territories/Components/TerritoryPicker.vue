@@ -55,12 +55,12 @@
                                     }
                                 }"
                             >
-                                <div class="popper rounded-md shadow-lg bg-white overflow-hidden z-10">
+                                <div class="popper rounded-md shadow-lg bg-white overflow-hidden z-10 dark:bg-gray-600">
                                     <div class="rounded-md ring-1 ring-black ring-opacity-5 text-xxs uppercase">
                                         <!-- Account Management -->
                                         <button
                                             @click="$modal.show('edit-territory', { territory: territory })"
-                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left"
+                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left dark:hover:bg-gray-700"
                                         >
                                             Edit Territory
                                         </button>
@@ -74,7 +74,7 @@
                                                     action: () => deleteTerritory(territory.id)
                                                 })
                                             "
-                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left"
+                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left dark:hover:bg-gray-700"
                                         >
                                             Delete Territory
                                         </button>

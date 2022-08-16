@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-1 relative">
         <div class="pl-14 pr-6 py-8 text-gray-300 flex-1">
-            <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden dark:bg-gray-800">
                 <div
                     class="setting-title flex items-center justify-between text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 relative dark:bg-gray-700 dark:border-gray-600"
                 >

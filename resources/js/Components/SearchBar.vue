@@ -25,7 +25,7 @@
             id="search-picker-smooth-scroll"
             @mousedown.prevent="visible = true"
             v-show="query.length > 0 && visible == true"
-            class="search-results w-full shadow-lg flex flex-col bg-white bottom-0 left-0 text-xxs text-gray-300 max-h-96 overflow-auto"
+            class="search-results w-full shadow-lg flex flex-col bg-white bottom-0 left-0 text-xxs text-gray-300 max-h-96 overflow-auto dark:bg-gray-700"
             style="z-index: 9999"
         >
             <template v-if="Object.keys(results).length > 0">
@@ -48,8 +48,8 @@
                                 <div
                                     :class="[
                                         highlight_index === index && currentType() === type
-                                            ? 'bg-indigo-100 shadow-lg text-indigo-600'
-                                            : 'bg-gray-100 text-gray-500'
+                                            ? 'bg-indigo-100 shadow-lg text-indigo-600 border-indigo-600 border dark:bg-slate-600 dark:text-gray-200'
+                                            : 'bg-gray-100 text-gray-500 dark:bg-slate-600 dark:text-gray-300'
                                     ]"
                                     class="w-10 h-10 flex justify-center items-center text-xs rounded-lg font-bold mr-4"
                                 >

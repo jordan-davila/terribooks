@@ -2,7 +2,7 @@
     <div class="flex flex-1 relative">
         <template v-if="$page.props.publishers.data.length != 0">
             <div class="pl-14 pr-6 py-8 text-gray-300 flex-1">
-                <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden dark:bg-gray-800">
                     <div
                         class="setting-title flex items-center justify-between text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 relative dark:bg-gray-700 dark:border-gray-600"
                     >
@@ -21,7 +21,7 @@
                     </div>
                     <div class="flex flex-1 flex-col overflow-hidden">
                         <div
-                            class="list-header grid row border-b border-solid border-gray-100 text-gray-300 uppercase font-bold text-xxs px-6 bg-white"
+                            class="list-header grid row border-b border-solid border-gray-100 text-gray-300 uppercase font-bold text-xxs px-6 bg-white dark:border-gray-600 dark:bg-gray-700"
                             style="grid-template-columns: 1fr 140px 100px 30px;"
                         >
                             <div class="column w-full px-2 py-3">Territory</div>
@@ -32,8 +32,8 @@
                         <div id="current-assignments-scroll" class="scroll w-full flex-1 overflow-auto">
                             <div class="scroll-wrapper">
                                 <div
-                                    class="list-header grid row text-gray-300 font-bold text-xxs px-6 border-solid border-b border-gray-100 hover:bg-gray-50"
-                                    :class="assignment.territory.id == $page.props.territory.data.id && 'bg-gray-50'"
+                                    class="list-header grid row text-gray-300 font-bold text-xxs px-6 border-solid border-b border-gray-100 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
+                                    :class="assignment.territory.id == $page.props.territory.data.id && 'bg-gray-50 dark:bg-gray-700'"
                                     style="grid-template-columns: 1fr 140px 100px 30px;"
                                     v-for="(assignment, index) in $page.props.current_assignments"
                                     v-bind:key="assignment.id"
@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div class="pr-14 py-8 text-gray-300 flex-1">
-                <div class="w-full bg-white rounded-lg shadow-lg overflow-hidden w-full h-full">
+                <div class="w-full bg-white rounded-lg shadow-lg overflow-hidden h-full dark:bg-gray-800">
                     <div
                         class="setting-title flex items-center justify-between text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 relative dark:bg-gray-700 dark:border-gray-600"
                     >
@@ -125,7 +125,7 @@
                     </div>
                     <div class="flex flex-col overflow-hidden">
                         <div
-                            class="list-header grid row border-b border-solid border-gray-100 text-gray-300 uppercase font-bold text-xxs px-6 bg-white"
+                            class="list-header grid row border-b border-solid border-gray-100 text-gray-300 uppercase font-bold text-xxs px-6 bg-white dark:border-gray-600 dark:bg-gray-700"
                             style="grid-template-columns: 1fr 100px 100px 30px;"
                         >
                             <div class="column w-full px-2 py-3">Publisher</div>
@@ -136,7 +136,7 @@
                         <div id="current-assignments-scroll" class="scroll w-full flex-1 overflow-auto">
                             <div class="scroll-wrapper">
                                 <div
-                                    class="list-header grid row text-gray-300 font-bold text-xxs px-6 border-solid border-b border-gray-100 hover:bg-gray-50"
+                                    class="list-header grid row text-gray-300 font-bold text-xxs px-6 border-solid border-b border-gray-100 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
                                     style="grid-template-columns: 1fr 100px 100px 30px;"
                                     v-for="(assignment, index) in $page.props.past_assignments"
                                     v-bind:key="assignment.id"
@@ -181,7 +181,7 @@
                                     </div>
                                     <div class="column w-full px-2 py-3 flex items-center justify-end">
                                         <div
-                                            class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200 relative"
+                                            class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200 relative dark:border-gray-600 dark:bg-gray-700"
                                         >
                                             <input
                                                 type="checkbox"
@@ -189,7 +189,7 @@
                                                 @click="pastAssignmentsWillDelete(index)"
                                             />
                                             <svg
-                                                class="fill-current hidden w-2 h-2 text-indigo-500 pointer-events-none"
+                                                class="fill-current hidden w-2 h-2 text-indigo-500 pointer-events-none dark:text-indigo-400"
                                                 viewBox="0 0 20 20"
                                             >
                                                 <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />

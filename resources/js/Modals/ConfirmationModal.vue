@@ -5,7 +5,7 @@
         width="430px"
         height="auto"
         focusTrap
-        classes="w-80 rounded-lg bg-gray-900 shadow-lg"
+        classes="w-80 rounded-lg bg-gray-900 shadow-lg dark:bg-gray-700"
         @before-open="beforeOpen"
         @before-close="beforeClose"
     >
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div
-            class="modal-options bg-gray-100 w-full py-6 px-8 flex justify-end items-center text-gray-300 rounded-b-lg"
+            class="modal-options bg-gray-100 w-full py-6 px-8 flex justify-end items-center text-gray-300 rounded-b-lg dark:bg-gray-700 dark:border-t dark:border-gray-500"
         >
             <button
                 @click="action"

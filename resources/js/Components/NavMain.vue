@@ -12,7 +12,7 @@
             style="flex: 0 295px"
         >
             <div class="logo text-lg">terri<span class="text-indigo-600">books</span></div>
-            <div class="logo text-gray-300 text-xxs mt pt">v2.2.0</div>
+            <div class="logo text-gray-300 text-xxs mt pt">v2.7.0</div>
         </inertia-link>
 
         <!-- SearchBar Component with SearchFocus -->
