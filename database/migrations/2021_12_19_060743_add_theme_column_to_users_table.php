@@ -9,7 +9,7 @@ class AddThemeColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('theme')->default('dark');
+            $table->string('theme')->default('light');
         });
     }
 
