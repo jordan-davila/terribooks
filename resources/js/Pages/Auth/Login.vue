@@ -16,7 +16,7 @@
                         <input
                             id="email"
                             type="email"
-                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
+                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3 text-slate-800 font-bold"
                             v-model="form.email"
                             required
                             autofocus
@@ -28,7 +28,7 @@
                         <input
                             id="password"
                             type="password"
-                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
+                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3 text-slate-800 font-bold"
                             v-model="form.password"
                             required
                             autocomplete="current-password"

@@ -7,7 +7,7 @@
             <!-- Territory Picker -->
             <div
                 style="flex: 0 36rem;"
-                class="star-info flex flex-col h-full border-r border-gray-200 border-solid bg-white py-12 px-16"
+                class="star-info flex flex-col h-full border-r border-gray-200 border-solid bg-white dark:bg-gray-800 py-12 px-16 dark:border-gray-600"
             >
                 <div class="uppercase font-bold text-xxs text-gray-300 mb-2">
                     Dashboard ·
@@ -15,17 +15,17 @@
                         {{ $page.props.user.current_team.name }}
                     </template>
                 </div>
-                <h1 class="font-black text-gray-700 text-4xl mb-4">
+                <h1 class="font-black text-gray-700 text-4xl mb-4 dark:text-indigo-500">
                     Welcome, <br />
                     {{ user.name }}
                 </h1>
                 <div class="flex card-container mb-8">
                     <div
-                        class="cards flex flex-col rounded-lg bg-gray-100 w-32 h-32 p-4 mr-4 justify-center items-center"
+                        class="cards flex flex-col rounded-lg bg-gray-100 w-32 h-32 p-4 mr-4 justify-center items-center dark:bg-gray-700"
                     >
-                        <div class="uppercase font-bold text-xxs text-gray-400 mb-2">Territories</div>
-                        <div class="circle rounded-full bg-white w-16 h-16 flex justify-center items-center">
-                            <span class="text-gray-400 font-semibold text-lg">
+                        <div class="uppercase font-bold text-xxs text-gray-400 mb-2 dark:text-gray-300">Territories</div>
+                        <div class="circle rounded-full bg-white w-16 h-16 flex justify-center items-center dark:bg-gray-600">
+                            <span class="text-gray-400 font-semibold text-lg dark:text-gray-200">
                                 <template v-if="$page.props.territories">
                                     {{ $page.props.territories.data.territory_count }}
                                 </template>
@@ -36,19 +36,19 @@
                         </div>
                     </div>
                     <div
-                        class="cards flex flex-col rounded-lg bg-gray-100 w-32 h-32 p-4 mr-4 justify-center items-center"
+                        class="cards flex flex-col rounded-lg bg-gray-100 w-32 h-32 p-4 mr-4 justify-center items-center dark:bg-gray-700"
                     >
-                        <div class="uppercase font-bold text-xxs text-gray-400 mb-2">Congregations</div>
-                        <div class="circle rounded-full bg-white w-16 h-16 flex justify-center items-center">
-                            <span class="text-gray-400 font-semibold text-lg">
+                        <div class="uppercase font-bold text-xxs text-gray-400 mb-2 dark:text-gray-300">Congregations</div>
+                        <div class="circle rounded-full bg-white w-16 h-16 flex justify-center items-center dark:bg-gray-600">
+                            <span class="text-gray-400 font-semibold text-lg dark:text-gray-200">
                                 {{ Object.keys($page.props.user.all_teams).length }}
                             </span>
                         </div>
                     </div>
-                    <div class="cards flex flex-col rounded-lg bg-gray-100 w-32 h-32 p-4 justify-center items-center">
-                        <div class="uppercase font-bold text-xxs text-gray-400 mb-2">Users</div>
-                        <div class="circle rounded-full bg-white w-16 h-16 flex justify-center items-center">
-                            <span class="text-gray-400 font-semibold text-lg">
+                    <div class="cards flex flex-col rounded-lg bg-gray-100 w-32 h-32 p-4 justify-center items-center dark:bg-gray-700">
+                        <div class="uppercase font-bold text-xxs text-gray-400 mb-2 dark:text-gray-300">Users</div>
+                        <div class="circle rounded-full bg-white w-16 h-16 flex justify-center items-center dark:bg-gray-600">
+                            <span class="text-gray-400 font-semibold text-lg dark:text-gray-200">
                                 <!-- *TODO* Add get_all_users_in_team function -->
                                 2
                             </span>
@@ -77,21 +77,21 @@
                         <i class="fas fa-link mr-2"></i> <span class="text-gray-400">SOURCE CODE</span>
                     </a>
                     <a href="https://wol.jw.org/en/" target="_blank" class="mb-3 inline-flex">
-                        <i class="fas fa-link mr-2"></i> <span class="text-indigo-600">Watchtower Online Library</span>
+                        <i class="fas fa-link mr-2"></i> <span class="text-indigo-600 dark:text-indigo-500 dark:font-bold">Watchtower Online Library</span>
                     </a>
                     <a href="https://jw.org/en/" target="_blank" class="mb-3 inline-flex">
-                        <i class="fas fa-link mr-2"></i> <span class="text-indigo-600">JW.ORG</span>
+                        <i class="fas fa-link mr-2"></i> <span class="text-indigo-600 dark:text-indigo-500 dark:font-bold">JW.ORG</span>
                     </a>
                 </div>
             </div>
             <div class="flex flex-1 relative py-8 px-14 overflow-hidden">
-                <div class="daily-text flex-auto h-full bg-gray-50 p-10 shadow-lg rounded-lg">
+                <div class="daily-text flex-auto h-full bg-gray-50 p-10 shadow-lg rounded-lg dark:bg-gray-800">
                     <div class="uppercase font-bold text-xxs text-gray-300 mb-2">
                         Daily Text
                     </div>
-                    <h1 class="title font-black text-gray-700 text-3xl mb-4" v-html="title"></h1>
-                    <div class="font-regular text-gray-400 text-sm mb-4" v-html="text"></div>
-                    <div class="font-regular text-gray-400 text-sm leading-6" v-html="content"></div>
+                    <h1 class="title font-black text-gray-700 text-3xl mb-4 dark:text-gray-500" v-html="title"></h1>
+                    <div class="font-regular text-gray-400 text-sm mb-4 dark:text-gray-300" v-html="text"></div>
+                    <div class="font-regular text-gray-400 text-sm leading-6 dark:text-gray-300" v-html="content"></div>
                 </div>
             </div>
         </div>

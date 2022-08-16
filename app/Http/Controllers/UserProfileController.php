@@ -11,12 +11,6 @@ use Laravel\Jetstream\Jetstream;
 
 class UserProfileController extends Controller
 {
-    /**
-     * Show the general profile settings screen.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Inertia\Response
-     */
     public function show(Request $request)
     {
         return Jetstream::inertia()->render($request, "Settings/Profile/Show", [
@@ -24,12 +18,6 @@ class UserProfileController extends Controller
         ]);
     }
 
-    /**
-     * Get the current sessions.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Support\Collection
-     */
     public function sessions(Request $request)
     {
         if (config("session.driver") !== "database") {
@@ -58,12 +46,6 @@ class UserProfileController extends Controller
         });
     }
 
-    /**
-     * Create a new agent instance from the given session.
-     *
-     * @param  mixed  $session
-     * @return \Jenssegers\Agent\Agent
-     */
     protected function createAgent($session)
     {
         return tap(new Agent(), function ($agent) use ($session) {

@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="editor-options w-80 h-full flex flex-col bg-white border-r border-gray-200" style="flex: 0 295px;">
+    <div class="editor-options w-80 h-full flex flex-col bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-600" style="flex: 0 295px;">
         <div class="assignment-list px-14 pt-8">
             <div class="text-xxs text-gray-300 w-full py-4 uppercase font-bold flex justify-between items-center">
                 <span>By Type</span>
@@ -17,8 +17,8 @@
                         class="w-10 h-10 flex justify-center items-center text-xs rounded-lg"
                         :class="
                             route().current('territories.editor.field.*')
-                                ? 'text-indigo-600 bg-indigo-100 shadow-lg'
-                                : 'text-gray-500 bg-gray-100'
+                                ? 'text-indigo-600 bg-indigo-100 shadow-lg dark:bg-slate-600 dark:text-gray-200 border-indigo-500 border-solid border'
+                                : 'text-gray-500 bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
                         "
                     >
                         <i class="fas fa-home-lg-alt"></i>
@@ -42,8 +42,8 @@
                         class="w-10 h-10 flex justify-center items-center text-xs rounded-lg"
                         :class="
                             route().current('territories.editor.phone.*')
-                                ? 'text-indigo-600 bg-indigo-100 shadow-lg'
-                                : 'text-gray-500 bg-gray-100'
+                                ? 'text-indigo-600 bg-indigo-100 shadow-lg dark:bg-slate-600 dark:text-gray-200 border-indigo-500 border-solid border'
+                                : 'text-gray-500 bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
                         "
                     >
                         <i class="fas fa-phone"></i>
@@ -67,8 +67,8 @@
                         class="w-10 h-10 flex justify-center items-center text-xs rounded-lg"
                         :class="
                             route().current('territories.editor.business.*')
-                                ? 'text-indigo-600 bg-indigo-100 shadow-lg'
-                                : 'text-gray-500 bg-gray-100'
+                                ? 'text-indigo-600 bg-indigo-100 shadow-lg dark:bg-slate-600 dark:text-gray-200 border-indigo-500 border-solid border'
+                                : 'text-gray-500 bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
                         "
                     >
                         <i class="fas fa-building"></i>
@@ -87,7 +87,7 @@
             <span>Streets</span>
             <button
                 @click="$modal.show('add-street')"
-                class="w-5 h-5 text-gray-300 text-xxs bg-white border border-gray-300 rounded-md leading-none"
+                class="w-5 h-5 text-gray-300 text-xxs bg-white border border-gray-300 rounded-md leading-none dark:bg-gray-700 dark:border-gray-600"
             >
                 <i class="fas fa-plus"></i>
             </button>
@@ -133,12 +133,12 @@
                                     }
                                 }"
                             >
-                                <div class="popper rounded-md shadow-lg bg-white overflow-hidden z-10">
+                                <div class="popper rounded-md shadow-lg bg-white overflow-hidden z-10 dark:bg-gray-600">
                                     <div class="rounded-md ring-1 ring-black ring-opacity-5 text-xxs uppercase">
                                         <!-- Account Management -->
                                         <button
                                             @click="$modal.show('edit-street', { street: street })"
-                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left"
+                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left dark:hover:bg-gray-700"
                                         >
                                             Edit Street
                                         </button>
@@ -152,7 +152,7 @@
                                                     action: () => deleteStreet(street.id)
                                                 })
                                             "
-                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left"
+                                            class="block px-4 py-2 leading-5 text-gray-300 font-bold uppercase hover:bg-gray-50 w-full text-left dark:hover:bg-gray-700"
                                         >
                                             Delete Street
                                         </button>

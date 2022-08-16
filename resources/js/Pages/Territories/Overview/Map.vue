@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="w-full h-full rounded-lg shadow-lg overflow-hidden bg-white">
+    <div class="w-full h-full rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800">
         <l-map ref="map" :zoom="zoom" :center="center" :options="options" class="w-full h-full">
             <l-tile-layer :url="url" :options="options_tile" />
             <l-geo-json

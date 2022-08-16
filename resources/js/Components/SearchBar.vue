@@ -1,7 +1,7 @@
 <template>
     <div class="relative flex-1">
         <div
-            class="search flex flex-1 justify-center items-center text-gray-300 font-normal h-full relative border-r border-solid border-gray-200"
+            class="search flex flex-1 justify-center items-center text-gray-300 font-normal h-full relative border-r border-solid border-gray-200 dark:border-gray-600"
         >
             <SearchFocus @keyup="focusSearch"></SearchFocus>
             <i class="far fa-search absolute top-0 left-0 mt-6 ml-8"></i>
@@ -17,7 +17,7 @@
                 @keydown.enter.prevent="goToRoute(null)"
                 ref="search"
                 type="text"
-                class="bg-white h-full w-full px-16 text-xs border-0 rounded-none focus:outline-none text-gray-400 placeholder-gray-300 focus:border-indigo-600 focus:border-solid focus:border-b-2"
+                class="bg-white h-full w-full px-16 text-xs border-0 rounded-none focus:outline-none text-gray-400 placeholder-gray-300 focus:border-indigo-600 focus:border-solid focus:border-b-2 dark:bg-gray-800"
                 placeholder='Search Territories  ( Type " / " To Focus )'
             />
         </div>
@@ -25,7 +25,7 @@
             id="search-picker-smooth-scroll"
             @mousedown.prevent="visible = true"
             v-show="query.length > 0 && visible == true"
-            class="search-results w-full shadow-lg flex flex-col bg-white bottom-0 left-0 text-xxs text-gray-300 max-h-96 overflow-auto"
+            class="search-results w-full shadow-lg flex flex-col bg-white bottom-0 left-0 text-xxs text-gray-300 max-h-96 overflow-auto dark:bg-gray-700"
             style="z-index: 9999"
         >
             <template v-if="Object.keys(results).length > 0">
@@ -48,8 +48,8 @@
                                 <div
                                     :class="[
                                         highlight_index === index && currentType() === type
-                                            ? 'bg-indigo-100 shadow-lg text-indigo-600'
-                                            : 'bg-gray-100 text-gray-500'
+                                            ? 'bg-indigo-100 shadow-lg text-indigo-600 border-indigo-600 border dark:bg-slate-600 dark:text-gray-200'
+                                            : 'bg-gray-100 text-gray-500 dark:bg-slate-600 dark:text-gray-300'
                                     ]"
                                     class="w-10 h-10 flex justify-center items-center text-xs rounded-lg font-bold mr-4"
                                 >

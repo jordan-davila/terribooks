@@ -4,11 +4,11 @@
         draggable
         width="430px"
         height="auto"
-        classes="w-80 rounded-lg bg-gray-900 shadow-lg"
+        classes="w-80 rounded-lg bg-gray-900 shadow-lg dark:bg-gray-700"
         @closed="reset"
     >
         <div
-            class="modal-title text-xxs text-gray-300 uppercase w-full px-8 py-6 font-bold border-b border-gray-100 flex items-center justify-between"
+            class="modal-title text-xxs text-gray-300 uppercase w-full px-8 py-6 font-bold border-b border-gray-100 flex items-center justify-between dark:bg-slate-800 dark:border-slate-700"
         >
             <div class="title flex items-center">
                 <div
@@ -25,7 +25,7 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div class="content px-8 py-6 text-gray-300 text-xxs font-bold uppercase">
+        <div class="content px-8 py-6 text-gray-300 text-xxs font-bold uppercase dark:border-b dark:border-gray-600">
             <div class="input-row mb-3">
                 <div class="input-col">
                     <label for="#name">Name</label>
@@ -102,7 +102,7 @@
             </div>
         </div>
         <div
-            class="modal-options rounded-b-lg bg-gray-100 w-full py-6 px-8 flex justify-end items-center text-gray-300"
+            class="modal-options rounded-b-lg bg-gray-100 w-full py-6 px-8 flex justify-end items-center text-gray-300 dark:bg-gray-700"
         >
             <button
                 @click="addBusiness()"

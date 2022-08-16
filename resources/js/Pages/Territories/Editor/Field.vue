@@ -1,11 +1,11 @@
 <template>
-    <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden" v-if="$page.props.street">
+    <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden dark:bg-gray-800" v-if="$page.props.street">
         <AddHouse />
         <AddApartment />
         <EditHouse />
         <EditApartment />
         <div
-            class="title-phone-editor w-full py-6 px-8 flex justify-between items-center border-b border-gray-100 border-solid bg-white relative"
+            class="title-phone-editor w-full py-6 px-8 flex justify-between items-center border-b border-gray-100 border-solid bg-white relative dark:bg-gray-700 dark:border-gray-600"
         >
             <div class="title text-xxs uppercase font-bold text-gray-300">
                 Field Ministry List
@@ -19,7 +19,7 @@
                     <i class="fas fa-save"></i>
                 </button>
                 <button
-                    class="rounded-lg bg-red-400 flex items-center h-8 w-8 px-4 uppercase font-bold justify-center"
+                    class="rounded-lg bg-rose-400 flex items-center h-8 w-8 px-4 uppercase font-bold justify-center"
                     @click="deleteSelected()"
                     v-if="housesToDelete.length || apartmentsToDelete.length"
                 >
@@ -35,7 +35,7 @@
         </div>
         <div id="grid-territory-editor-field" class="flex flex-col overflow-hidden" v-show="$page.props.houses.length">
             <div
-                class="list-header grid row border-b border-solid border-gray-100 text-gray-300 uppercase font-bold text-xxs px-6 bg-white"
+                class="list-header grid row border-b border-solid border-gray-100 text-gray-300 uppercase font-bold text-xxs px-6 bg-white dark:border-gray-600 dark:bg-gray-700"
             >
                 <div class="column w-full px-2 py-3"></div>
                 <div class="column w-full px-2 py-3">#</div>
@@ -49,7 +49,7 @@
                     <template v-for="(house, house_index) in $page.props.houses">
                         <div
                             :id="house.number"
-                            class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-gray-50 border-b border-gray-100 border-solid"
+                            class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-gray-50 border-b border-gray-100 border-solid dark:border-gray-600 dark:hover:bg-gray-700"
                             :key="house.id"
                             @input="housesWillUpdate(house_index)"
                         >
@@ -82,7 +82,7 @@
                             </div>
                             <div class="column w-full flex justify-end items-center">
                                 <div
-                                    class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200"
+                                    class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200 dark:border-gray-600 dark:bg-gray-700"
                                 >
                                     <input
                                         type="checkbox"
@@ -90,7 +90,7 @@
                                         @click="housesWillDelete(house_index)"
                                     />
                                     <svg
-                                        class="fill-current hidden w-2 h-2 text-indigo-500 pointer-events-none"
+                                        class="fill-current hidden w-2 h-2 text-indigo-500 dark:text-indigo-400 pointer-events-none"
                                         viewBox="0 0 20 20"
                                     >
                                         <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
@@ -107,7 +107,7 @@
                         <template v-for="(apt, apt_index) in house.apartments">
                             <div
                                 :id="apt.number"
-                                class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-gray-50 border-b border-gray-100 border-solid"
+                                class="list-content grid row text-gray-300 font-bold text-xxs px-6 hover:bg-gray-50 border-b border-gray-100 border-solid dark:border-gray-600 dark:hover:bg-gray-700"
                                 :key="apt.id"
                                 @input="housesWillUpdate(house_index)"
                             >
@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="column w-full flex justify-end items-center">
                                     <div
-                                        class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200"
+                                        class="bg-white border rounded border-gray-300 w-3.5 h-3.5 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-indigo-200 dark:border-gray-600 dark:bg-gray-700"
                                     >
                                         <input
                                             type="checkbox"
@@ -142,7 +142,7 @@
                                             @click="apartmentsWillDelete([house_index, apt_index])"
                                         />
                                         <svg
-                                            class="fill-current hidden w-2 h-2 text-indigo-500 pointer-events-none"
+                                            class="fill-current hidden w-2 h-2 text-indigo-500 dark:text-indigo-400 pointer-events-none"
                                             viewBox="0 0 20 20"
                                         >
                                             <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />

@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 button {
     outline: none;
     &:focus {
@@ -61,7 +65,7 @@ button {
 // Vue Calendar
 
 .vm--modal {
-    overflow: unset !important;
+    // overflow: unset !important; // Not sure why I've set this to unset
 }
 
 .vc-container .vc-container {
@@ -103,3 +107,7 @@ button {
         display: none;
     }
 }
+
+// .overflow-visible {
+//  overflow: visible !important;
+// }

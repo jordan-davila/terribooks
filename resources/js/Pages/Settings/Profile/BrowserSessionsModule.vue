@@ -1,6 +1,6 @@
 <template>
     <div id="update-details" class="module-container px-14 pt-8 text-gray-300">
-        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800">
             <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100">
                 <div class="title">EDIT_HERE</div>
                 <div class="subtitle opacity-60">EDIT_HERE</div>

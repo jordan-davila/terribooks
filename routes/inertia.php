@@ -1,8 +1,8 @@
 <?php
+
 use Inertia\Inertia;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\Route;
-use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
 use Laravel\Jetstream\Http\Controllers\TeamInvitationController;
 use Laravel\Jetstream\Http\Controllers\Inertia\ApiTokenController;
 use Laravel\Jetstream\Http\Controllers\Inertia\TeamMemberController;
@@ -14,6 +14,7 @@ use Laravel\Jetstream\Http\Controllers\Inertia\OtherBrowserSessionsController;
 // Custom Controllers
 use App\Http\Controllers\CurrentTeamController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\CongregationController;
 
 Route::group(["middleware" => config("jetstream.middleware", ["web"])], function () {
     if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
@@ -46,10 +47,10 @@ Route::group(["middleware" => config("jetstream.middleware", ["web"])], function
 
         // Teams...
         if (Jetstream::hasTeamFeatures()) {
-            Route::post("/teams", [TeamController::class, "store"])->name("teams.store");
-            Route::get("/settings/congregations/{team}", [TeamController::class, "show"])->name("teams.show");
-            Route::put("/teams/{team}", [TeamController::class, "update"])->name("teams.update");
-            Route::delete("/teams/{team}", [TeamController::class, "destroy"])->name("teams.destroy");
+            Route::post("/teams", [CongregationController::class, "store"])->name("teams.store");
+            Route::get("/settings/congregations/{team}", [CongregationController::class, "show"])->name("teams.show");
+            Route::put("/teams/{team}", [CongregationController::class, "update"])->name("teams.update");
+            Route::delete("/teams/{team}", [CongregationController::class, "destroy"])->name("teams.destroy");
             Route::put("/current-team", [CurrentTeamController::class, "update"])->name("current-team.update");
             Route::post("/teams/{team}/members", [TeamMemberController::class, "store"])->name("team-members.store");
             Route::put("/teams/{team}/members/{user}", [TeamMemberController::class, "update"])->name("team-members.update");

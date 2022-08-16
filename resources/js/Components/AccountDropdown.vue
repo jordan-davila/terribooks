@@ -2,14 +2,16 @@
     <popper
         trigger="clickToOpen"
         :options="{
-            placement: 'auto',
+            placement: 'bottom-end',
+            positionFixed: false,
             modifiers: {
                 flip: { enabled: false },
-                offset: { offset: '80,-70' }
+                offset: { offset: '100, -10' },
+                preventOverflow: { padding: -10 }
             }
         }"
     >
-        <div class="popper rounded-md shadow-lg w-48 bg-white overflow-hidden">
+        <div class="popper rounded-md shadow-lg w-48 bg-white overflow-hidden dark:bg-gray-700">
             <div class="rounded-md ring-1 ring-black ring-opacity-5 text-xxs uppercase">
                 <!-- Account Management -->
                 <div class="block px-4 py-2 text-gray-300 font-bold">
@@ -18,7 +20,7 @@
 
                 <inertia-link
                     :href="route('profile.show')"
-                    class="block px-4 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                    class="block px-4 py-2 leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out dark:hover:bg-gray-600"
                 >
                     Profile
                 </inertia-link>
@@ -31,13 +33,13 @@
                     Profile
                 </inertia-link>
 
-                <div class="border-t border-gray-100"></div>
+                <div class="border-t border-gray-100 dark:border-gray-500"></div>
 
                 <!-- Authentication -->
                 <form @submit.prevent="logout">
                     <button
                         type="submit"
-                        class="block px-4 py-2 w-full text-left uppercase leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                        class="block px-4 py-2 w-full text-left uppercase leading-5 text-gray-300 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out dark:hover:bg-gray-600"
                     >
                         Logout
                     </button>

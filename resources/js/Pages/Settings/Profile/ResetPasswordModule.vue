@@ -1,7 +1,7 @@
 <template>
     <div id="update-password" class="module-container px-14 py-8 text-gray-300">
-        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100">
+        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800">
+            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 dark:bg-gray-700 dark:border-gray-600">
                 <div class="title">Update Password</div>
                 <div class="subtitle opacity-60">
                     Ensure your account is using a long, random password to stay secure.
@@ -16,7 +16,7 @@
                             name="name"
                             type="password"
                             v-model="form.current_password"
-                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
+                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3 dark:border-gray-600"
                         />
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                             name="name"
                             type="password"
                             v-model="form.password"
-                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
+                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3 dark:border-gray-600"
                         />
                     </div>
                 </div>
@@ -40,13 +40,13 @@
                             name="name"
                             type="password"
                             v-model="form.password_confirmation"
-                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
+                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3 dark:border-gray-600"
                         />
                     </div>
                 </div>
             </div>
             <div
-                class="modal-options bg-gray-50 w-full py-6 px-8 flex items-center text-gray-300"
+                class="modal-options bg-gray-50 w-full py-6 px-8 flex items-center text-gray-300 dark:bg-gray-800 dark:border-t dark:border-solid dark:border-gray-600"
                 :class="Object.keys($page.props.errors).length > 0 ? 'justify-between' : 'justify-end'"
             >
                 <div class="errors" v-show="Object.keys($page.props.errors).length > 0">

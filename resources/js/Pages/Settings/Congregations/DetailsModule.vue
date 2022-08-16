@@ -1,7 +1,7 @@
 <template>
     <div id="update-details" class="module-container px-14 pt-8 text-gray-300">
-        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100">
+        <div class="module-card w-full bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-800">
+            <div class="setting-title text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 dark:bg-gray-700 dark:border-gray-600">
                 <div class="title">Congregation Details</div>
                 <div class="subtitle opacity-60">Update your current congregation details.</div>
             </div>
@@ -15,7 +15,7 @@
                             type="text"
                             v-model="name"
                             :disabled="$page.props.role.key != 'admin'"
-                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
+                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3 dark:border-gray-600"
                         />
                     </div>
                     <div class="input-col">
@@ -24,7 +24,7 @@
                             name="state"
                             v-model="state"
                             :disabled="$page.props.role.key != 'admin'"
-                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3"
+                            class="w-full border-gray-200 border border-solid rounded-md mt-2 text-xs py-3 px-3 dark:border-gray-600"
                         >
                             <option v-for="(st, index) in states" :key="index" :value="index">{{ st }}</option>
                         </select>

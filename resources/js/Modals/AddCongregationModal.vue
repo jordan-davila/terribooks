@@ -1,5 +1,5 @@
 <template>
-    <modal name="add-congregation" draggable width="430px" height="auto" classes="rounded-lg bg-gray-900 shadow-lg">
+    <modal name="add-congregation" draggable width="430px" height="auto" classes="rounded-lg bg-white shadow-lg overflow-hidden dark:bg-gray-700">
         <div
             class="modal-title text-xxs text-gray-300 uppercase w-full px-8 py-6 font-bold border-b border-gray-100 flex items-center justify-between"
         >
@@ -18,7 +18,7 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div class="content px-8 py-6 text-gray-300 text-xxs font-bold uppercase">
+        <div class="content px-8 py-6 text-gray-300 text-xxs font-bold uppercase dark:border-b dark:border-gray-600">
             <div class="input-row grid grid-cols-2 gap-2 mb-3">
                 <div class="input-col">
                     <label>Name</label>

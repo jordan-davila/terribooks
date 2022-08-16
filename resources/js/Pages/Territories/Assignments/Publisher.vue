@@ -1,9 +1,9 @@
 <template>
     <div class="flex flex-1 relative">
         <div class="pl-14 pr-6 py-8 text-gray-300 flex-1">
-            <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden dark:bg-gray-800">
                 <div
-                    class="setting-title flex items-center justify-between text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 relative"
+                    class="setting-title flex items-center justify-between text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 relative dark:bg-gray-700 dark:border-gray-600"
                 >
                     <div class="title text-xxs uppercase font-bold text-gray-300">
                         <div class="title">Current Assignments</div>
@@ -77,7 +77,7 @@
         <div class="pr-14 py-8 text-gray-300 flex-1">
             <div class="flex-auto flex flex-col h-full bg-white shadow-lg rounded-lg overflow-hidden">
                 <div
-                    class="setting-title flex items-center justify-between text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 relative"
+                    class="setting-title flex items-center justify-between text-xxs uppercase w-full px-8 py-6 font-bold border-b border-gray-100 relative dark:bg-gray-700 dark:border-gray-600"
                 >
                     <div class="title text-xxs uppercase font-bold text-gray-300">
                         <div class="title">Past Assignments</div>
@@ -93,7 +93,7 @@
                         </button>
                         <button
                             @click="deleteSelectedPastAssignments()"
-                            class="rounded-lg bg-red-400 flex items-center h-8 w-8 px-4 uppercase font-bold justify-center"
+                            class="rounded-lg bg-rose-400 flex items-center h-8 w-8 px-4 uppercase font-bold justify-center"
                             v-if="pastAssignmentsToDelete.length"
                         >
                             <i class="fas fa-trash-alt"></i>
